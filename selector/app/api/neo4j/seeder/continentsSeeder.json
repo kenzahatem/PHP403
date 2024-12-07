@@ -1,0 +1,28 @@
+[
+    {
+      "ID": "continent1",
+      "Name": "Europe",
+      "Description": "Un continent situé au nord de l'Afrique et à l'est de l'Amérique."
+    },
+    {
+      "ID": "continent2",
+      "Name": "Asie",
+      "Description": "Le plus grand continent, couvrant plus de 30% de la surface terrestre."
+    },
+    {
+      "ID": "continent3",
+      "Name": "Afrique",
+      "Description": "Un continent situé au sud de l'Europe, riche en biodiversité."
+    },
+    {
+      "ID": "continent4",
+      "Name": "Amérique",
+      "Description": "Comprend l'Amérique du Nord, l'Amérique centrale et l'Amérique du Sud."
+    },
+    {
+      "ID": "continent5",
+      "Name": "Océanie",
+      "Description": "Un groupe d'îles et de pays dans le Pacifique Sud."
+    }
+  ]
+  
