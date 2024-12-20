@@ -43,7 +43,7 @@ export async function createRelationship(
   }
 }
 
-async function deleteAllNodes(session : Session) {
+export async function deleteAllNodes(session : Session) {
     const query = `
       MATCH (n)
       DETACH DELETE n
@@ -52,7 +52,7 @@ async function deleteAllNodes(session : Session) {
     console.log("Toutes les données ont été supprimées.");
   }
 
-    async function deleteNodeById(nodeId: string , session: Session) {
+    export async function deleteNodeById(nodeId: string , session: Session) {
       const query = `
         MATCH (n {ID: $nodeId})
         DETACH DELETE n
@@ -61,28 +61,28 @@ async function deleteAllNodes(session : Session) {
       console.log(`Le noeud avec ID ${nodeId} a été supprimé.`);
     }
 
-    async function getAllNodes(session: Session){
+    export async function getAllNodes(session: Session){
       const query = `Match (n)
       Return n` ; 
       const result  = await session.run(query) ; 
       return result.records.map(record => record.get("n").properties);
     }
 
-    async function getNodeById(NodeID: string , session: Session){
+    export async function getNodeById(NodeID: string , session: Session){
       const query = `MATCH (n {ID : $NodeID})
       Return n`
       const result = await session.run(query, { NodeID }) ; 
       return result.records.length > 0 ? result.records[0].get("n").properties : null;
     }
 
-    async function getNodeByLabel(Label : string ,session: Session){
+    export async function getNodeByLabel(Label : string ,session: Session){
       const query = `MATCH (n:${Label})
       return n` ; 
       const result =await session.run(query)
       return result.records.map(record => record.get("n").properties);
     }
 
-    async function deleteRelationshipById(ID : string , session: Session){
+    export async function deleteRelationshipById(ID : string , session: Session){
       const query= `Match ()-[n{ID:$ID}]->()
       delete n ` ; 
       await session.run(query, { ID }) ; 

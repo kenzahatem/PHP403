@@ -12,12 +12,12 @@ async function main() {
 
   try {
 
-    const continents: Continent[] = await readJsonTyped<Continent[]>('./seed/continentsSeed.json');
-    const countries: Country[] = await readJsonTyped<Country[]>('./seed/countriesSeed.json');
-    const cities: City[] = await readJsonTyped<City[]>('./seed/citiesSeed.json');
-    const places: Place[] = await readJsonTyped<Place[]>('./seed/placesSeed.json');
-    const themes: Theme[] = await readJsonTyped<Theme[]>('./seed/themesSeed.json');
-    const relationships: Relationship[] = await readJsonTyped<Relationship[]>('./seed/Relationships.json');
+    const continents: Continent[] = await readJsonTyped<Continent[]>('./seeder/continentsSeederer.json');
+    const countries: Country[] = await readJsonTyped<Country[]>('./seeder/countriesSeeder.json');
+    const cities: City[] = await readJsonTyped<City[]>('./seeder/citiesSeeder.json');
+    const places: Place[] = await readJsonTyped<Place[]>('./seeder/placesSeeder.json');
+    const themes: Theme[] = await readJsonTyped<Theme[]>('./seeder/themesSeeder.json');
+    const relationships: Relationship[] = await readJsonTyped<Relationship[]>('./seeder/Relationships.json');
 
 
 
