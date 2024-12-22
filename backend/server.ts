@@ -13,3 +13,5 @@ app.use(nodeRoutes.allowedMethods());
 const PORT = 8000;
 console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`);
 await app.listen({ port: PORT });
+
+// deno run --allow-net --allow-sys server.ts => lancer le serveur 

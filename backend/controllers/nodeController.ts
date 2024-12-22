@@ -1,5 +1,5 @@
-import { connectToDatabase, closeConnection, getAllNodes, getNodeById } from "../Database.ts";
-import { config } from "../config.ts";
+import { connectToDatabase, closeConnection, getAllNodes, getNodeById } from "../database/Database.ts";
+import { config } from "../database/config.ts";
 
 
 

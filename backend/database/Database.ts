@@ -88,3 +88,19 @@ export async function deleteAllNodes(session : Session) {
       await session.run(query, { ID }) ; 
       console.log(`La relation avec l'id ${ID} a été supprimé`)
     }
+
+    export async function getNodeByFirstLetterWithLabelSpecified(Label : string , Letter : string , session : Session){
+      const query = `MATCH (n:${Label})
+      where n.Name starts with $Letter
+      return n` ;
+      const result  = await session.run(query , { Letter }) ; 
+      return result.records.map(record => record.get("n").properties);
+    }
+
+    export async function getNodeByFirstLetterWithLabelNotSpecified(Letter : string , session : Session){
+      const query = `MATCH (n)
+      Where n.Name starts with $Letter
+      return n` ; 
+      const result = await session.run(query , { Letter }) ; 
+      return result.records.map(record => record.get("n").properties) ;
+    }
