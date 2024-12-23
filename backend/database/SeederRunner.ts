@@ -2,7 +2,8 @@
 import { readJsonTyped } from "./utils.ts";
 import { Continent, Country, City, Place, Theme, Relationship } from "./types.ts";
 import { config } from "./config.ts";
-import {connectToDatabase,closeConnection,createNode,createRelationship,} from "./Database.ts";
+import {connectToDatabase,closeConnection,} from "./Database.ts";
+import {createNode,createRelationship,} from "./functions/create.ts";
 
 
 //le script sert a créer un test d'une db avec des données qui ne sont pas forcèment réels
