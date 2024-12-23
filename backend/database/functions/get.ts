@@ -56,3 +56,16 @@ export async function getNodesByNameFragmentWithoutLabel(
   const result = await session.run(query, { fragment });
   return result.records.map((record) => record.get("n").properties);
 }
+
+export async function getPlacesByThemeNameFragment(
+    fragment: string,
+    session: Session,
+  ) {
+    const query = `
+      MATCH (place: Place)-[:HAS_THEME]->(t:Theme)
+      WHERE toLower(t.Name) CONTAINS toLower($fragment)
+      RETURN DISTINCT place
+    `;
+    const result = await session.run(query, { fragment });
+    return result.records.map((record) => record.get("place").properties);
+  }

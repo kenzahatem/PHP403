@@ -5,6 +5,7 @@ import {
   fetchNodeById,
   fetchNodesByNameFragmentWithLabel,
   fetchNodesByNameFragmentWithoutLabel,
+  fetchPlacesByThemeNameFragment,
 } from "../controllers/nodeController.ts";
 
 const router = new Router();
@@ -106,4 +107,24 @@ router.get("/nodes/:label/search/:query", async (context) => {
   }
 });
 
-export default router;
+// Get places that are linked to a theme containing the query in its name
+router.get("/places/theme/:query", async (context) => {
+  const fragment = context.params.query;
+  if (!fragment) {
+    context.throw(400, "Query parameter is missing");
+  }
+
+  try {
+    const places = await fetchPlacesByThemeNameFragment(fragment);
+    if (places.length === 0) {
+      context.response.status = 404;
+      context.response.body = { error: "No places found." };
+    } else {
+      context.response.body = places;
+    }
+  } catch (error) {
+    console.error(error);
+    context.response.status = 500;
+    context.response.body = { error: "Server error." };
+  }
+});

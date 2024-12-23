@@ -1,6 +1,7 @@
 import { runWithSession } from "../database/utils.ts";
 import {
   getAllNodes,
+  getPlacesByThemeNameFragment,
   getNodeById,
   getNodesByNameFragmentWithLabel,
   getNodesByNameFragmentWithoutLabel,
@@ -27,3 +28,8 @@ export const fetchNodesByNameFragmentWithLabel = async (
 ) => {
   return await runWithSession(getNodesByNameFragmentWithLabel, label, fragment);
 };
+
+export const fetchPlacesByThemeNameFragment = async (fragment: string) => {
+  return await runWithSession(getPlacesByThemeNameFragment, fragment);
+}
+
