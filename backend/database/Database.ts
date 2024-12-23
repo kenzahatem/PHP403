@@ -1,7 +1,7 @@
 import neo4j, {
   Driver,
   Session,
-} from "https://deno.land/x/neo4j_driver_lite@5.14.0/mod.ts";
+} from "@neo4j_driver_lite";
 
 export function connectToDatabase(
   url: string,

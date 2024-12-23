@@ -1,4 +1,4 @@
-import { Session } from "https://deno.land/x/neo4j_driver_lite@5.14.0/mod.ts";
+import { Session } from "@neo4j_driver_lite";
 
 export async function getAllNodes(session: Session) {
   const query = `Match (n)
