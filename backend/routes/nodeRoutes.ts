@@ -6,6 +6,7 @@ import {
   fetchNodesByNameFragmentWithLabel,
   fetchNodesByNameFragmentWithoutLabel,
   fetchPlacesByThemeNameFragment,
+  searchFromQuery,
 } from "../controllers/nodeController.ts";
 
 const router = new Router();
@@ -128,3 +129,26 @@ router.get("/places/theme/:query", async (context) => {
     context.response.body = { error: "Server error." };
   }
 });
+
+router.get("/search/places/:query", async (context) => {
+  const query = context.params.query;
+  if (!query) {
+    context.throw(400, "Query parameter is missing");
+  }
+
+  try {
+    const results = await searchFromQuery(query);
+    if (!results || results.length === 0) {
+      context.response.status = 404;
+      context.response.body = { error: "No matches found." };
+    } else {
+      context.response.body = results;
+    }
+  } catch (error) {
+    console.error(error);
+    context.response.status = 500;
+    context.response.body = { error: "Server error." };
+  }
+});
+
+export default router;
