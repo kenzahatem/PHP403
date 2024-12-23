@@ -8,6 +8,7 @@ import {
   fetchPlacesByThemeNameFragment,
   searchFromQuery,
 } from "../controllers/nodeController.ts";
+import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
 const router = new Router();
 
@@ -28,55 +29,24 @@ router.get("/nodes", async (context: Context) => {
   }
 });
 
-// Route pour récupérer un noeud par ID
-router.get("/nodes/:id", async (context) => {
-  const id = context.params.id;
-  if (!id) {
-    context.response.status = 400;
-    context.response.body = { error: "ID requis." };
-    return;
-  }
+// We use a boilerplate error handling code defined in `routeFactory.ts`
+router.get(
+  "/nodes/:id",
+  createSingleParamGetRouteHandler({
+    paramName: "id",
+    fetchFn: fetchNodeById,
+    notFoundLabel: "node",
+  }),
+);
 
-  try {
-    const node = await fetchNodeById(id);
-    if (node) {
-      context.response.body = node;
-    } else {
-      context.response.status = 404;
-      context.response.body = { error: "Noeud introuvable." };
-    }
-  } catch (error) {
-    context.response.status = 500;
-    context.response.body = {
-      error: "Erreur lors de la récupération du noeud.",
-    };
-  }
-});
-
-// Example route: label not specified
-// GET /nodes/search/<someSubstring>
-router.get("/nodes/search/:query", async (context) => {
-  const query = context.params.query;
-
-  if (!query) {
-    context.response.status = 400;
-    context.response.body = { error: "Substring (query) required." };
-    return;
-  }
-
-  try {
-    const nodes = await fetchNodesByNameFragmentWithoutLabel(query);
-    if (nodes && nodes.length > 0) {
-      context.response.body = nodes;
-    } else {
-      context.response.status = 404;
-      context.response.body = { error: "No matching nodes found." };
-    }
-  } catch (error) {
-    context.response.status = 500;
-    context.response.body = { error: "Error fetching nodes." };
-  }
-});
+router.get(
+  "/nodes/search/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchNodesByNameFragmentWithoutLabel,
+    notFoundLabel: "nodes",
+  }),
+);
 
 // Example route: label specified
 // GET /nodes/<Label>/search/<someSubstring>
@@ -84,14 +54,10 @@ router.get("/nodes/:label/search/:query", async (context) => {
   const { label, query } = context.params;
 
   if (!label) {
-    context.response.status = 400;
-    context.response.body = { error: "Label required." };
-    return;
+    context.throw(400, "Label parameter is missing");
   }
   if (!query) {
-    context.response.status = 400;
-    context.response.body = { error: "Substring (query) required." };
-    return;
+    context.throw(400, "Query parameter is missing");
   }
 
   try {
@@ -108,47 +74,22 @@ router.get("/nodes/:label/search/:query", async (context) => {
   }
 });
 
-// Get places that are linked to a theme containing the query in its name
-router.get("/places/theme/:query", async (context) => {
-  const fragment = context.params.query;
-  if (!fragment) {
-    context.throw(400, "Query parameter is missing");
-  }
+router.get(
+  "/places/theme/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchPlacesByThemeNameFragment,
+    notFoundLabel: "places",
+  }),
+);
 
-  try {
-    const places = await fetchPlacesByThemeNameFragment(fragment);
-    if (places.length === 0) {
-      context.response.status = 404;
-      context.response.body = { error: "No places found." };
-    } else {
-      context.response.body = places;
-    }
-  } catch (error) {
-    console.error(error);
-    context.response.status = 500;
-    context.response.body = { error: "Server error." };
-  }
-});
-
-router.get("/search/places/:query", async (context) => {
-  const query = context.params.query;
-  if (!query) {
-    context.throw(400, "Query parameter is missing");
-  }
-
-  try {
-    const results = await searchFromQuery(query);
-    if (!results || results.length === 0) {
-      context.response.status = 404;
-      context.response.body = { error: "No matches found." };
-    } else {
-      context.response.body = results;
-    }
-  } catch (error) {
-    console.error(error);
-    context.response.status = 500;
-    context.response.body = { error: "Server error." };
-  }
-});
+router.get(
+  "/search/places/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: searchFromQuery,
+    notFoundLabel: "places",
+  }),
+);
 
 export default router;
