@@ -1,7 +1,11 @@
-import { Router, Context } from "https://deno.land/x/oak@v12.5.0/mod.ts";
+import { Context, Router } from "https://deno.land/x/oak@v12.5.0/mod.ts";
 
-import { fetchAllNodes, fetchNodeById } from "../controllers/nodeController.ts";
-import { fetchNodeByFirstLetterWithLabelNotSpecified , fetchNodeByFirstLetterWithLabelSpecified } from "../controllers/TestDatabaseFunction.ts";
+import {
+  fetchAllNodes,
+  fetchNodeById,
+  fetchNodesByNameFragmentWithLabel,
+  fetchNodesByNameFragmentWithoutLabel,
+} from "../controllers/nodeController.ts";
 
 const router = new Router();
 
@@ -10,13 +14,15 @@ const router = new Router();
 // router.get("/nodes/:id", fetchNodeById);
 
 // Route pour récupérer tous les noeuds
-router.get("/nodes", async (context : Context ) => {
+router.get("/nodes", async (context: Context) => {
   try {
     const nodes = await fetchAllNodes();
     context.response.body = nodes;
   } catch (error) {
     context.response.status = 500;
-    context.response.body = { error: "Erreur lors de la récupération des noeuds." };
+    context.response.body = {
+      error: "Erreur lors de la récupération des noeuds.",
+    };
   }
 });
 
@@ -39,62 +45,65 @@ router.get("/nodes/:id", async (context) => {
     }
   } catch (error) {
     context.response.status = 500;
-    context.response.body = { error: "Erreur lors de la récupération du noeud." };
+    context.response.body = {
+      error: "Erreur lors de la récupération du noeud.",
+    };
   }
 });
 
-router.get("/nodes/letter/:letter", async (context) => {
-  const letter = context.params.letter;
-// console.log(letter) ; 
-  if (!letter) {
+// Example route: label not specified
+// GET /nodes/search/<someSubstring>
+router.get("/nodes/search/:query", async (context) => {
+  const query = context.params.query;
+
+  if (!query) {
     context.response.status = 400;
-    context.response.body = { error: "Lettre requise." };
+    context.response.body = { error: "Substring (query) required." };
     return;
   }
 
   try {
-    const node = await fetchNodeByFirstLetterWithLabelNotSpecified(letter);
-    if (node) {
-      context.response.body = node;
+    const nodes = await fetchNodesByNameFragmentWithoutLabel(query);
+    if (nodes && nodes.length > 0) {
+      context.response.body = nodes;
     } else {
       context.response.status = 404;
-      context.response.body = { error: "Noeud introuvable." };
+      context.response.body = { error: "No matching nodes found." };
     }
   } catch (error) {
     context.response.status = 500;
-    context.response.body = { error: "Erreur lors de la récupération du noeud." };
+    context.response.body = { error: "Error fetching nodes." };
   }
 });
-//  exemple : http://localhost:8000/nodes/letter/A
 
-router.get("/nodes/:label/:letter", async (context) => {
-  const letter = context.params.letter;
-  const Label = context.params.label ; 
-// console.log(letter) ; 
-  if (!letter) {
+// Example route: label specified
+// GET /nodes/<Label>/search/<someSubstring>
+router.get("/nodes/:label/search/:query", async (context) => {
+  const { label, query } = context.params;
+
+  if (!label) {
     context.response.status = 400;
-    context.response.body = { error: "Lettre requise." };
+    context.response.body = { error: "Label required." };
     return;
   }
-  if (!Label) {
+  if (!query) {
     context.response.status = 400;
-    context.response.body = { error: "Label requis." };
+    context.response.body = { error: "Substring (query) required." };
     return;
   }
 
   try {
-    const node = await fetchNodeByFirstLetterWithLabelSpecified(Label , letter);
-    if (node) {
-      context.response.body = node;
+    const nodes = await fetchNodesByNameFragmentWithLabel(label, query);
+    if (nodes && nodes.length > 0) {
+      context.response.body = nodes;
     } else {
       context.response.status = 404;
-      context.response.body = { error: "Noeud introuvable." };
+      context.response.body = { error: "No matching nodes found." };
     }
   } catch (error) {
     context.response.status = 500;
-    context.response.body = { error: "Erreur lors de la récupération du noeud." };
+    context.response.body = { error: "Error fetching nodes." };
   }
 });
-// exemple :http://localhost:8000/nodes/City/P
 
 export default router;
