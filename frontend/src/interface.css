@@ -54,7 +54,9 @@ p {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   z-index: 10;
+  right: -55px;
 }
+
 
 .search-box input {
   flex: 1;
@@ -90,3 +92,120 @@ p {
 }
 
 
+/* Barre de recherche */
+.search-box {
+  position: relative;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  background: white;
+  transition: all 0.5s ease-in-out;
+  z-index: 3; /* La barre reste au-dessus des autres éléments */
+}
+
+.search-box.expanded {
+  width: 80%;
+  height: 60px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px; /* Ajuste la position verticale */
+  left: 50%;
+  transform: translateX(-50%); /* Centre horizontalement */
+}
+.search-box {
+    position: relative; /* Laisse les suggestions s'aligner sous le champ */
+    z-index: 2; /* Garde la barre au-dessus des autres éléments */
+}
+/* Conteneur global en mode expansion */
+.search-container.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(108, 204, 211, 0.9); /* Fond opaque */
+  overflow-y: auto; /* Active la barre de défilement */
+  padding: 20px;
+}
+
+/* Photos affichées lors de l'expansion */
+.photo-container {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.photo {
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transition pour les animations */
+}
+
+.photo:hover {
+  transform: scale(1.1); /* Agrandit légèrement l'image */
+  box-shadow: 0 8px 15px rgba(185, 44, 44, 0.2); /* Augmente l'ombre */
+  cursor: pointer; /* Change le curseur pour indiquer une interaction */
+}
+
+/* Overlay */
+
+.suggestions-container {
+    position: absolute;
+    top: calc(12% + -42px); /* Ajuste légèrement l'espace sous la barre */
+    left: 187px;
+    width: 80%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 100; /* Assure que les suggestions apparaissent au-dessus */
+    max-height: 339px; /* Pour limiter la hauteur totale */
+    overflow-y: auto; /* Active la barre de défilement si nécessaire */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Place sous la barre de recherche */
+  cursor: pointer; /* Indique qu'il est cliquable */
+  display: none; /* Par défaut, l'overlay est masqué */
+}
+.search-container.expanded .overlay {
+  display: block; /* L'overlay s'affiche uniquement lorsque la barre est étendue */
+}
+
+.suggestion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px; /* Taille carrée */
+  height: 150px; /* Taille carrée */
+  background-color: #ffffff; /* Fond blanc pour les icônes */
+    border: 1px solid #ccc;
+    color: #333; /* Texte plus sombre pour un meilleur contraste */
+  border-radius: 10px; /* Coins arrondis */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation sur le survol */
+}
+
+.suggestion-icon:hover {
+  transform: scale(1.1); /* Agrandissement au survol */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+}
+
+.icon-content {
+  font-size: 1em;
+  color: #333;
+  font-weight: bold;
+}
