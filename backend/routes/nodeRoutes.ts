@@ -7,6 +7,10 @@ import {
   fetchNodesByNameFragmentWithoutLabel,
   fetchPlacesByThemeNameFragment,
   searchFromQuery,
+  fetchCitiesByCountryNameFragment , 
+  fetchCountriesByContinentNameFragment , 
+  fetchPlacesByCityNameFragment,
+  fetchNodesByLabel
 } from "../controllers/nodeController.ts";
 import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
@@ -36,6 +40,15 @@ router.get(
     paramName: "id",
     fetchFn: fetchNodeById,
     notFoundLabel: "node",
+  }),
+);
+
+router.get(
+  "/nodes/label/:label",
+  createSingleParamGetRouteHandler({
+    paramName: "label",
+    fetchFn: fetchNodesByLabel,
+    notFoundLabel: "nodes",
   }),
 );
 
@@ -75,7 +88,7 @@ router.get("/nodes/:label/search/:query", async (context) => {
 });
 
 router.get(
-  "/places/theme/:query",
+  "/search/places/theme/:query",
   createSingleParamGetRouteHandler({
     paramName: "query",
     fetchFn: fetchPlacesByThemeNameFragment,
@@ -91,5 +104,35 @@ router.get(
     notFoundLabel: "places",
   }),
 );
+
+router.get(
+  "/search/countries/continent/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchCountriesByContinentNameFragment,
+    notFoundLabel: "countries by continent",
+  })
+);
+
+// Route pour récupérer les villes par fragment de nom de pays
+router.get(
+  "/search/cities/country/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchCitiesByCountryNameFragment,
+    notFoundLabel: "cities by country",
+  })
+);
+
+// Route pour récupérer les lieux par fragment de nom de ville
+router.get(
+  "/search/places/city/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchPlacesByCityNameFragment,
+    notFoundLabel: "places by city",
+  })
+);
+
 
 export default router;
