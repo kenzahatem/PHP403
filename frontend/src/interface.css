@@ -138,6 +138,7 @@ p {
     gap: 20px;
     padding: 20px;
     overflow-y: auto;
+    cursor: pointer;
 }
 
 .photo {
@@ -178,7 +179,6 @@ p {
   width: 100%;
   height: 100%;
   z-index: 1; /* Place sous la barre de recherche */
-  cursor: pointer; /* Indique qu'il est cliquable */
   display: none; /* Par défaut, l'overlay est masqué */
 }
 .search-container.expanded .overlay {
@@ -197,6 +197,8 @@ p {
   border-radius: 10px; /* Coins arrondis */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation sur le survol */
+  z-index: 1000;
+  /* cursor: pointer; /* Indique qu'il est cliquable * */
 }
 
 .suggestion-icon:hover {

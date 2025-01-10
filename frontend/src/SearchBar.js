@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import searchIcon from './search-icon.png';
-import { fetchNodesByNameFragmentWithoutLabel } from './api/nodeApi.js';
+import { fetchNodesByNameFragmentWithoutLabel , fetchNodesWithRelationship, fetchThemes} from './api/nodeApi.js';
 import './interface.css';
 
 function SearchBar() {
@@ -14,23 +14,24 @@ function SearchBar() {
 
     // Gestion du clic en dehors du conteneur
     const handleClickOutside = (event) => {
+        console.log("handleClickOutside triggered:", event.target);
         if (
             searchContainerRef.current &&
             !searchContainerRef.current.contains(event.target)
         ) {
-            setIsExpanded(false); // Réinitialise l'état
+            setIsExpanded(false);
         }
     };
 
     // Ajout et suppression des événements de clic
-    useEffect(() => {
-        if (isExpanded) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [isExpanded]);
+    // useEffect(() => {
+    //     if (isExpanded) {
+    //         document.addEventListener('mousedown', handleClickOutside);
+    //     }
+    //     return () => {
+    //         document.removeEventListener('mousedown', handleClickOutside);
+    //     };
+    // }, [isExpanded]);
 
     const handleInputChange = async (e) => {
         const query = e.target.value;
@@ -49,6 +50,18 @@ function SearchBar() {
         }
     };
 
+    const handleSearchAssociateResults = async (suggestion) => {
+        console.log("Clicked on:", suggestion);
+
+        const filteredNodes = await fetchNodesWithRelationship(suggestion);
+        console.log("Résultats pour :", suggestion.Name, filteredNodes);
+
+    };
+    const handleAllPossibleThemes = async()=>{
+        const themes  = await fetchThemes() ; 
+        console.log("Les Thèmes sont:" , themes) ; 
+    }
+
     return (
         <div
             ref={searchContainerRef}
@@ -58,7 +71,7 @@ function SearchBar() {
             {isExpanded && (
                 <div
                     className="overlay"
-                    onClick={() => setIsExpanded(false)} // Revenir à l'état initial
+                    // onClick={() => setIsExpanded(false)} // Revenir à l'état initial
                 ></div>
             )}
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
@@ -68,6 +81,7 @@ function SearchBar() {
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
+                    onClick = {handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
                 <button>
@@ -77,9 +91,13 @@ function SearchBar() {
             {isExpanded && (
                 <div className="photo-container">
                     {suggestions.map((suggestion, index) => (
-                        <div key={index} className="suggestion-icon">
-                            <div className="icon-content">
-                                <img alt={suggestion.Name}></img>
+                        <div
+                        onClick={() => handleSearchAssociateResults(suggestion)}
+                        key={index}
+                        className="suggestion-icon"
+                        >   
+                            <div className="icon-content" onClick={() => console.log("Clicked on suggestion:", suggestion)}>
+                                <img alt={suggestion.Name}/>
                             </div>
                         </div>
                     ))}
