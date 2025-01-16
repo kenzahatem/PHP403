@@ -1,0 +1,27 @@
+SELECT ?continent ?label ?description ?image
+WHERE {
+  {
+    # Main query for continents
+    ?continent wdt:P31 wd:Q5107.
+    
+    # Apply filters to exclude specific unwanted instances
+    FILTER NOT EXISTS { ?continent wdt:P31 wd:Q3895768. }
+    FILTER NOT EXISTS { ?continent wdt:P31 wd:Q855697. }
+    FILTER NOT EXISTS { ?continent wdt:P31 wd:Q42106. }
+  }
+  UNION
+  {
+    # Explicitly include Q55643 without applying filters
+    VALUES ?continent { wd:Q55643 wd:Q538 }
+  }
+
+  # Optionally include image if available
+  OPTIONAL { ?continent wdt:P18 ?image. }
+  
+  # Fetch labels and descriptions in preferred languages
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "fr,en".
+    ?continent rdfs:label ?label.
+    ?continent schema:description ?description.
+  }
+}
