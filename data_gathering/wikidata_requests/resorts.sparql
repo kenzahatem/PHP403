@@ -1,0 +1,46 @@
+SELECT ?attraction ?label ?description 
+       (GROUP_CONCAT(DISTINCT ?instanceOf; SEPARATOR=", ") AS ?instanceOfs) 
+       (GROUP_CONCAT(DISTINCT ?location; SEPARATOR=", ") AS ?locations) 
+       ?coordinates 
+       (SAMPLE(?image) AS ?image)
+WHERE {
+  { ?attraction wdt:P31 wd:Q875157. }  # resort
+  UNION
+  { ?attraction wdt:P31/wdt:P279* wd:Q875157. } # Subclass of resort
+
+  # Handle locations (P131) with preferred rank if available
+  OPTIONAL {
+    {
+      # Preferred rank location
+      ?attraction p:P131 ?locationStatement.
+      ?locationStatement ps:P131 ?location.
+      FILTER NOT EXISTS { ?locationStatement pq:P582 ?endTime. }  # Exclude with end time
+      FILTER EXISTS { ?locationStatement wikibase:rank wikibase:PreferredRank. }
+    }
+    UNION {
+      # Normal rank location (fallback)
+      ?attraction p:P131 ?locationStatement.
+      ?locationStatement ps:P131 ?location.
+      FILTER NOT EXISTS { ?locationStatement pq:P582 ?endTime. }  # Exclude with end time
+      FILTER NOT EXISTS { ?locationStatement wikibase:rank wikibase:DeprecatedRank. }
+    }
+  }
+
+  OPTIONAL { ?attraction wdt:P18 ?image. }
+
+  OPTIONAL { ?attraction wdt:P625 ?coordinates}
+
+  # Types (instance of) - Exclure tourist attraction
+  OPTIONAL {
+    ?attraction wdt:P31 ?instanceOf.
+    FILTER (?instanceOf != wd:Q570116)  # Exclut 'tourist attraction'
+  }
+
+  # Libellés et descriptions en français et anglais
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "fr,en".
+    ?attraction rdfs:label ?label.
+    ?attraction schema:description ?description.
+  }
+}
+GROUP BY ?attraction ?label ?description ?coordinates
