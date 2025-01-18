@@ -1,4 +1,4 @@
-SELECT DISTINCT ?item ?itemLabel 
+SELECT DISTINCT ?item ?label 
        (GROUP_CONCAT(DISTINCT ?superclass; SEPARATOR=", ") AS ?superclasses)
 WHERE {
   {
@@ -39,7 +39,7 @@ WHERE {
   # Labels for items
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "fr,en".
-    ?item rdfs:label ?itemLabel.
+    ?item rdfs:label ?label.
   }
 }
-GROUP BY ?item ?itemLabel
+GROUP BY ?item ?label
