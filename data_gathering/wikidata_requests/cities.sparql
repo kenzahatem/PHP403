@@ -1,4 +1,4 @@
-SELECT ?city ?label ?description ?country ?coordinates ?image
+SELECT ?city ?label ?description ?inCountry ?coordinates ?image
 WHERE {
   { ?city wdt:P31 wd:Q7930989. }  # Instance directe de city or town
   UNION
@@ -16,14 +16,14 @@ WHERE {
   
   {
     ?city p:P17 ?stPref.
-    ?stPref ps:P17 ?country;
+    ?stPref ps:P17 ?inCountry;
       wikibase:rank wikibase:PreferredRank.
     FILTER(NOT EXISTS { ?stPref pq:P582 ?endTime. })
   }
   UNION
   {
     ?city p:P17 ?stNorm.
-    ?stNorm ps:P17 ?country;
+    ?stNorm ps:P17 ?inCountry;
       wikibase:rank wikibase:NormalRank.
     FILTER(NOT EXISTS { ?stNorm pq:P582 ?endTime. })
     FILTER(NOT EXISTS {

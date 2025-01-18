@@ -2,7 +2,7 @@ SELECT ?attraction ?label ?description
        (GROUP_CONCAT(DISTINCT ?instanceOf; SEPARATOR=", ") AS ?instanceOfs) 
        (GROUP_CONCAT(DISTINCT ?location; SEPARATOR=", ") AS ?locations) 
        ?coordinates 
-       ?country
+       ?inCountry
        (SAMPLE(?image) AS ?image)
 WHERE {
   { ?attraction wdt:P31 wd:Q570116. }  # tourist attraction
@@ -27,7 +27,7 @@ WHERE {
 
   OPTIONAL { ?attraction wdt:P18 ?image. }
   
-  OPTIONAL { ?attraction wdt:P17 ?country }
+  OPTIONAL { ?attraction wdt:P17 ?inCountry }
 
   OPTIONAL { ?attraction wdt:P625 ?coordinates}
 
@@ -44,4 +44,4 @@ WHERE {
     ?attraction schema:description ?description.
   }
 }
-GROUP BY ?attraction ?label ?description ?coordinates ?country
+GROUP BY ?attraction ?label ?description ?coordinates ?inCountry
