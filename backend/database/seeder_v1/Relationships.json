@@ -1,0 +1,143 @@
+[
+    {
+      "from": "Continent",
+      "fromID": "continent1",
+      "to": "Country",
+      "toID": "country1",
+      "type": "HAS_COUNTRY"
+    },
+    {
+      "from": "Continent",
+      "fromID": "continent2",
+      "to": "Country",
+      "toID": "country2",
+      "type": "HAS_COUNTRY"
+    },
+    {
+      "from": "Continent",
+      "fromID": "continent3",
+      "to": "Country",
+      "toID": "country3",
+      "type": "HAS_COUNTRY"
+    },
+    {
+      "from": "Continent",
+      "fromID": "continent4",
+      "to": "Country",
+      "toID": "country4",
+      "type": "HAS_COUNTRY"
+    },
+    {
+      "from": "Continent",
+      "fromID": "continent5",
+      "to": "Country",
+      "toID": "country5",
+      "type": "HAS_COUNTRY"
+    },
+    {
+      "from": "Country",
+      "fromID": "country1",
+      "to": "City",
+      "toID": "city1",
+      "type": "HAS_CITY"
+    },
+    {
+      "from": "Country",
+      "fromID": "country2",
+      "to": "City",
+      "toID": "city2",
+      "type": "HAS_CITY"
+    },
+    {
+      "from": "Country",
+      "fromID": "country3",
+      "to": "City",
+      "toID": "city3",
+      "type": "HAS_CITY"
+    },
+    {
+      "from": "Country",
+      "fromID": "country4",
+      "to": "City",
+      "toID": "city4",
+      "type": "HAS_CITY"
+    },
+    {
+      "from": "Country",
+      "fromID": "country5",
+      "to": "City",
+      "toID": "city5",
+      "type": "HAS_CITY"
+    },
+    {
+      "from": "City",
+      "fromID": "city1",
+      "to": "Place",
+      "toID": "place1",
+      "type": "HAS_PLACE"
+    },
+    {
+      "from": "City",
+      "fromID": "city2",
+      "to": "Place",
+      "toID": "place2",
+      "type": "HAS_PLACE"
+    },
+    {
+      "from": "City",
+      "fromID": "city3",
+      "to": "Place",
+      "toID": "place3",
+      "type": "HAS_PLACE"
+    },
+    {
+      "from": "City",
+      "fromID": "city4",
+      "to": "Place",
+      "toID": "place4",
+      "type": "HAS_PLACE"
+    },
+    {
+      "from": "City",
+      "fromID": "city5",
+      "to": "Place",
+      "toID": "place5",
+      "type": "HAS_PLACE"
+    },
+    {
+      "from": "Place",
+      "fromID": "place1",
+      "to": "Theme",
+      "toID": "theme1",
+      "type": "HAS_THEME"
+    },
+    {
+      "from": "Place",
+      "fromID": "place2",
+      "to": "Theme",
+      "toID": "theme2",
+      "type": "HAS_THEME"
+    },
+    {
+      "from": "Place",
+      "fromID": "place3",
+      "to": "Theme",
+      "toID": "theme3",
+      "type": "HAS_THEME"
+    },
+    {
+      "from": "Place",
+      "fromID": "place4",
+      "to": "Theme",
+      "toID": "theme4",
+      "type": "HAS_THEME"
+    },
+    {
+      "from": "Place",
+      "fromID": "place5",
+      "to": "Theme",
+      "toID": "theme5",
+      "type": "HAS_THEME"
+    }
+  ]
+  

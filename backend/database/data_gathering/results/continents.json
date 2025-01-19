@@ -1,0 +1,50 @@
+[
+    {
+        "id": "538",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Oceania-map.JPG",
+        "label": "Océanie",
+        "description": "région géographique"
+    },
+    {
+        "id": "55643",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Oceania%20satellite.jpg",
+        "label": "Océanie",
+        "description": "région géographique qui n'est pas un continent stricto sensu"
+    },
+    {
+        "id": "15",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Africa%20satellite%20orthographic.jpg",
+        "label": "Afrique",
+        "description": "continent"
+    },
+    {
+        "id": "46",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Europe%20satellite%20orthographic.jpg",
+        "label": "Europe",
+        "description": "continent"
+    },
+    {
+        "id": "48",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Asia%20%28orthographic%20projection%29.svg",
+        "label": "Asie",
+        "description": "continent"
+    },
+    {
+        "id": "51",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Antarctica%206400px%20from%20Blue%20Marble.jpg",
+        "label": "Antarctique",
+        "description": "continent terrestre le plus austral"
+    },
+    {
+        "id": "828",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/America%20sattelite.jpg",
+        "label": "Amérique",
+        "description": "continent situé entre l'océan Atlantique et l'océan Pacifique"
+    },
+    {
+        "id": "3960",
+        "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Australia%20satellite%20orthographic.jpg",
+        "label": "continent australien",
+        "description": "continent terrestre de l'Hémisphère sud"
+    }
+]

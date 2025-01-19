@@ -1,0 +1,41 @@
+SELECT ?city ?label ?description ?inCountry ?coordinates ?image
+WHERE {
+  { ?city wdt:P31 wd:Q7930989. }  # Instance directe de city or town
+  UNION
+  { ?city wdt:P31/wdt:P279 wd:Q515. }  # Sous-classe de city
+  UNION
+  { ?city wdt:P31/wdt:P279 wd:Q7930989. }  # Sous-classe directe
+  
+  FILTER NOT EXISTS {
+    ?city wdt:P31 wd:Q839954.
+  }
+  
+  OPTIONAL { ?city wdt:P18 ?image. }
+
+  OPTIONAL { ?city wdt:P625 ?coordinates}
+  
+  {
+    ?city p:P17 ?stPref.
+    ?stPref ps:P17 ?inCountry;
+      wikibase:rank wikibase:PreferredRank.
+    FILTER(NOT EXISTS { ?stPref pq:P582 ?endTime. })
+  }
+  UNION
+  {
+    ?city p:P17 ?stNorm.
+    ?stNorm ps:P17 ?inCountry;
+      wikibase:rank wikibase:NormalRank.
+    FILTER(NOT EXISTS { ?stNorm pq:P582 ?endTime. })
+    FILTER(NOT EXISTS {
+      ?city p:P17 ?stAnother.
+      ?stAnother wikibase:rank wikibase:PreferredRank.
+      FILTER(NOT EXISTS { ?stAnother pq:P582 ?anotherEnd. })
+    })
+  }
+  
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "fr,en".
+    ?city rdfs:label ?label;
+      schema:description ?description.
+  }
+}

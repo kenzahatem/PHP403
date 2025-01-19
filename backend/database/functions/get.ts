@@ -50,7 +50,7 @@ export async function getNodesByNameFragmentWithoutLabel(
 ) {
   const startsQuery = `
     MATCH (n)
-    WHERE toLower(n.Name) STARTS WITH toLower($fragment)
+    WHERE toLower(n.label) STARTS WITH toLower($fragment)
     AND NOT "Theme" IN labels(n)  
     RETURN n
   `;

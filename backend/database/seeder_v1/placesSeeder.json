@@ -1,0 +1,28 @@
+[
+    {
+      "ID": "place1",
+      "Name": "Eiffel Tower",
+      "Description": "Un monument célèbre à Paris."
+    },
+    {
+      "ID": "place2",
+      "Name": "Brandenburger Tor",
+      "Description": "Un monument emblématique de Berlin."
+    },
+    {
+      "ID": "place3",
+      "Name": "Shibuya Crossing",
+      "Description": "Un carrefour mondialement célèbre à Tokyo."
+    },
+    {
+      "ID": "place4",
+      "Name": "Christ the Redeemer",
+      "Description": "Une statue emblématique à Rio de Janeiro."
+    },
+    {
+      "ID": "place5",
+      "Name": "Sydney Opera House",
+      "Description": "Un bâtiment iconique et un site du patrimoine mondial à Sydney."
+    }
+  ]
+  

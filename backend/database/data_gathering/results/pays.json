@@ -1,0 +1,1659 @@
+[
+    {
+        "id": "298",
+        "label": "Chili",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Chile.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "414",
+        "label": "Argentine",
+        "description": "pays d’Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Argentina.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "717",
+        "label": "Venezuela",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Venezuela%20%281930%E2%80%932006%29.svg",
+        "languages": "langue des signes vénézuélienne, espagnol"
+    },
+    {
+        "id": "730",
+        "label": "Suriname",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Suriname.svg",
+        "languages": "néerlandais"
+    },
+    {
+        "id": "734",
+        "label": "Guyana",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Guyana.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "733",
+        "label": "Paraguay",
+        "description": "république d’Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Paraguay%20%281988%E2%80%931990%29.svg",
+        "languages": "guarani, espagnol"
+    },
+    {
+        "id": "739",
+        "label": "Colombie",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Colombia.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "736",
+        "label": "Équateur",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Civil%20flag%20and%20ensign%20of%20Ecuador.svg",
+        "languages": "quichua, shuar, espagnol"
+    },
+    {
+        "id": "750",
+        "label": "Bolivie",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bolivia.svg",
+        "languages": "guarani, quechua, aymara, espagnol"
+    },
+    {
+        "id": "754",
+        "label": "Trinité-et-Tobago",
+        "description": "État insulaire des Caraïbes",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Trinidad%20and%20Tobago.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "757",
+        "label": "Saint-Vincent-et-les-Grenadines",
+        "description": "État insulaire des Petites-Antilles",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Saint%20Vincent%20and%20the%20Grenadines.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "763",
+        "label": "Saint-Christophe-et-Niévès",
+        "description": "État situé dans les petites Antilles",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Saint%20Kitts%20and%20Nevis.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "760",
+        "label": "Sainte-Lucie",
+        "description": "État insulaire des Antilles",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Saint%20Lucia%20%281939%E2%80%931967%29.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "766",
+        "label": "Jamaïque",
+        "description": "État insulaire des Caraïbes indépendant depuis 1962",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Jamaica.svg",
+        "languages": "créole jamaïcain, anglais"
+    },
+    {
+        "id": "769",
+        "label": "Grenade",
+        "description": "État souverain insulaire de la mer des Caraïbes",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Grenada%20%281903%E2%80%931967%29.svg",
+        "languages": "créole grenadais, anglais"
+    },
+    {
+        "id": "774",
+        "label": "Guatemala",
+        "description": "pays d'Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Guatemala.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "778",
+        "label": "Bahamas",
+        "description": "État insulaire au large des Caraïbes",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Bahamas.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "783",
+        "label": "Honduras",
+        "description": "pays d'Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Honduras%20%281839-1866%29.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "781",
+        "label": "Antigua-et-Barbuda",
+        "description": "État insulaire de la mer des Caraïbes",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Antigua%20and%20Barbuda.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "786",
+        "label": "République dominicaine",
+        "description": "État situé sur l'île d'Hispaniola dans l'archipel des Grandes Antilles",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Dominican%20Republic.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "784",
+        "label": "Dominique",
+        "description": "pays de l'archipel des Caraïbes",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Dominica%20%281965%E2%80%931978%29.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "792",
+        "label": "Salvador",
+        "description": "pays d'Amérique centrale depuis 1841",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Civil%20Flag%20of%20El%20Salvador.png",
+        "languages": "espagnol"
+    },
+    {
+        "id": "800",
+        "label": "Costa Rica",
+        "description": "pays d'Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Costa%20Rica%20%281824-1840%29.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "804",
+        "label": "Panama",
+        "description": "république d’Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Panama.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "811",
+        "label": "Nicaragua",
+        "description": "république d’Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nicaragua.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "21203",
+        "label": "Aruba",
+        "description": "État insulaire des Caraïbes appartenant au Royaume des Pays-Bas",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Aruba.svg",
+        "languages": "papiamento, néerlandais"
+    },
+    {
+        "id": "25279",
+        "label": "Curaçao",
+        "description": "État insulaire des Caraïbes appartenant au royaume des Pays-Bas",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cura%C3%A7ao.svg",
+        "languages": "papiamento, néerlandais, anglais"
+    },
+    {
+        "id": "26273",
+        "label": "Saint-Martin",
+        "description": "État insulaire des Caraïbes, appartenant au Royaume des Pays-Bas depuis 2010",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Sint%20Maarten.svg",
+        "languages": "néerlandais, anglais"
+    },
+    {
+        "id": "16",
+        "label": "Canada",
+        "description": "pays d'Amérique du Nord",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Canada%20%281964%29.svg",
+        "languages": "anglais, français"
+    },
+    {
+        "id": "30",
+        "label": "États-Unis",
+        "description": "pays d'Amérique du Nord",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20United%20States%20%281877%E2%80%931890%29.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "77",
+        "label": "Uruguay",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Uruguay.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "96",
+        "label": "Mexique",
+        "description": "pays d'Amérique du Nord",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mexico%20%281864-1867%29.svg",
+        "languages": "langues au Mexique, maya yucatèque, nahuatl, espagnol"
+    },
+    {
+        "id": "155",
+        "label": "Brésil",
+        "description": "pays d'Amérique du Sud",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Brazil%20%281960%E2%80%931968%29.svg",
+        "languages": "portugais"
+    },
+    {
+        "id": "242",
+        "label": "Belize",
+        "description": "pays d'Amérique centrale",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Belize.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "241",
+        "label": "Cuba",
+        "description": "pays de l'archipel caraïbe",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cuba.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "244",
+        "label": "Barbade",
+        "description": "pays insulaire des Petites Antilles",
+        "continent": "828",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Barbados%20%281870%E2%80%931966%29.svg",
+        "languages": "Bajan Creole, anglais"
+    },
+    {
+        "id": "258",
+        "label": "Afrique du Sud",
+        "description": "pays d'Afrique australe",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Red%20Ensign%20of%20South%20Africa%20%281910%E2%80%931912%29.svg",
+        "languages": "langue des signes sud-africaine, nrebele, sotho du Sud, tsonga, tswana, swati, sotho du Nord, venda, afrikaans, xhosa, zoulou, anglais"
+    },
+    {
+        "id": "262",
+        "label": "Algérie",
+        "description": "pays d'Afrique du Nord",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Algeria.svg",
+        "languages": "berbère standard algérien, arabe"
+    },
+    {
+        "id": "657",
+        "label": "Tchad",
+        "description": "pays d'Afrique centrale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Chad.svg",
+        "languages": "arabe, français"
+    },
+    {
+        "id": "664",
+        "label": "Nouvelle-Zélande",
+        "description": "pays d'Océanie, au sud-ouest de l'océan Pacifique",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20New%20Zealand.svg",
+        "languages": "māori, langue des signes néo-zélandaise, anglais"
+    },
+    {
+        "id": "672",
+        "label": "Tuvalu",
+        "description": "État indépendant depuis 1978 et archipel polynésien",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Tuvalu%20%281995%29.svg",
+        "languages": "tuvaluan, anglais"
+    },
+    {
+        "id": "678",
+        "label": "Tonga",
+        "description": "État de Polynésie indépendant depuis 1970",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Tonga.svg",
+        "languages": "tongien, anglais"
+    },
+    {
+        "id": "683",
+        "label": "Samoa",
+        "description": "État polynésien",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Samoa.svg",
+        "languages": "samoan, anglais"
+    },
+    {
+        "id": "686",
+        "label": "Vanuatu",
+        "description": "État mélanésien composé de 83 îles indépendant depuis 1980",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Vanuatu.svg",
+        "languages": "bichelamar, anglais, français"
+    },
+    {
+        "id": "685",
+        "label": "Îles Salomon",
+        "description": "État indépendant d'Océanie",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Solomon%20Islands.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "691",
+        "label": "Papouasie-Nouvelle-Guinée",
+        "description": "pays d'Océanie occupant la moitié orientale de l'île de la Nouvelle-Guinée",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Papua%20New%20Guinea.svg",
+        "languages": "langue des signes papouasienne, tok pisin, hiri motou, anglais"
+    },
+    {
+        "id": "695",
+        "label": "Palaos",
+        "description": "pays d'Océanie indépendant depuis 1994",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Palau.svg",
+        "languages": "palau, japonais, anglais"
+    },
+    {
+        "id": "697",
+        "label": "Nauru",
+        "description": "État insulaire de Micronésie, Océanie",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nauru.svg",
+        "languages": "nauruan, anglais"
+    },
+    {
+        "id": "702",
+        "label": "États fédérés de Micronésie",
+        "description": "État indépendant d'Océanie indépendant depuis 1986",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Federated%20States%20of%20Micronesia.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "712",
+        "label": "Fidji",
+        "description": "État insulaire d'Océanie",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Fiji.svg",
+        "languages": "hindi des Fidji, fidjien, anglais"
+    },
+    {
+        "id": "912",
+        "label": "Mali",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mali.svg",
+        "languages": "langues bobo, tamasheq, dogon, songhaï, hassanya, khassonké, soninké, mamara, Malinké, bozo, langues sénoufo, peul, bambara"
+    },
+    {
+        "id": "916",
+        "label": "Angola",
+        "description": "pays d'Afrique du Sud-Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Angola.svg",
+        "languages": "portugais"
+    },
+    {
+        "id": "924",
+        "label": "Tanzanie",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Tanzania.svg",
+        "languages": "swahili, anglais"
+    },
+    {
+        "id": "929",
+        "label": "République centrafricaine",
+        "description": "État d'Afrique centrale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Central%20African%20Republic.svg",
+        "languages": "sango, français"
+    },
+    {
+        "id": "945",
+        "label": "Togo",
+        "description": "pays d'Afrique de l'Ouest indépendant depuis 1960",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Togo%20%283-2%29.svg",
+        "languages": "français"
+    },
+    {
+        "id": "948",
+        "label": "Tunisie",
+        "description": "pays d'Afrique du Nord",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Tunisia.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "954",
+        "label": "Zimbabwe",
+        "description": "pays d'Afrique australe",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Rhodesia%20%281968%E2%80%931979%29.svg",
+        "languages": "barwe, langue des signes zimbabwéenne, nambya, sindebele, sotho du Sud, tsonga, tswana, chitonga, shona, kalanga, langues khoïsan, chewa, venda, ndau, xhosa, anglais"
+    },
+    {
+        "id": "953",
+        "label": "Zambie",
+        "description": "pays d'Afrique australe depuis 1964",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Zambia.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "958",
+        "label": "Soudan du Sud",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20South%20Sudan.svg",
+        "languages": "arabe, anglais"
+    },
+    {
+        "id": "962",
+        "label": "Bénin",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Benin.svg",
+        "languages": "français"
+    },
+    {
+        "id": "963",
+        "label": "Botswana",
+        "description": "pays d'Afrique australe depuis 1966",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Botswana.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "967",
+        "label": "Burundi",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Burundi.svg",
+        "languages": "kirundi, anglais, français"
+    },
+    {
+        "id": "965",
+        "label": "Burkina Faso",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Burkina%20Faso.svg",
+        "languages": "mooré, bissa, dioula"
+    },
+    {
+        "id": "970",
+        "label": "Comores",
+        "description": "pays situé au nord du canal du Mozambique dans l'océan Indien",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Comoros.svg",
+        "languages": "comorien, arabe, français"
+    },
+    {
+        "id": "971",
+        "label": "République du Congo",
+        "description": "pays d'Afrique centrale, dont la capitale est Brazzaville",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Republic%20of%20the%20Congo.svg",
+        "languages": "français"
+    },
+    {
+        "id": "974",
+        "label": "République démocratique du Congo",
+        "description": "pays d'Afrique centrale ayant Kinshasa comme capitale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Democratic%20Republic%20of%20the%20Congo%20%282003%E2%80%932006%29.svg",
+        "languages": "français"
+    },
+    {
+        "id": "977",
+        "label": "Djibouti",
+        "description": "pays d'Afrique de l'Est independant depuis 1977",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Djibouti.svg",
+        "languages": "arabe, français"
+    },
+    {
+        "id": "983",
+        "label": "Guinée équatoriale",
+        "description": "pays d'Afrique centrale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Equatorial%20Guinea%20%28without%20coat%20of%20arms%29.svg",
+        "languages": "portugais, espagnol, français"
+    },
+    {
+        "id": "986",
+        "label": "Érythrée",
+        "description": "pays de l'Afrique de l'Est depuis 1993",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Eritrea.svg",
+        "languages": "tigrigna, arabe, anglais"
+    },
+    {
+        "id": "1000",
+        "label": "Gabon",
+        "description": "pays d'Afrique centrale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Gabon.svg",
+        "languages": "français"
+    },
+    {
+        "id": "1006",
+        "label": "Guinée",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Guinea.svg",
+        "languages": "français"
+    },
+    {
+        "id": "1007",
+        "label": "Guinée-Bissau",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Guinea-Bissau.svg",
+        "languages": "portugais"
+    },
+    {
+        "id": "1005",
+        "label": "Gambie",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20The%20Gambia.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "1011",
+        "label": "Cap-Vert",
+        "description": "pays insulaire d'Afrique occidentale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cape%20Verde%20%281975%E2%80%931992%29.svg",
+        "languages": "créole cap-verdien, portugais"
+    },
+    {
+        "id": "1008",
+        "label": "Côte d'Ivoire",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20C%C3%B4te%20d%27Ivoire.svg",
+        "languages": "français"
+    },
+    {
+        "id": "1009",
+        "label": "Cameroun",
+        "description": "État d'Afrique centrale et occidentale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cameroon.svg",
+        "languages": "anglais, français"
+    },
+    {
+        "id": "1014",
+        "label": "Liberia",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Liberia.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "1013",
+        "label": "Lesotho",
+        "description": "pays d'Afrique australe",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Lesotho%20%281966%E2%80%931987%29.svg",
+        "languages": "sotho du Sud, anglais"
+    },
+    {
+        "id": "1016",
+        "label": "Libye",
+        "description": "pays d'Afrique du Nord",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Libya%20%281972%E2%80%931977%29.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "1020",
+        "label": "Malawi",
+        "description": "pays d'Afrique australe",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Malawi.svg",
+        "languages": "chewa, anglais"
+    },
+    {
+        "id": "1027",
+        "label": "Maurice",
+        "description": "État insulaire de l'océan Indien",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mauritius.svg",
+        "languages": "anglais, français"
+    },
+    {
+        "id": "1025",
+        "label": "Mauritanie",
+        "description": "pays du nord-ouest africain",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mauritania.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "1030",
+        "label": "Namibie",
+        "description": "pays d'Afrique australe",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Namibia.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "1028",
+        "label": "Maroc",
+        "description": "pays d'Afrique du Nord",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Morocco.svg",
+        "languages": "amazighe standard marocain, arabe"
+    },
+    {
+        "id": "1029",
+        "label": "Mozambique",
+        "description": "pays d'Afrique du Sud-Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mozambique.svg",
+        "languages": "portugais"
+    },
+    {
+        "id": "1032",
+        "label": "Niger",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Niger.svg",
+        "languages": "français"
+    },
+    {
+        "id": "1033",
+        "label": "Nigeria",
+        "description": "pays d'Afrique de l'Ouest situé dans le golfe de Guinée",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nigeria.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "1039",
+        "label": "Sao Tomé-et-Principe",
+        "description": "État insulaire d'Afrique situé dans le golfe de Guinée",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20S%C3%A3o%20Tom%C3%A9%20and%20Pr%C3%ADncipe.svg",
+        "languages": "portugais"
+    },
+    {
+        "id": "1036",
+        "label": "Ouganda",
+        "description": "pays d'Afrique équatoriale",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Uganda.svg",
+        "languages": "swahili, anglais"
+    },
+    {
+        "id": "1037",
+        "label": "Rwanda",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Rwanda%20%281961%E2%80%932001%29.svg",
+        "languages": "kinyarwanda, swahili, anglais, français"
+    },
+    {
+        "id": "1042",
+        "label": "Seychelles",
+        "description": "pays insulaire à l’ouest de l’océan Indien",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Seychelles%20%281961%E2%80%931976%29.svg",
+        "languages": "créole seychellois, anglais, français"
+    },
+    {
+        "id": "1041",
+        "label": "Sénégal",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Senegal.svg",
+        "languages": "badiaranké, balante, wolof, français"
+    },
+    {
+        "id": "1044",
+        "label": "Sierra Leone",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Sierra%20Leone.svg",
+        "languages": "krio, anglais"
+    },
+    {
+        "id": "1045",
+        "label": "Somalie",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Somalia.svg",
+        "languages": "arabe, somali"
+    },
+    {
+        "id": "1049",
+        "label": "Soudan",
+        "description": "pays de l'Afrique du Nord-Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Sudan.svg",
+        "languages": "arabe, anglais"
+    },
+    {
+        "id": "1246",
+        "label": "Kosovo",
+        "description": "pays issu de l'ancienne Yougoslavie dont la reconnaissance est limitée",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Kosovo.svg",
+        "languages": "serbe, albanais"
+    },
+    {
+        "id": "3908",
+        "label": "Galice",
+        "description": "communauté autonome d'Espagne",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Galicia.svg",
+        "languages": "galicien, espagnol"
+    },
+    {
+        "id": "5705",
+        "label": "Catalogne",
+        "description": "région européenne constituée en communauté autonome d'Espagne",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Catalonia.svg",
+        "languages": "occitan, catalan, espagnol"
+    },
+    {
+        "id": "23681",
+        "label": "Chypre du Nord",
+        "description": "état auto-proclamé, reconnu uniquement par la Turquie",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Turkish%20Republic%20of%20Northern%20Cyprus.svg",
+        "languages": "turc"
+    },
+    {
+        "id": "26988",
+        "label": "Îles Cook",
+        "description": "État de l'océan Pacifique sud",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20New%20Zealand.svg",
+        "languages": "maori des îles Cook, anglais"
+    },
+    {
+        "id": "29999",
+        "label": "Royaume des Pays-Bas",
+        "description": "État souverain et monarchie constitutionnelle transcontinentale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Netherlands.svg",
+        "languages": "néerlandais"
+    },
+    {
+        "id": "41",
+        "label": "Grèce",
+        "description": "pays d'Europe du Sud-Est depuis 1821",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Greek%20Independence%201821.svg",
+        "languages": "grec moderne, grec démotique, grec"
+    },
+    {
+        "id": "45",
+        "label": "Portugal",
+        "description": "pays du Sud-Ouest de l'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Portugal%20%281750%29%20%28variant%29.svg",
+        "languages": "mirandais, portugais"
+    },
+    {
+        "id": "55",
+        "label": "Pays-Bas",
+        "description": "l'un des quatre pays constitutifs du royaume des Pays-Bas (partie européenne)",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Statenvlag.svg",
+        "languages": "néerlandais"
+    },
+    {
+        "id": "79",
+        "label": "Égypte",
+        "description": "pays de l'Afrique du Nord-Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Muhammad%20Ali.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "114",
+        "label": "Kenya",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Kenya.svg",
+        "languages": "swahili, anglais"
+    },
+    {
+        "id": "115",
+        "label": "Éthiopie",
+        "description": "pays d'Afrique de l'Est",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Ethiopia%20%281991%E2%80%931996%29.svg",
+        "languages": "amharique"
+    },
+    {
+        "id": "117",
+        "label": "Ghana",
+        "description": "pays d'Afrique de l'Ouest",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/AusiFlag%20ST%2003.jpg",
+        "languages": "anglais"
+    },
+    {
+        "id": "142",
+        "label": "France",
+        "description": "pays transcontinental au territoire métropolitain situé en Europe de l'Ouest",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20France%20%281790%E2%80%931794%29.svg",
+        "languages": "français"
+    },
+    {
+        "id": "145",
+        "label": "Royaume-Uni",
+        "description": "pays d'Europe occidentale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20United%20Kingdom%20%281-2%29.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "159",
+        "label": "Russie",
+        "description": "pays eurasiatique souverain depuis 1991",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Russian%20Soviet%20Federative%20Socialist%20Republic%20%281937%E2%80%931954%29.svg",
+        "languages": "russe"
+    },
+    {
+        "id": "183",
+        "label": "Allemagne",
+        "description": "pays du centre de l'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Germany%20%283-2%29.svg",
+        "languages": "allemand"
+    },
+    {
+        "id": "184",
+        "label": "Biélorussie",
+        "description": "pays d'Europe orientale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Belarus.svg",
+        "languages": "biélorusse, russe"
+    },
+    {
+        "id": "191",
+        "label": "Estonie",
+        "description": "pays d'Europe du Nord sur le flanc oriental de la mer baltique",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Estonia.svg",
+        "languages": "estonien"
+    },
+    {
+        "id": "189",
+        "label": "Islande",
+        "description": "pays insulaire d'Europe du Nord",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Iceland.svg",
+        "languages": "islandais"
+    },
+    {
+        "id": "211",
+        "label": "Lettonie",
+        "description": "pays d'Europe du Nord sur le flanc oriental de la mer baltique",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Latvia.svg",
+        "languages": "letton"
+    },
+    {
+        "id": "214",
+        "label": "Slovaquie",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Slovakia.svg",
+        "languages": "slovaque"
+    },
+    {
+        "id": "215",
+        "label": "Slovénie",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Slovenia.svg",
+        "languages": "slovène"
+    },
+    {
+        "id": "212",
+        "label": "Ukraine",
+        "description": "pays d'Europe de l'Est",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Ukraine.svg",
+        "languages": "ukrainien"
+    },
+    {
+        "id": "213",
+        "label": "Tchéquie",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Czech%20Republic.svg",
+        "languages": "tchèque"
+    },
+    {
+        "id": "218",
+        "label": "Roumanie",
+        "description": "pays d'Europe de l'Est",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Romania.svg",
+        "languages": "roumain"
+    },
+    {
+        "id": "219",
+        "label": "Bulgarie",
+        "description": "pays d’Europe du Sud-Est situé dans les Balkans",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bulgaria%20%281967%E2%80%931971%29.svg",
+        "languages": "bulgare"
+    },
+    {
+        "id": "217",
+        "label": "Moldavie",
+        "description": "pays d'Europe orientale, enclavé entre la Roumanie et l'Ukraine",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Moldova.svg",
+        "languages": "roumain"
+    },
+    {
+        "id": "222",
+        "label": "Albanie",
+        "description": "pays du Sud-Est de l'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Albania%20%281926%E2%80%931928%29.svg",
+        "languages": "albanais"
+    },
+    {
+        "id": "221",
+        "label": "Macédoine du Nord",
+        "description": "pays du sud-est de l’Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20North%20Macedonia.svg",
+        "languages": "macédonien, albanais"
+    },
+    {
+        "id": "224",
+        "label": "Croatie",
+        "description": "pays d'Europe du Sud-Est",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Croatia%20%28white%20chequy%29.svg",
+        "languages": "croate"
+    },
+    {
+        "id": "225",
+        "label": "Bosnie-Herzégovine",
+        "description": "État d'Europe du Sud-Est",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bosnia%20and%20Herzegovina.svg",
+        "languages": "bosnien, serbe, croate"
+    },
+    {
+        "id": "230",
+        "label": "Géorgie",
+        "description": "pays du Caucase",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Georgia.svg",
+        "languages": "géorgien, abkhaze"
+    },
+    {
+        "id": "228",
+        "label": "Andorre",
+        "description": "principauté d'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Andorra.svg",
+        "languages": "catalan"
+    },
+    {
+        "id": "229",
+        "label": "Chypre",
+        "description": "État souverain situé sur une île de la Méditerranée orientale depuis 1960",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cyprus.svg",
+        "languages": "grec moderne, grec, turc"
+    },
+    {
+        "id": "235",
+        "label": "Monaco",
+        "description": "État d'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Monaco.svg",
+        "languages": "français"
+    },
+    {
+        "id": "233",
+        "label": "Malte",
+        "description": "État insulaire de Méditerranée indépendant depuis 1964",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Malta.svg",
+        "languages": "maltais, anglais"
+    },
+    {
+        "id": "236",
+        "label": "Monténégro",
+        "description": "pays d'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Montenegro.svg",
+        "languages": "monténégrin"
+    },
+    {
+        "id": "34020",
+        "label": "Niue",
+        "description": "pays insulaire de l'océan Pacifique sud",
+        "continent": "538",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Niue.svg",
+        "languages": "niuéen, anglais"
+    },
+    {
+        "id": "40362",
+        "label": "République arabe sahraouie démocratique",
+        "description": "pays du nord-ouest de l'Afrique dont la reconnaissance est limitée",
+        "continent": "15",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Sahrawi%20Arab%20Democratic%20Republic.svg",
+        "languages": "arabe, espagnol"
+    },
+    {
+        "id": "219060",
+        "label": "État de Palestine",
+        "description": "État d'Asie de l'Ouest",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Palestine.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "756617",
+        "label": "Royaume de Danemark",
+        "description": "pays d'Europe du Nord",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Denmark.svg",
+        "languages": "groenlandais, féroïen, danois"
+    },
+    {
+        "id": "265",
+        "label": "Ouzbékistan",
+        "description": "pays d'Asie centrale doublement enclavé",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Uzbekistan.svg",
+        "languages": "ouzbek"
+    },
+    {
+        "id": "334",
+        "label": "Singapour",
+        "description": "cité-État d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Singapore.svg",
+        "languages": "mandarin standard, malais, tamoul, anglais"
+    },
+    {
+        "id": "347",
+        "label": "Liechtenstein",
+        "description": "petit État alpin d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Liechtenstein.svg",
+        "languages": "allemand"
+    },
+    {
+        "id": "398",
+        "label": "Bahreïn",
+        "description": "pays du Moyen-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bahrain%20%281932%E2%80%931972%29.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "399",
+        "label": "Arménie",
+        "description": "pays du Caucase du Sud en Eurasie",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Armenia.svg",
+        "languages": "arménien"
+    },
+    {
+        "id": "403",
+        "label": "Serbie",
+        "description": "pays d'Europe du Sud",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Serbia%20%282004%E2%80%932010%29.svg",
+        "languages": "serbe"
+    },
+    {
+        "id": "408",
+        "label": "Australie",
+        "description": "pays d'Océanie",
+        "continent": "55643",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Australia%20%28converted%29.svg",
+        "languages": "anglais australien, auslan"
+    },
+    {
+        "id": "423",
+        "label": "Corée du Nord",
+        "description": "pays d'Asie orientale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20North%20Korea.svg",
+        "languages": "langue standard de la Corée du Nord, coréen"
+    },
+    {
+        "id": "424",
+        "label": "Cambodge",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Cambodia%20%281992%E2%80%931993%29.svg",
+        "languages": "khmer"
+    },
+    {
+        "id": "574",
+        "label": "Timor oriental",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20East%20Timor.svg",
+        "languages": "tétoum, portugais"
+    },
+    {
+        "id": "668",
+        "label": "Inde",
+        "description": "pays d'Asie du Sud",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20India.svg",
+        "languages": "anglais, hindi"
+    },
+    {
+        "id": "711",
+        "label": "Mongolie",
+        "description": "pays d'Asie, situé entre la Russie au nord et la Chine au sud",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Mongolia.svg",
+        "languages": "mongol"
+    },
+    {
+        "id": "794",
+        "label": "Iran",
+        "description": "État d'Asie de l'Ouest",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Iran.svg",
+        "languages": "persan"
+    },
+    {
+        "id": "796",
+        "label": "Irak",
+        "description": "État du Moyen-Orient, situé au nord de la péninsule arabique",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Iraq%20%281959%E2%80%931963%29.svg",
+        "languages": "kurde, arabe"
+    },
+    {
+        "id": "801",
+        "label": "Israël",
+        "description": "État du Proche-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Israel.svg",
+        "languages": "hébreu"
+    },
+    {
+        "id": "805",
+        "label": "Yémen",
+        "description": "pays arabe situé à la pointe sud-ouest de la péninsule d'Arabie",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Yemen.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "810",
+        "label": "Jordanie",
+        "description": "État du Proche-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Jordan.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "813",
+        "label": "Kirghizistan",
+        "description": "pays d'Asie centrale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Kyrgyzstan.svg",
+        "languages": "kirghize, russe"
+    },
+    {
+        "id": "819",
+        "label": "Laos",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Laos.svg",
+        "languages": "lao"
+    },
+    {
+        "id": "817",
+        "label": "Koweït",
+        "description": "État du golfe Persique",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Maritime%20Ensign%20of%20Kuwait%201956-1961.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "822",
+        "label": "Liban",
+        "description": "État souverain du Proche-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Lebanon.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "826",
+        "label": "Maldives",
+        "description": "pays d'Asie du Sud indépendant depuis 1965",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Maldives.svg",
+        "languages": "maldivien"
+    },
+    {
+        "id": "833",
+        "label": "Malaisie",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Malaya%20%281950%E2%80%931963%29.svg",
+        "languages": "malais"
+    },
+    {
+        "id": "836",
+        "label": "Birmanie",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Myanmar.svg",
+        "languages": "birman"
+    },
+    {
+        "id": "837",
+        "label": "Népal",
+        "description": "république fédérale d’Asie du Sud enclavée dans l’Himalaya",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Nepal.svg",
+        "languages": "népalais"
+    },
+    {
+        "id": "842",
+        "label": "Oman",
+        "description": "sultanat du Moyen-Orient, au sud-est de la péninsule d’Arabie",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Oman.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "843",
+        "label": "Pakistan",
+        "description": "pays d'Asie du Sud",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Pakistan.svg",
+        "languages": "anglais, ourdou"
+    },
+    {
+        "id": "846",
+        "label": "Qatar",
+        "description": "émirat du Moyen-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Qatar.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "851",
+        "label": "Arabie saoudite",
+        "description": "pays du Moyen-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Saudi%20Arabia.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "854",
+        "label": "Sri Lanka",
+        "description": "pays insulaire d'Asie du Sud indépendant depuis 1972",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Sri%20Lanka.svg",
+        "languages": "singhalais, tamoul"
+    },
+    {
+        "id": "858",
+        "label": "Syrie",
+        "description": "État arabe du Proche-Orient indépendant depuis 1946",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Syria%20%281930%E2%80%931958%2C%201961%E2%80%931963%29.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "863",
+        "label": "Tadjikistan",
+        "description": "pays d'Asie centrale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Tajikistan.svg",
+        "languages": "tadjik, russe"
+    },
+    {
+        "id": "865",
+        "label": "Taïwan",
+        "description": "pays insulaire d'Asie orientale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20China%20%281912%E2%80%931928%29.svg",
+        "languages": "O-ku-uā, Kinmen dialect, Matsu dialect, Truku, hakka taïwanais, sakizaya, saisiyat, pouyouma, seediq, tsou, kavalan, saaroa, atayal, yami, paiwan, mandarin de Taïwan, kanakanabu, bunun, rukai, taïwanais, amis, langue des signes taïwanaise"
+    },
+    {
+        "id": "869",
+        "label": "Thaïlande",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Thailand.svg",
+        "languages": "thaï"
+    },
+    {
+        "id": "874",
+        "label": "Turkménistan",
+        "description": "pays souverain d'Asie centrale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Turkmenistan%20%281992-1997%29.svg",
+        "languages": "turkmène"
+    },
+    {
+        "id": "878",
+        "label": "Émirats arabes unis",
+        "description": "État fédéral du golfe Persique",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20United%20Arab%20Emirates.svg",
+        "languages": "arabe"
+    },
+    {
+        "id": "881",
+        "label": "Viêt Nam",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Vietnam.svg",
+        "languages": "vietnamien"
+    },
+    {
+        "id": "884",
+        "label": "Corée du Sud",
+        "description": "pays d'Asie de l'Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20South%20Korea%20%281949%E2%80%931984%29.svg",
+        "languages": "langue des signes coréenne, coréen"
+    },
+    {
+        "id": "889",
+        "label": "Afghanistan",
+        "description": "pays d'Asie centrale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Afghanistan%20%282013%E2%80%932021%29.svg",
+        "languages": "langues du Pamir, dari, langues nouristanies, pachto, pashai, baloutche, arabe, turkmène, ouzbek"
+    },
+    {
+        "id": "902",
+        "label": "Bangladesh",
+        "description": "pays d'Asie du Sud",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bangladesh%20%281971%29.svg",
+        "languages": "bangla"
+    },
+    {
+        "id": "917",
+        "label": "Bhoutan",
+        "description": "pays d'Asie du sud enclavé entre l’Inde et la Chine",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Bhutan.svg",
+        "languages": "dzongkha"
+    },
+    {
+        "id": "921",
+        "label": "Brunei",
+        "description": "micro-État membre du Commonwealth, situé sur l’île de Bornéo et enclavé dans l’État malais de Sarawak en Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Brunei.svg",
+        "languages": "malais, anglais britannique"
+    },
+    {
+        "id": "928",
+        "label": "Philippines",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Philippines.svg",
+        "languages": "philippin, anglais"
+    },
+    {
+        "id": "29520",
+        "label": "Chine",
+        "description": "région culturelle d'Asie",
+        "continent": "48",
+        "languages": ""
+    },
+    {
+        "id": "17",
+        "label": "Japon",
+        "description": "pays d'Asie de l'Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Japan.svg",
+        "languages": "japonais"
+    },
+    {
+        "id": "22",
+        "label": "Écosse",
+        "description": "nation constitutive du Royaume-Uni",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Scotland.svg",
+        "languages": "scots, gaélique écossais, anglais"
+    },
+    {
+        "id": "20",
+        "label": "Norvège",
+        "description": "pays d'Europe du Nord",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Norway.svg",
+        "languages": "langues sames, bokmål, nynorsk, norvégien"
+    },
+    {
+        "id": "21",
+        "label": "Angleterre",
+        "description": "nation constitutive du Royaume-Uni",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20England.svg",
+        "languages": "anglais"
+    },
+    {
+        "id": "26",
+        "label": "Irlande du Nord",
+        "description": "nation constitutive du Royaume-Uni",
+        "continent": "46",
+        "languages": "irlandais, anglais"
+    },
+    {
+        "id": "27",
+        "label": "Irlande",
+        "description": "pays du Nord-Ouest de l'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Ireland.svg",
+        "languages": "irlandais, anglais"
+    },
+    {
+        "id": "25",
+        "label": "pays de Galles",
+        "description": "nation constitutive du Royaume-Uni",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Wales.svg",
+        "languages": "gallois, anglais"
+    },
+    {
+        "id": "31",
+        "label": "Belgique",
+        "description": "État d'Europe occidentale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Belgium%20%28civil%29.svg",
+        "languages": "néerlandais, allemand, français"
+    },
+    {
+        "id": "28",
+        "label": "Hongrie",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Matthias%20I%20of%20Hungary.svg",
+        "languages": "hongrois"
+    },
+    {
+        "id": "124153644",
+        "label": "Chinland",
+        "description": "État auto-proclamé d'Asie du Sud-Est",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Chin%20National%20Front.svg",
+        "languages": ""
+    },
+    {
+        "id": "126362486",
+        "label": "Kerajaan Patipi",
+        "languages": ""
+    },
+    {
+        "id": "29",
+        "label": "Espagne",
+        "description": "pays du Sud-Ouest de l'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Spain%20%281760%E2%80%931785%29.svg",
+        "languages": "espagnol"
+    },
+    {
+        "id": "34",
+        "label": "Suède",
+        "description": "pays d'Europe du Nord, en Scandinavie",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Sweden.svg",
+        "languages": "suédois"
+    },
+    {
+        "id": "35",
+        "label": "Danemark",
+        "description": "pays d'Europe du Nord",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Denmark.svg",
+        "languages": "danois"
+    },
+    {
+        "id": "32",
+        "label": "Luxembourg",
+        "description": "pays d'Europe",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Luxembourg.svg",
+        "languages": "luxembourgeois, allemand, français"
+    },
+    {
+        "id": "33",
+        "label": "Finlande",
+        "description": "pays d'Europe du Nord",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Finland.svg",
+        "languages": "suédois, finnois"
+    },
+    {
+        "id": "38",
+        "label": "Italie",
+        "description": "pays d'Europe du Sud",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Italy.svg",
+        "languages": "italien"
+    },
+    {
+        "id": "39",
+        "label": "Suisse",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Switzerland.svg",
+        "languages": "romanche, italien, allemand, français"
+    },
+    {
+        "id": "36",
+        "label": "Pologne",
+        "description": "pays d'Europe centrale",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Poland.svg",
+        "languages": "polonais"
+    },
+    {
+        "id": "37",
+        "label": "Lituanie",
+        "description": "pays d'Europe du Nord sur le flanc oriental de la mer baltique",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Lithuania%20%281988%E2%80%932004%29.svg",
+        "languages": "lituanien"
+    },
+    {
+        "id": "43",
+        "label": "Turquie",
+        "description": "pays d'Europe du Sud-Est et d'Asie occidentale",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Turkey.svg",
+        "languages": "turc"
+    },
+    {
+        "id": "148",
+        "label": "république populaire de Chine",
+        "description": "État d'Extrême-Orient",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20People%27s%20Republic%20of%20China.svg",
+        "languages": "langues en Chine, mandarin standard, chinois"
+    },
+    {
+        "id": "227",
+        "label": "Azerbaïdjan",
+        "description": "pays du Caucase en Europe de l'Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Azerbaijan.svg",
+        "languages": "azéri"
+    },
+    {
+        "id": "232",
+        "label": "Kazakhstan",
+        "description": "pays d'Asie centrale et en partie d'Europe de l'Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Kazakhstan.svg",
+        "languages": "kazakh, russe"
+    },
+    {
+        "id": "237",
+        "label": "Vatican",
+        "description": "État européen sous la souveraineté du Saint-Siège, depuis 1929, partie temporelle du Saint-Siège",
+        "continent": "46",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20the%20Papal%20States%20%281803-1825%29.svg",
+        "languages": "italien, latin, français"
+    },
+    {
+        "id": "252",
+        "label": "Indonésie",
+        "description": "pays d'Asie du Sud-Est",
+        "continent": "48",
+        "flag": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Indonesia.svg",
+        "languages": "indonésien"
+    },
+    {
+        "id": "47588",
+        "label": "Pays basque",
+        "description": "territoire culturel et historique des Basques",
+        "continent": "46",
+        "languages": ""
+    }
+]
