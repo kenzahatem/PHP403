@@ -7,32 +7,15 @@ function SearchBar() {
     const [isExpanded, setIsExpanded] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+
     const searchContainerRef = useRef(null);
 
     // Gère l'expansion de la barre
     const handleFocus = () => setIsExpanded(true);
+    //fin de l'expansion 
 
-    // Gestion du clic en dehors du conteneur
-    const handleClickOutside = (event) => {
-        console.log("handleClickOutside triggered:", event.target);
-        if (
-            searchContainerRef.current &&
-            !searchContainerRef.current.contains(event.target)
-        ) {
-            setIsExpanded(false);
-        }
-    };
-
-    // Ajout et suppression des événements de clic
-    // useEffect(() => {
-    //     if (isExpanded) {
-    //         document.addEventListener('mousedown', handleClickOutside);
-    //     }
-    //     return () => {
-    //         document.removeEventListener('mousedown', handleClickOutside);
-    //     };
-    // }, [isExpanded]);
-
+    
+    // renvoie des résultats lors de la saisie
     const handleInputChange = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
@@ -49,29 +32,31 @@ function SearchBar() {
             setSuggestions([]); // Effacer les suggestions si la requête est vide
         }
     };
+    // fin du renvoie lors de la saisie
 
+
+    // renvoie les résultats associés a des noeuds quand on clique dessus
     const handleSearchAssociateResults = async (suggestion) => {
         console.log("Clicked on:", suggestion);
 
         const filteredNodes = await fetchNodesWithRelationship(suggestion);
-        console.log("Résultats pour :", suggestion.Name, filteredNodes);
+        console.log("Résultats pour :", suggestion.label, filteredNodes);
 
     };
     const handleAllPossibleThemes = async()=>{
         const themes  = await fetchThemes() ; 
         console.log("Les Thèmes sont:" , themes) ; 
     }
+    // fin du renvoie des résultats associés
 
     return (
         <div
             ref={searchContainerRef}
             className={`search-container ${isExpanded ? 'expanded' : ''}`}
         >
-            {/* Overlay pour fermer l'expansion */}
             {isExpanded && (
                 <div
                     className="overlay"
-                    // onClick={() => setIsExpanded(false)} // Revenir à l'état initial
                 ></div>
             )}
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
@@ -81,30 +66,34 @@ function SearchBar() {
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
-                    onClick = {handleAllPossibleThemes}
+                    onClick={handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
+                
                 <button>
                     <img src={searchIcon} alt="Recherche" />
                 </button>
             </div>
             {isExpanded && (
                 <div className="photo-container">
-                    {suggestions.map((suggestion, index) => (
-                        <div
-                        onClick={() => handleSearchAssociateResults(suggestion)}
-                        key={index}
-                        className="suggestion-icon"
-                        >   
-                            <div className="icon-content" onClick={() => console.log("Clicked on suggestion:", suggestion)}>
-                                <img alt={suggestion.Name}/>
+                    {suggestions.map((suggestion, index) => {
+                        return (
+                            <div
+                                key={index}
+                                className="suggestion-icon"
+                                onClick={() => handleSearchAssociateResults(suggestion)}
+                            >
+                                <div className="icon-content">
+                                    <img alt={suggestion.Name} src={suggestion.image}/>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             )}
         </div>
     );
+    
 }
 
 export default SearchBar;

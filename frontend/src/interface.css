@@ -200,6 +200,10 @@ p {
   z-index: 1000;
   /* cursor: pointer; /* Indique qu'il est cliquable * */
 }
+.icon-content img {
+  height: 100px  ;
+  width: 100px ;
+}
 
 .suggestion-icon:hover {
   transform: scale(1.1); /* Agrandissement au survol */

@@ -46,13 +46,13 @@ export async function fetchNodesWithRelationship(query) {
 
   try {
     if (query.ID.startsWith("continent")) {
-      response = await fetch(`${BASE_URL}/search/countries/continent/${query.Name}`);
+      response = await fetch(`${BASE_URL}/search/countries/continent/${query.label}`);
     } else if (query.ID.startsWith("country")) {
-      response = await fetch(`${BASE_URL}/search/cities/country/${query.Name}`);
+      response = await fetch(`${BASE_URL}/search/cities/country/${query.label}`);
     } else if (query.ID.startsWith("city")) {
-      response = await fetch(`${BASE_URL}/search/places/city/${query.Name}`);
+      response = await fetch(`${BASE_URL}/search/places/city/${query.label}`);
     } else if (query.ID.startsWith("theme")) {
-      response = await fetch(`${BASE_URL}/search/places/theme/${query.Name}`);
+      response = await fetch(`${BASE_URL}/search/places/theme/${query.label}`);
     } else {
       console.warn(`Type non reconnu : "${query.contains}"`);
       return [];

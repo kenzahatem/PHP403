@@ -37,7 +37,7 @@ export async function getNodesByNameFragmentWithLabel(
 ) {
   const query = `
                 MATCH (n:${label})
-                WHERE toLower(n.Name) CONTAINS toLower($fragment)
+                WHERE toLower(n.label) CONTAINS toLower($fragment)
                 RETURN n
                 `;
   const result = await session.run(query, { fragment });
@@ -57,8 +57,8 @@ export async function getNodesByNameFragmentWithoutLabel(
 
   const containsQuery = `
     MATCH (n)
-    WHERE toLower(n.Name) CONTAINS toLower($fragment)
-    AND NOT toLower(n.Name) STARTS WITH toLower($fragment)
+    WHERE toLower(n.label) CONTAINS toLower($fragment)
+    AND NOT toLower(n.label) STARTS WITH toLower($fragment)
     AND NOT "Theme" IN labels(n)  
     RETURN n
   `;
@@ -79,7 +79,7 @@ export async function getPlacesByThemeNameFragment(
   ) {
     const query = `
       MATCH (place: Place)-[:HAS_THEME]->(t:Theme)
-      WHERE toLower(t.Name) CONTAINS toLower($fragment)
+      WHERE toLower(t.label) CONTAINS toLower($fragment)
       RETURN DISTINCT place
     `;
     const result = await session.run(query, { fragment });
@@ -92,7 +92,7 @@ export async function getPlacesByThemeNameFragment(
   ) {
     const query = `
       MATCH (continent:Continent)-[:HAS_COUNTRY]->(country:Country)
-      WHERE toLower(continent.Name) CONTAINS toLower($fragment)
+      WHERE toLower(continent.label) CONTAINS toLower($fragment)
       RETURN DISTINCT country
     `;
     const result = await session.run(query, { fragment });
@@ -105,7 +105,7 @@ export async function getPlacesByThemeNameFragment(
   ) {
     const query = `
       MATCH (country:Country)-[:HAS_CITY]->(city:City)
-      WHERE toLower(country.Name) CONTAINS toLower($fragment)
+      WHERE toLower(country.label) CONTAINS toLower($fragment)
       RETURN DISTINCT city
     `;
     const result = await session.run(query, { fragment });
@@ -118,7 +118,7 @@ export async function getPlacesByThemeNameFragment(
   ) {
     const query = `
       MATCH (city:City)-[:HAS_PLACE]->(place:Place)
-      WHERE toLower(city.Name) CONTAINS toLower($fragment)
+      WHERE toLower(city.label) CONTAINS toLower($fragment)
       RETURN DISTINCT place
     `;
     const result = await session.run(query, { fragment });
