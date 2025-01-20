@@ -30,19 +30,6 @@ export async function deleteRelationshipById(ID: string, session: Session) {
   console.log(`La relation avec l'id ${ID} a été supprimé`);
 }
 
-export async function getNodesByNameFragmentWithLabel(
-  label: string,
-  fragment: string,
-  session: Session,
-) {
-  const query = `
-                MATCH (n:${label})
-                WHERE toLower(n.label) CONTAINS toLower($fragment)
-                RETURN n
-                `;
-  const result = await session.run(query, { fragment });
-  return result.records.map((record) => record.get("n").properties);
-}
 
 export async function getNodesByNameFragmentWithoutLabel(
   fragment: string,
@@ -144,3 +131,20 @@ export async function getPlacesByThemeNameFragment(
     const result = await session.run(query, {id}) ; 
     return result.records.map((record) => record.get("relatedNode").properties);
   }
+
+
+  //unused 
+  // export async function getNodesByNameFragmentWithLabel(
+  //   label: string,
+  //   fragment: string,
+  //   session: Session,
+  // ) {
+  //   const query = `
+  //                 MATCH (n:${label})
+  //                 WHERE toLower(n.label) CONTAINS toLower($fragment)
+  //                 RETURN n
+  //                 `;
+  //   const result = await session.run(query, { fragment });
+  //   return result.records.map((record) => record.get("n").properties);
+  // }
+  
