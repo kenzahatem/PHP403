@@ -62,14 +62,22 @@ export async function getNodesByNameFragmentWithoutLabel(
     AND NOT "Theme" IN labels(n)  
     RETURN n
   `;
+  const relatedPlacesQuery = `
+  MATCH (place:Place)-[:HAS_THEME]->(theme:Theme)
+  WHERE toLower(theme.label) CONTAINS toLower($fragment)
+  RETURN place
+`;
 
-  const startsResult = await session.run(startsQuery, { fragment });
-  const startsRecords = startsResult.records.map((record) => record.get("n").properties);
+const startsResult = await session.run(startsQuery, { fragment });
+const startsRecords = startsResult.records.map((record) => record.get("n").properties);
 
-  const containsResult = await session.run(containsQuery, { fragment });
-  const containsRecords = containsResult.records.map((record) => record.get("n").properties);
+const containsResult = await session.run(containsQuery, { fragment });
+const containsRecords = containsResult.records.map((record) => record.get("n").properties);
 
-  return [...startsRecords, ...containsRecords];
+const relatedPlacesResult = await session.run(relatedPlacesQuery, { fragment });
+const relatedPlacesRecords = relatedPlacesResult.records.map((record) => record.get("place").properties);
+
+return [...startsRecords, ...relatedPlacesRecords, ...containsRecords];
 }
 
 

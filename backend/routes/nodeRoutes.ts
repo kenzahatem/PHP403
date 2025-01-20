@@ -3,10 +3,8 @@ import { Context, Router } from "https://deno.land/x/oak@v12.5.0/mod.ts";
 import {
   fetchAllNodes,
   fetchNodeById,
-  fetchNodesByNameFragmentWithLabel,
   fetchNodesByNameFragmentWithoutLabel,
   fetchPlacesByThemeNameFragment,
-  searchFromQuery,
   fetchCitiesByCountryNameFragment , 
   fetchCountriesByContinentNameFragment , 
   fetchPlacesByCityNameFragment,
@@ -62,31 +60,6 @@ router.get(
   }),
 );
 
-// Example route: label specified
-// GET /nodes/<Label>/search/<someSubstring>
-router.get("/nodes/:label/search/:query", async (context) => {
-  const { label, query } = context.params;
-
-  if (!label) {
-    context.throw(400, "Label parameter is missing");
-  }
-  if (!query) {
-    context.throw(400, "Query parameter is missing");
-  }
-
-  try {
-    const nodes = await fetchNodesByNameFragmentWithLabel(label, query);
-    if (nodes && nodes.length > 0) {
-      context.response.body = nodes;
-    } else {
-      context.response.status = 404;
-      context.response.body = { error: "No matching nodes found." };
-    }
-  } catch (error) {
-    context.response.status = 500;
-    context.response.body = { error: "Error fetching nodes." };
-  }
-});
 
 router.get(
   "/search/places/theme/:query",
@@ -97,14 +70,6 @@ router.get(
   }),
 );
 
-router.get(
-  "/search/places/:query",
-  createSingleParamGetRouteHandler({
-    paramName: "query",
-    fetchFn: searchFromQuery,
-    notFoundLabel: "places",
-  }),
-);
 
 router.get(
   "/search/countries/continent/:query",
@@ -148,3 +113,36 @@ router.get(
 
 
 export default router;
+//Unused 
+// router.get(
+//   "/search/places/:query",
+//   createSingleParamGetRouteHandler({
+//     paramName: "query",
+//     fetchFn: searchFromQuery,
+//     notFoundLabel: "places",
+//   }),
+// );
+// router.get("/nodes/:label/search/:query", async (context) => {
+//   const { label, query } = context.params;
+
+//   if (!label) {
+//     context.throw(400, "Label parameter is missing");
+//   }
+//   if (!query) {
+//     context.throw(400, "Query parameter is missing");
+//   }
+
+//   try {
+//     const nodes = await fetchNodesByNameFragmentWithLabel(label, query);
+//     if (nodes && nodes.length > 0) {
+//       context.response.body = nodes;
+//     } else {
+//       context.response.status = 404;
+//       context.response.body = { error: "No matching nodes found." };
+//     }
+//   } catch (error) {
+//     context.response.status = 500;
+//     context.response.body = { error: "Error fetching nodes." };
+//   }
+// });
+

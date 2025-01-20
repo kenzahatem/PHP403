@@ -3,7 +3,6 @@ import {
   getAllNodes,
   getPlacesByThemeNameFragment,
   getNodeById,
-  getNodesByNameFragmentWithLabel,
   getNodesByNameFragmentWithoutLabel,
   getCitiesByCountryNameFragment , 
   getCountriesByContinentNameFragment , 
@@ -11,7 +10,6 @@ import {
   getPlacesByCityNameFragment, 
   getNodesRelatedToSpecifiedNode
 } from "../database/functions/get.ts";
-import { removeDuplicatesByID } from "./helper.ts";
 
 
 export const fetchAllNodes = async () => {
@@ -28,28 +26,11 @@ export const fetchNodesByNameFragmentWithoutLabel = async (
   return await runWithSession(getNodesByNameFragmentWithoutLabel, fragment);
 };
 
-export const fetchNodesByNameFragmentWithLabel = async (
-  label: string,
-  fragment: string,
-) => {
-  return await runWithSession(getNodesByNameFragmentWithLabel, label, fragment);
-};
 
 export const fetchPlacesByThemeNameFragment = async (fragment: string) => {
   return await runWithSession(getPlacesByThemeNameFragment, fragment);
 }
 
-export const searchFromQuery = async (query: string) => {
-  // Places whose name contains the query
-  const placesByName = await runWithSession(getNodesByNameFragmentWithLabel, "Place", query);
-
-  // Places linked to a theme whose name contains the query
-  const placesByTheme = await runWithSession(getPlacesByThemeNameFragment, query);
-
-  const combined_and_unique = removeDuplicatesByID([...placesByName, ...placesByTheme]);
-
-  return combined_and_unique;
-};
 
 // Contrôleur pour récupérer des pays par fragment de nom de continent
 export const fetchCountriesByContinentNameFragment = async (fragment : string ) => {
@@ -74,3 +55,27 @@ export const fetchNodesByLabel = async (label : string ) => {
 export const fetchNodesRelatedToSpecifiedNode = async (id : string) => {
   return await runWithSession(getNodesRelatedToSpecifiedNode,id) ; 
 } ; 
+
+
+//Unused functions 
+
+// export const searchFromQuery = async (query: string) => {
+//   // Places whose name contains the query
+//   const placesByName = await runWithSession(getNodesByNameFragmentWithLabel, "Place", query);
+
+//   // Places linked to a theme whose name contains the query
+//   const placesByTheme = await runWithSession(getPlacesByThemeNameFragment, query);
+
+//   const combined_and_unique = removeDuplicatesByID([...placesByName, ...placesByTheme]);
+
+//   return combined_and_unique;
+// };
+
+// export const fetchNodesByNameFragmentWithLabel = async (
+//   label: string,
+//   fragment: string,
+// ) => {
+//   const nodes =await runWithSession(getNodesByNameFragmentWithLabel, label, fragment);
+//   const uniqueNodes = removeDuplicatesByKey(nodes , "Name") ; 
+//   return uniqueNodes ; 
+// };
