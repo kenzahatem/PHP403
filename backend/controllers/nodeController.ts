@@ -8,7 +8,8 @@ import {
   getCitiesByCountryNameFragment , 
   getCountriesByContinentNameFragment , 
   getNodeByLabel , 
-  getPlacesByCityNameFragment
+  getPlacesByCityNameFragment, 
+  getNodesRelatedToSpecifiedNode
 } from "../database/functions/get.ts";
 import { removeDuplicatesByID } from "./helper.ts";
 
@@ -68,3 +69,8 @@ export const fetchPlacesByCityNameFragment = async (fragment : string ) => {
 export const fetchNodesByLabel = async (label : string ) => {
   return await runWithSession(getNodeByLabel, label);
 };
+
+//récuperer les noeud qui sont reliés a un node spécifié (vers qu'un seul sens)
+export const fetchNodesRelatedToSpecifiedNode = async (id : string) => {
+  return await runWithSession(getNodesRelatedToSpecifiedNode,id) ; 
+} ; 

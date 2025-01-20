@@ -124,3 +124,15 @@ export async function getPlacesByThemeNameFragment(
     const result = await session.run(query, { fragment });
     return result.records.map((record) => record.get("place").properties);
   }
+
+  export async function getNodesRelatedToSpecifiedNode(
+    id : string,
+    session : Session,
+  ){
+    const query =`
+      MATCH (startNode {id: $id})-[]->(relatedNode)
+      RETURN relatedNode
+      ` ; 
+    const result = await session.run(query, {id}) ; 
+    return result.records.map((record) => record.get("relatedNode").properties);
+  }

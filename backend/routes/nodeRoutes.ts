@@ -10,7 +10,8 @@ import {
   fetchCitiesByCountryNameFragment , 
   fetchCountriesByContinentNameFragment , 
   fetchPlacesByCityNameFragment,
-  fetchNodesByLabel
+  fetchNodesByLabel , 
+  fetchNodesRelatedToSpecifiedNode
 } from "../controllers/nodeController.ts";
 import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
@@ -131,6 +132,17 @@ router.get(
     paramName: "query",
     fetchFn: fetchPlacesByCityNameFragment,
     notFoundLabel: "places by city",
+  })
+);
+
+
+//Route pour récupérer les noeuds qui sont associés à un noeud spécifié 
+router.get(
+  "/relatednodes/:query",
+  createSingleParamGetRouteHandler({
+    paramName: "query",
+    fetchFn: fetchNodesRelatedToSpecifiedNode,
+    notFoundLabel: "nodes",
   })
 );
 
