@@ -6,17 +6,26 @@
 
 body {
   font-family: 'Georgia', serif;
-  background: url('image_interface.png') no-repeat center center/cover;
-  height: 100vh;
+  background: url('image_acc.jpg') no-repeat center center/cover;
+  min-height: 100vh; /* Permet à la page de s'étendre en fonction du contenu */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #000;
   text-align: center;
-  overflow: hidden;
+  overflow: auto; /* Ajout pour permettre le défilement global */
 }
-
+@keyframes pop-in {
+  0% {
+    transform: scale(0.5); /* Les éléments commencent plus petits */
+    opacity: 0; /* Ils sont transparents */
+  }
+  100% {
+    transform: scale(1); /* Taille normale */
+    opacity: 1; /* Ils deviennent visibles */
+  }
+}
 .text-container {
   margin-bottom: 130px; /* Spacing between text and search bar */
   margin-top: -200px; /* Moves the text container even higher */
@@ -32,15 +41,30 @@ body {
 h1 {
   font-size: 3.8em;
   font-weight: bold;
-  margin-bottom: 20px; /* Adds space below the title */
-  color: rgb(0, 0, 255);
-  text-shadow: none;
+  margin-bottom: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: 
+    2px 2px 2px rgba(0, 0, 0, 0.3),
+    4px 4px 1000px rgba(0, 0, 0, 0.1);
+  animation: pop-in 1s ease-in-out;
 }
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 
 p {
   font-size: 1.5em;
   margin-bottom: 0; /* Reduces gap between title and subtitle */
-  color: rgb(0, 0, 255);
+  color: rgb(24 24 24);
   text-shadow: none;
 }
 
@@ -55,8 +79,9 @@ p {
   transition: all 0.3s ease-in-out;
   z-index: 10;
   right: -55px;
+  top: -115px;
+  left:2px;
 }
-
 
 .search-box input {
   flex: 1;
@@ -83,67 +108,106 @@ p {
 }
 
 .search-box button img {
-  width: 32px;
-  height: 32px;
+  width: 15px;
+  height: 148px;
 }
 
 .search-box button:hover img {
-  filter: brightness(0.8);
+  filter: brightness(0.90 );
 }
 
-
-/* Barre de recherche */
 .search-box {
   position: relative;
-  width: 300px;
+  width: 400px; /* Largeur de la barre de recherche */
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Aligne les éléments à gauche et à droite */
   border: 2px solid #ccc;
   border-radius: 25px;
   background: white;
   transition: all 0.5s ease-in-out;
   z-index: 3; /* La barre reste au-dessus des autres éléments */
+  padding: 5px 15px; /* Ajoute un espace intérieur pour une meilleure disposition */
+}
+
+.search-box input {
+  flex: 1; /* L'input prend tout l'espace disponible */
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #000;
+}
+
+.search-box button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 100px; /* Ajoute un espacement entre l'input et le bouton */
+}
+
+.search-box button img {
+  width: 15px; /* Contrôle la largeur de l'image */
+  height: 15px; /* Contrôle la hauteur de l'image */
+  transition: transform 0.2s ease, filter 0.3s ease;
+  position: relative; /* Permet un positionnement personnalisé */
+  top: 0; /* Ajuste la position verticale (valeurs négatives pour remonter, positives pour descendre) */
+  left: 16px; /* Ajuste la position horizontale (valeurs négatives pour déplacer à gauche, positives pour droite) */
+}
+
+
+.search-box button:hover img {
+  filter: brightness(1.8); /* Augmente la luminosité au survol */
+}
+
+.search-box button:active img {
+  transform: scale(0.9); /* Réduit légèrement l'image au clic */
+  filter: brightness(0.8); /* Réduit la luminosité */
 }
 
 .search-box.expanded {
-  width: 80%;
-  height: 60px;
-  border-radius: 10px;
-  position: absolute;
-  top: 10px; /* Ajuste la position verticale */
-  left: 50%;
-  transform: translateX(-50%); /* Centre horizontalement */
+  width: 98%;
+  max-width: 1390px;
+  height: 53px;
+  border-radius: 3px;
+  position: fixed;
+  top: 0px;
+  left: 51%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border: 1px solid #31271d;
+  z-index: 99;
+  padding: 19px -13px;
 }
-.search-box {
-    position: relative; /* Laisse les suggestions s'aligner sous le champ */
-    z-index: 2; /* Garde la barre au-dessus des autres éléments */
-}
-/* Conteneur global en mode expansion */
+
 .search-container.expanded {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(108, 204, 211, 0.9); /* Fond opaque */
-  overflow-y: auto; /* Active la barre de défilement */
+  background: rgba(212, 121, 69, 0.295); /* Fond opaque */
+  overflow-y: auto; /* Active le défilement */
   padding: 20px;
 }
 
-/* Photos affichées lors de l'expansion */
 .photo-container {
     margin-top: 80px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
     padding: 20px;
     overflow-y: auto;
     cursor: pointer;
+ 
 }
 
 .photo {
   max-width: 100%;
-  max-height: 300px;
+  max-height: 600px; /* Augmente la taille maximum */
   height: auto;
   width: auto;
   border-radius: 10px;
@@ -153,25 +217,24 @@ p {
 
 .photo:hover {
   transform: scale(1.1); /* Agrandit légèrement l'image */
-  box-shadow: 0 8px 15px rgba(185, 44, 44, 0.2); /* Augmente l'ombre */
+  box-shadow: 0 8px 15px rgba(185, 3, 3, 0.2); /* Augmente l'ombre */
   cursor: pointer; /* Change le curseur pour indiquer une interaction */
 }
 
-/* Overlay */
-
 .suggestions-container {
-    position: absolute;
-    top: calc(12% + -42px); /* Ajuste légèrement l'espace sous la barre */
-    left: 187px;
-    width: 80%;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    z-index: 100; /* Assure que les suggestions apparaissent au-dessus */
-    max-height: 339px; /* Pour limiter la hauteur totale */
-    overflow-y: auto; /* Active la barre de défilement si nécessaire */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: calc(12% + -42px); /* Ajuste légèrement l'espace sous la barre */
+  left: 187px;
+  width: 80%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 100; /* Assure que les suggestions apparaissent au-dessus */
+  max-height: 339px; /* Pour limiter la hauteur totale */
+  overflow-y: auto; /* Active la barre de défilement si nécessaire */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 .overlay {
   position: fixed;
   top: 0;
@@ -181,6 +244,7 @@ p {
   z-index: 1; /* Place sous la barre de recherche */
   display: none; /* Par défaut, l'overlay est masqué */
 }
+
 .search-container.expanded .overlay {
   display: block; /* L'overlay s'affiche uniquement lorsque la barre est étendue */
 }
@@ -189,20 +253,18 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px; /* Taille carrée */
-  height: 150px; /* Taille carrée */
+  width: 400px; /* Taille augmentée pour occuper 4 cases */
+  height: 400px; /* Taille augmentée pour occuper 4 cases */
   background-color: #ffffff; /* Fond blanc pour les icônes */
-    border: 1px solid #ccc;
-    color: #333; /* Texte plus sombre pour un meilleur contraste */
+  border: 1px solid #000000;
+  color: #080404; /* Texte plus sombre pour un meilleur contraste */
   border-radius: 10px; /* Coins arrondis */
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation sur le survol */
   z-index: 1000;
   /* cursor: pointer; /* Indique qu'il est cliquable * */
-}
-.icon-content img {
-  height: 100px  ;
-  width: 100px ;
+  transition: transform 0.3s ease, box-shadow 0.1s ease; /* Animation sur le survol */
+  animation: pop-in 0.4s ease forwards; /* Applique l'animation */
+
 }
 
 .suggestion-icon:hover {
@@ -214,4 +276,184 @@ p {
   font-size: 1em;
   color: #333;
   font-weight: bold;
+}
+
+.clear-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #333;
+  position: absolute;
+  right: 10px; /* Place le bouton à droite */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out; /* Ajoute une transition */
+}
+
+.clear-button img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+.clear-button:active img {
+  transform: scale(0.9); /* Réduit légèrement l'image pour l'effet de clic */
+  filter: brightness(0.8); /* Réduit la luminosité au clic */
+}
+
+.clear-button:hover img {
+  filter: brightness(1.2); /* Augmente la luminosité au survol */
+}
+
+.video-container.small-video {
+  position: absolute;
+  top: 100px; /* Espace depuis le haut */
+  left: 50px; /* Espace depuis la gauche */
+  width: 500px; /* Largeur du carré */
+  height: 300px; /* Hauteur du carré */
+  z-index: 10; /* Place la vidéo au-dessus des autres éléments si nécessaire */
+  overflow: hidden; /* Coupe tout débordement */
+
+  border-radius: 0px; /* Coins arrondis */
+  box-shadow: 
+    -30px 0px 20px rgba(0, 0, 0, 0.3), /* Ombre à gauche */
+    10px 60px 80px rgba(0, 0, 0, 0.3);  /* Ombre à droite */
+}
+  
+.background-video {
+  width: 100%; /* Adapte la largeur à la taille du conteneur */
+  height: 100%; /* Adapte la hauteur au conteneur */
+  object-fit: cover; /* Ajuste pour couvrir entièrement l'espace disponible */
+}
+
+.arrow {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  color: #71945a;
+  cursor: pointer;
+  z-index: 1000; 
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.arrow.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.arrow.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.arrow:hover {
+  color: #e07b33;
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: rgb(203 199 199);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  display: block;
+}
+
+.popup-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.close-popup {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(237 237 237);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-popup:hover {
+  background-color: #000000;
+}
+.return-button {
+  position: fixed;
+  top: 1px;
+  left: 30px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 16px 3px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.return-button.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none; /* Empêche les interactions */
+}
+
+.return-button:hover {
+  background-color: rgb(233, 213, 213);
+}
+
+.return-icon {
+  width: 21px;
+  height: 15px;
+}
+
+.back-button {
+  position: fixed;
+  top: 1px;
+  left: 59px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 16px 3px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.back-button.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none; /* Empêche les interactions */
+}
+
+.back-button:hover {
+  background-color: rgb(233, 213, 213);
+}
+
+.back-icon {
+  width: 21px;
+  height: 15px;
 }

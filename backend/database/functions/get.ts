@@ -126,6 +126,7 @@ export async function getPlacesByThemeNameFragment(
   ){
     const query =`
       MATCH (startNode {id: $id})-[]->(relatedNode)
+      WHERE NOT "Theme" IN labels(relatedNode) 
       RETURN relatedNode
       ` ; 
     const result = await session.run(query, {id}) ; 
