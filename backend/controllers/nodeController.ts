@@ -56,6 +56,29 @@ export const fetchNodesRelatedToSpecifiedNode = async (id : string) => {
   return await runWithSession(getNodesRelatedToSpecifiedNode,id) ; 
 } ; 
 
+export const fetchMetricsWithPagination = async (startDate: string, endDate: string) => {
+  const start = `${startDate}T00:00:00`;
+  const end = `${endDate}T23:59:59`;
+
+  const query = `
+    MATCH (m:Metric {type: "response_time"})
+    WHERE datetime(m.timestamp) >= datetime($start)
+      AND datetime(m.timestamp) <= datetime($end)
+    RETURN m.endpoint AS endpoint, m.responseTime AS responseTime, m.numItems AS numItems, m.timestamp AS timestamp
+    ORDER BY m.timestamp ASC
+  `;
+  return await runWithSession(async (session) => {
+    const result = await session.run(query, { start, end });
+    return result.records.map((record: { get: (arg0: string) => any; }) => ({
+      endpoint: record.get("endpoint"),
+      responseTime: record.get("responseTime"),
+      numItems: record.get("numItems"),
+      timestamp: record.get("timestamp"),
+    }));
+  });
+};
+
+
 
 //Unused functions 
 

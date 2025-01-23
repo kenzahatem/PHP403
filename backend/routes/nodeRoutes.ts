@@ -9,7 +9,8 @@ import {
   fetchCountriesByContinentNameFragment , 
   fetchPlacesByCityNameFragment,
   fetchNodesByLabel , 
-  fetchNodesRelatedToSpecifiedNode
+  fetchNodesRelatedToSpecifiedNode,
+  fetchMetricsWithPagination
 } from "../controllers/nodeController.ts";
 import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
@@ -110,6 +111,28 @@ router.get(
     notFoundLabel: "nodes",
   })
 );
+
+router.get("/metrics", async (context) => {
+  const url = context.request.url;
+  const startDate = url.searchParams.get("startDate");
+  const endDate = url.searchParams.get("endDate");
+
+  if (!startDate || !endDate) {
+    context.response.status = 400;
+    context.response.body = { error: "Missing startDate or endDate query params" };
+    return;
+  }
+
+  try {
+    const metrics = await fetchMetricsWithPagination(startDate, endDate);
+    context.response.body = metrics;
+  } catch (error) {
+    console.error("Error fetching metrics:", error);
+    context.response.status = 500;
+    context.response.body = { error: "Error fetching metrics" };
+  }
+});
+
 
 
 export default router;

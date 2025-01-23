@@ -61,3 +61,14 @@ export async function fetchNodesWithRelationship(query) {
     return [];
   }
 }
+
+export async function fetchMetrics({ startDate, endDate }) {
+  const response = await fetch(
+    `${BASE_URL}/metrics?startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch metrics");
+  }
+  const data = await response.json();
+  return data;
+}
