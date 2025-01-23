@@ -26,13 +26,13 @@ ChartJS.register(
   zoomPlugin
 );
 
-function Metrics() {
+const Metrics = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [metrics, setMetrics] = useState([]);
     const [aggregation, setAggregation] = useState("none");
     const [page, setPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(100); // State for data points per page
+    const [itemsPerPage, setItemsPerPage] = useState(100);
     const [error, setError] = useState("");
   
     const aggregateData = (data, interval) => {
@@ -87,33 +87,31 @@ function Metrics() {
         });
       };
       
-      const formatResponseTime = (value) => {
-        return new Intl.NumberFormat("fr-FR", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        }).format(value);
-      };
-      
-      const calculateStatistics = (data) => {
-        if (data.length === 0) return { max: 0, min: 0, avg: 0 };
-      
-        const max = Math.max(...data.map((metric) => metric.responseTime));
-        const min = Math.min(...data.map((metric) => metric.responseTime));
-        const avg =
-          data.reduce((sum, metric) => sum + metric.responseTime, 0) / data.length;
-      
-        return { max, min, avg };
-      };
+    const formatResponseTime = (value) => {
+    return new Intl.NumberFormat("fr-FR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(value);
+    };
+    
+    const calculateStatistics = (data) => {
+    if (data.length === 0) return { max: 0, min: 0, avg: 0 };
+    
+    const max = Math.max(...data.map((metric) => metric.responseTime));
+    const min = Math.min(...data.map((metric) => metric.responseTime));
+    const avg =
+        data.reduce((sum, metric) => sum + metric.responseTime, 0) / data.length;
+    
+    return { max, min, avg };
+    };
   
-    const currentPageData = paginateData(
-      aggregateData(metrics, aggregation),
-      page,
-      itemsPerPage
-    );
+    const currentAggregatedData = aggregateData(metrics, aggregation);
+  
+    const totalPages = Math.ceil(currentAggregatedData.length / itemsPerPage);
+  
+    const currentPageData = paginateData(currentAggregatedData, page, itemsPerPage);
   
     const stats = calculateStatistics(currentPageData);
-  
-    const totalPages = Math.ceil(metrics.length / itemsPerPage);
   
     useEffect(() => {
         const fetchFilteredMetrics = async () => {
@@ -130,14 +128,20 @@ function Metrics() {
             setError("Failed to fetch metrics");
           }
         };
+        
       fetchFilteredMetrics();
     }, [startDate, endDate]);
+  
+    useEffect(() => {
+      // Reset to page 1 when aggregation changes to avoid invalid page numbers
+      setPage(1);
+    }, [aggregation, itemsPerPage]);
   
     const chartData = {
       labels: currentPageData.map((metric, index, arr) => {
         const timestamp = new Date(metric.timestamp);
         const date = timestamp.toISOString().split("T")[0];
-        const time = timestamp.toTimeString().split(" ")[0].slice(0, 5); // HH:mm
+        const time = timestamp.toTimeString().split(" ")[0].slice(0, 5);
   
         if (index === 0 || new Date(arr[index - 1].timestamp).toISOString().split("T")[0] !== date) {
           return `${date}\n${time}`;
@@ -251,7 +255,7 @@ function Metrics() {
               value={itemsPerPage}
               onChange={(e) => {
                 setItemsPerPage(Number(e.target.value));
-                setPage(1); // Reset to first page when items per page changes
+                setPage(1);
               }}
             >
               <option value={50}>50</option>
@@ -284,25 +288,24 @@ function Metrics() {
           <Line data={chartData} options={chartOptions} />
         </div>
   
-        {/* Statistics Section */}
         <div className="stats-section">
-        <p>
+          <p>
             Between <b>{formatTimestamp(currentPageData[0]?.timestamp || "N/A")}</b> and{" "}
             <b>{formatTimestamp(currentPageData[currentPageData.length - 1]?.timestamp || "N/A")}</b>:
-        </p>
-        <p>
+          </p>
+          <p>
             <b>Max Response Time:</b> {formatResponseTime(stats.max)} ms
-        </p>
-        <p>
+          </p>
+          <p>
             <b>Min Response Time:</b> {formatResponseTime(stats.min)} ms
-        </p>
-        <p>
+          </p>
+          <p>
             <b>Average Response Time:</b> {formatResponseTime(stats.avg)} ms
-        </p>
+          </p>
         </div>
-    </div>
+      </div>
     );
-  }  
+  };
   
-  export default Metrics;
+export default Metrics;
   
