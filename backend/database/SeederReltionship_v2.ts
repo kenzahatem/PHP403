@@ -22,30 +22,30 @@ async function main() {
 
     // Créer les relations Continent → Country
     for (const country of countries) {
-      await createContinentToCountryRelationship(session, country.continent, country.id);
+      await createContinentToCountryRelationship(country.continent, country.id, session);
     }
 
     // Créer les relations Country → City
     for (const city of cities) {
-      await createCountryToCityRelationship(session, city.country, city.id);
+      await createCountryToCityRelationship(city.country, city.id, session);
     }
 
     // Créer les relations City → Place
     for (const place of places) {
-      await createCityToPlaceRelationship(session, place.city, place.id);
+      await createCityToPlaceRelationship(place.city, place.id, session);
     }
 
     // Créer les relations Place → Theme
     for (const place of places) {
       for (const themeId of place.themes || []) {
-        await createPlaceToThemeRelationship(session, place.id, themeId);
+        await createPlaceToThemeRelationship(place.id, themeId, session);
       }
     }
 
     // Créer les relations entre les thèmes (Theme → Theme)
     for (const theme of themes) {
       for (const superclassId of theme.superclasses || []) {
-        await createThemeHierarchyRelationship(session, theme.id, superclassId);
+        await createThemeHierarchyRelationship(theme.id, superclassId, session);
       }
     }
 

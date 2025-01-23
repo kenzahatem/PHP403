@@ -1,9 +1,13 @@
 import { Application } from "https://deno.land/x/oak@v12.5.0/mod.ts";
 import { oakCors } from "https://deno.land/x/cors/mod.ts";
+import { responseTimeLogger } from "./middlewares/responseTime.ts";
 
 import nodeRoutes from "./routes/nodeRoutes.ts";
 
 const app = new Application();
+
+// Add the response time logger middleware
+app.use(responseTimeLogger);
 
 app.use(oakCors()); 
 // Middleware pour les routes

@@ -5,10 +5,7 @@ export async function readJsonTyped<T>(path: string): Promise<T> {
 }
 
 import { closeConnection, connectToDatabase } from "./Database.ts";
-import { Session } from "@neo4j_driver_lite";
 import { config } from "./config.ts";
-
-type SessionCallback<T> = (session: Session, ...args: any[]) => Promise<T>;
 
 /**
  * Higher-order function that opens a session, runs a callback, and closes session + driver.

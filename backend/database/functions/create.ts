@@ -1,9 +1,9 @@
 import { Session } from "@neo4j_driver_lite";
 
 export async function createNode(
-  session: Session,
   label: string,
   properties: Record<string, any>,
+  session: Session,
 ): Promise<void> {
   const keys = Object.keys(properties);
   const query = `
@@ -20,12 +20,12 @@ export async function createNode(
 // fonction de la version 1 de l'application 
 
 export async function createRelationship(
-  session: Session,
   fromId: string,
   fromLabel: string,
   toId: string,
   toLabel: string,
   relationshipType: string,
+  session: Session,
 ): Promise<void> {
   const query = `
         MATCH (a:${fromLabel} {ID: $fromId}), (b:${toLabel} {ID: $toId})
@@ -43,9 +43,9 @@ export async function createRelationship(
 
 // Fonction pour créer une relation Continent → Country
 export async function createContinentToCountryRelationship(
-  session: Session,
   continentId: number,
   countryId: number,
+  session: Session,
 ): Promise<void> {
   const query = `
     MATCH (continent:Continent {id: $continentId}), (country:Country {id: $countryId})
@@ -61,9 +61,9 @@ export async function createContinentToCountryRelationship(
 
 // Fonction pour créer une relation Country → City
 export async function createCountryToCityRelationship(
-  session: Session,
   countryId: number,
   cityId: number,
+  session: Session,
 ): Promise<void> {
   const query = `
     MATCH (country:Country {id: $countryId}), (city:City {id: $cityId})
@@ -79,9 +79,9 @@ export async function createCountryToCityRelationship(
 
 // Fonction pour créer une relation City → Place
 export async function createCityToPlaceRelationship(
-  session: Session,
   cityId: number,
   placeId: number,
+  session: Session,
 ): Promise<void> {
   const query = `
     MATCH (city:City {id: $cityId}), (place:Place {id: $placeId})
@@ -97,9 +97,9 @@ export async function createCityToPlaceRelationship(
 
 // Fonction pour créer une relation Place → Theme
 export async function createPlaceToThemeRelationship(
-  session: Session,
   placeId: number,
   themeId: string,
+  session: Session,
 ): Promise<void> {
   const query = `
     MATCH (place:Place {id: $placeId}), (theme:Theme {id: $themeId})
@@ -115,9 +115,9 @@ export async function createPlaceToThemeRelationship(
 
 // Fonction pour créer une relation Theme → Theme (hiérarchie)
 export async function createThemeHierarchyRelationship(
-  session: Session,
   themeId: number,
   superclassId: number,
+  session: Session,
 ): Promise<void> {
   const query = `
     MATCH (theme:Theme {id: $themeId}), (superclass:Theme {id: $superclassId})

@@ -20,20 +20,20 @@ async function main() {
     let successCount = 0;
     for (const continent of continents) {
         // console.log(continent) ; 
-      await createNode(session, 'Continent', continent);
+      await createNode('Continent', continent, session);
       successCount++;
     }
     for (const country of countries) {
-      await createNode(session, 'Country', country);
+      await createNode('Country', country, session);
     }
     for (const city of cities) {
-      await createNode(session, 'City', city);
+      await createNode('City', city, session);
     }
     for (const place of places) {
-      await createNode(session, 'Place', place);
+      await createNode('Place', place, session);
     }
     for (const theme of themes) {
-      await createNode(session, 'Theme', theme);
+      await createNode('Theme', theme, session);
     }
 
 
