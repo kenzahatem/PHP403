@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import Metrics from './Metrics'; // Import Metrics if needed
 import './interface.css';
 import Logo from './Tour Travel Business Logo.svg'; // Import du logo SVG
-import VideoAcc from './video-acc.mp4'; // Import de la vidéo d'accueil
+import VideoAcc from './video.mp4'; // Import de la vidéo d'accueil
 
 function App() {
     const [isHomePage, setIsHomePage] = useState(true); // State for home page view
@@ -57,8 +57,9 @@ function App() {
                     {/* Home Page Text and Logo */}
                     {isHomePage && (
                         <div className="text-container">
+                            {/* Affichage du logo */}
                             <img src={Logo} alt="Logo KeyTrip" className="logo" />
-                            <p>Explorez Votre Prochaine Destination de Rêve</p>
+                            <p className="home-description">Explorez Votre Prochaine Destination de Rêve</p>
                         </div>
                     )}
 
@@ -91,5 +92,7 @@ function App() {
         </div>
     );
 }
+// npm install react-datepicker chart.js chartjs-plugin-zoom react-chartjs-2
+
 
 export default App;
