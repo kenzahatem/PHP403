@@ -141,10 +141,24 @@ export async function getPlacesByThemeNameFragment(
     const query =`
       MATCH (startNode {id: $id})-[]->(relatedNode)
       WHERE NOT "Theme" IN labels(relatedNode) 
+      AND NOT relatedNode.label =~ 'Q[0-9]+' 
       RETURN relatedNode LIMIT 100 ; 
       ` ; 
     const result = await session.run(query, {id}) ; 
     return result.records.map((record) => record.get("relatedNode").properties);
+  }
+
+  export async function getPrincipleThemes(
+    session : Session)
+    {
+    const query = `
+    MATCH (theme:Theme)
+    WHERE NOT (theme)-[:IS_SUBCLASS_OF]->(:Theme)  
+    RETURN theme
+    ORDER BY theme.label ASC
+    ` ;
+    const result = await session.run(query);
+    return result.records.map((record) => record.get("theme").properties);
   }
 
 

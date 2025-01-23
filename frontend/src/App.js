@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
-import Metrics from './Metrics'; // Import the Metrics component
+import Metrics from './Metrics'; // Import Metrics if needed
 import './interface.css';
-import Spot from './Spot.mp4';
+import Logo from './Tour Travel Business Logo.svg'; // Import du logo SVG
+import VideoAcc from './video-acc.mp4'; // Import de la vidéo d'accueil
 
 function App() {
-    const [isHomePage, setIsHomePage] = useState(true); // State for main/home view
+    const [isHomePage, setIsHomePage] = useState(true); // State for home page view
     const [isMetricsPage, setIsMetricsPage] = useState(false); // State for metrics view
+    const [showButton, setShowButton] = useState(true); // Controls visibility of navigation buttons
 
     const handleSearchFocus = () => {
-        setIsHomePage(false);
+        setIsHomePage(false); // Hide home page when search bar is focused
     };
 
     const toggleMetricsPage = () => {
-        // Toggle between metrics and main view
         setIsMetricsPage(!isMetricsPage);
-        setIsHomePage(isMetricsPage); // Make sure to reset home state accordingly
+        setIsHomePage(false); // Ensure home page is hidden when viewing metrics
     };
 
     const handleBackToHome = () => {
         setIsHomePage(true);
         setIsMetricsPage(false); // Reset metrics state
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0); // Scroll back to top of the page
     };
 
     useEffect(() => {
         const handleScroll = () => {
-            const isTop = window.scrollY < 50;
-            setIsHomePage(isTop);
+            setShowButton(window.scrollY < 50); // Show buttons only at the top of the page
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -39,48 +39,55 @@ function App() {
 
     return (
         <div className="app">
+            {/* If Metrics Page is active */}
             {isMetricsPage ? (
-                <Metrics /> // Show Metrics view
+                <Metrics /> // Render Metrics view
             ) : (
                 <>
+                    {/* Home Page Background Video */}
                     {isHomePage && (
-                        <div className="video-container small-video">
+                        <div className="video-background">
                             <video autoPlay muted loop className="background-video">
-                                <source src={Spot} type="video/mp4" />
+                                <source src={VideoAcc} type="video/mp4" />
+                                Your browser does not support the video tag.
                             </video>
                         </div>
                     )}
 
-                    <div className="text-container">
-                        <h1>KeyTrip</h1>
-                        <p>Explorez Votre Prochaine Destination de Rêve</p>
-                    </div>
+                    {/* Home Page Text and Logo */}
+                    {isHomePage && (
+                        <div className="text-container">
+                            <img src={Logo} alt="Logo KeyTrip" className="logo" />
+                            <p>Explorez Votre Prochaine Destination de Rêve</p>
+                        </div>
+                    )}
 
+                    {/* Search Bar */}
                     <div className="container">
                         <SearchBar onSearchFocus={handleSearchFocus} />
                     </div>
 
+                    {/* Navigation Buttons */}
                     {!isHomePage && (
-                        <button
-                            className="return-button"
-                            onClick={handleBackToHome}
-                        >
-                            <img
-                                src={require('./acceuil.png')}
-                                alt="Accueil"
-                                className="return-icon"
-                            />
-                        </button>
+                        <div className="navigation-buttons">
+                            {showButton && (
+                                <>
+                                    <button className="return-button" onClick={handleBackToHome}>
+                                        <img 
+                                            src={require('./acceuil.png')} 
+                                            alt="Accueil" 
+                                            className="return-icon" 
+                                        />
+                                    </button>
+                                    <button className="metrics-button" onClick={toggleMetricsPage}>
+                                        Voir les métriques
+                                    </button>
+                                </>
+                            )}
+                        </div>
                     )}
                 </>
             )}
-
-            <button
-                className="metrics-button"
-                onClick={toggleMetricsPage}
-            >
-                {isMetricsPage ? "Back to Home" : "Toggle View Metrics"}
-            </button>
         </div>
     );
 }

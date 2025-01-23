@@ -10,7 +10,8 @@ import {
   fetchPlacesByCityNameFragment,
   fetchNodesByLabel , 
   fetchNodesRelatedToSpecifiedNode,
-  fetchMetricsWithPagination
+  fetchMetricsWithPagination,
+  fetchPrincipleThemes
 } from "../controllers/nodeController.ts";
 import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
@@ -130,6 +131,19 @@ router.get(
     notFoundLabel: "nodes",
   })
 );
+//route pour récupérer les thèmes principales 
+
+router.get("/principle-nodes", async (context: Context) => {
+  try {
+    const nodes = await fetchPrincipleThemes();
+    context.response.body = nodes;
+  } catch (error) {
+    context.response.status = 500;
+    context.response.body = {
+      error: "Erreur lors de la récupération des noeuds.",
+    };
+  }
+});
 
 router.get("/metrics", async (context) => {
   const url = context.request.url;

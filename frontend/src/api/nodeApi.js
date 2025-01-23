@@ -37,6 +37,16 @@ export async function fetchNodesByNameFragmentWithoutLabel(query, skip = 0, limi
   }
 }
 
+export async function fetchprincipleThemesApi() {
+  const response = await fetch(`${BASE_URL}/principle-nodes`) ; 
+  if(!response.ok){
+    console.warn(`Aucun résultat trouvé`);
+    return [];
+  }
+  const data = await response.json() ; 
+  return data ; 
+}
+
 
 export async function fetchThemes(query){
   const response = await fetch(`${BASE_URL}/nodes/label/Theme`) ; 

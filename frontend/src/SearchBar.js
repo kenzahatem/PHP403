@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import croixIcon from './croix.png';
-import {  fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
+import {  fetchThemes,fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
 import './interface.css';
 
 function SearchBar({ onSearchFocus }) {
@@ -14,32 +14,11 @@ function SearchBar({ onSearchFocus }) {
     const [favorites, setFavorites] = useState([]);
 
 
-    //optimiser le chargement des images 
-    const optimizeImageUrl = (url) => {
-        if (!url) {
-            // Retourne un placeholder si l'URL est vide
-            return "/placeholder.jpg";
-        }
-    
-        // Si l'URL contient "Special:FilePath", recompose correctement l'URL pour Wikimedia Commons
-        if (url.includes("Special:FilePath")) {
-            const filename = url.split("Special:FilePath/")[1];
-            if (!filename) return "/placeholder.jpg";
-    
-            // Encoder correctement le nom du fichier (remplace espaces et caractères spéciaux)
-            const encodedFilename = encodeURIComponent(filename).replace(/%20/g, "_");
-    
-            // Construire une URL conforme aux standards de Wikimedia Commons
-            const firstChar = encodedFilename[0].toLowerCase();
-            const secondChar = encodedFilename[1] ? encodedFilename[1].toLowerCase() : "0";
-            return `https://upload.wikimedia.org/wikipedia/commons/${firstChar}/${secondChar}/${encodedFilename}`;
-        }
-    
-        // Retourne l'URL inchangée si elle ne contient pas "Special:FilePath"
-        return url;
-    };
-    
-    //fin de loptimosation 
+    const handleAllPossibleThemes = async()=>{
+        const themes  = await fetchprincipleThemesApi() ; 
+        console.log("Les Thèmes sont:" , themes) ; 
+    }
+
     
     // gestion des favoris (ajout ,suppression, renvoie)
     const addToFavorites = (item) => {
@@ -54,8 +33,11 @@ function SearchBar({ onSearchFocus }) {
     const removeFromFavorites = (item) => {
         setFavorites((prevFavorites) => {
             console.log(item.label ,"Supprimé au favoris ! ")
+            setSuggestions(prevFavorites.filter(fav => fav.label !== item.label)) ;
+            setSearchQuery('favorites') ;
             return prevFavorites.filter(fav => fav.label !== item.label);
         });
+        
     };
     const ListAllFavouriteItems= () => {
         // console.log(favorites) ; 
@@ -197,6 +179,7 @@ function SearchBar({ onSearchFocus }) {
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
+                    onClick = {handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
 
@@ -214,46 +197,55 @@ function SearchBar({ onSearchFocus }) {
                     ))}
                 </div>
             )}
+                        {isExpanded && (
+    <div className="photo-container">
+        {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
+            <div className="no-result">
+                <img src={require('./aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
+            </div>
+        ) : (
+            suggestions.map((suggestion, index) => {
+                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
 
-            {isExpanded && searchQuery && suggestions.length > 0 && (
-                <div className="photo-container">
-                    {suggestions.map((suggestion, index) => {
-                        const isFavorite = favorites.some(fav => fav.label === suggestion.label);
-                        return (
-                            <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
-                                <div className="icon-content">
-                                    <img src={ suggestion.flag } class="img-suggestion" loading="lazy"></img>
-                                    {/* https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg */}
-                                    <p>{suggestion.label}</p>
-                                    <span
-                                        className={`star-icon ${isFavorite ? 'filled' : ''}`}
-                                        onClick={(e) => {
-                                            // console.log("clické") ; 
-                                            e.stopPropagation();
-                                            // console.log(isFavorite) ; 
-                                            if (isFavorite) {
-                                                removeFromFavorites(suggestion);
-                                            } else {
-                                                // console.log("fonctionne") ; 
-                                                addToFavorites(suggestion);
-                                            }
-                                        }}
-                                    >
-                                        {isFavorite ? '⭐' : '☆'}
-                                    </span>
-                                </div>
-                            </div>
-                        );
-                    })}
-                    {searchQuery && suggestions.length >= 60 && canSeeMore && (
-                        <div class="button-container">
-                        <button onClick={loadMoreResults} className="load-more">
-                            Voir plus
-                        </button>
+                return (
+                    <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
+                        <div className="icon-content">
+                            {suggestion.flag && (
+                                <img
+                                    src={suggestion.flag}
+                                    alt={suggestion.label}
+                                    className="img-suggestion"
+                                    loading="lazy"
+                                />
+                            )}
+                            <p>{suggestion.label}</p>
+                            <span
+                                className={`star-icon ${isFavorite ? 'filled' : ''}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (isFavorite) {
+                                        removeFromFavorites(suggestion);
+                                    } else {
+                                        addToFavorites(suggestion);
+                                    }
+                                }}
+                            >
+                                {isFavorite ? '⭐' : '☆'}
+                            </span>
                         </div>
-                    )}
-                </div>
-            )}
+                    </div>
+                );
+            })
+        )}
+        {searchQuery && suggestions.length >= 60 && canSeeMore && (
+            <div className="button-container">
+                <button onClick={loadMoreResults} className="load-more">
+                    Voir plus
+                </button>
+            </div>
+        )}
+    </div>
+)}
 
 
             {popupContent && (

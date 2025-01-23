@@ -8,7 +8,8 @@ import {
   getCountriesByContinentNameFragment , 
   getNodeByLabel , 
   getPlacesByCityNameFragment, 
-  getNodesRelatedToSpecifiedNode
+  getNodesRelatedToSpecifiedNode,
+  getPrincipleThemes
 } from "../database/functions/get.ts";
 
 
@@ -30,6 +31,11 @@ export const fetchNodesByNameFragmentWithoutLabel = async (
 
 export const fetchPlacesByThemeNameFragment = async (fragment: string) => {
   return await runWithSession(getPlacesByThemeNameFragment, fragment);
+}
+
+//récuperre les thèmes prinicpales 
+export const fetchPrincipleThemes = async () => {
+  return await runWithSession(getPrincipleThemes) ; 
 }
 
 
