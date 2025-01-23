@@ -637,7 +637,7 @@ p {
 /* Conteneur pour centrer le bouton */
 .button-container {
   display: flex;
-  justify-content: right; /* Centre horizontalement */
+  justify-content: center; /* Centre horizontalement */
   align-items: center;    /* Centre verticalement */
   width: 90vw;           /* Optionnel, pour garantir que ça couvre toute la largeur */
 }
