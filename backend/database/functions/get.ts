@@ -34,30 +34,37 @@ export async function deleteRelationshipById(ID: string, session: Session) {
 export async function getNodesByNameFragmentWithoutLabel(
   fragment: string,
   limit: number,
-  skip: number ,
+  skip: number,
   session: Session
 ) {
   limit = Math.floor(limit);  
   skip = Math.floor(skip);
+
   const startsQuery = `
     MATCH (n)
     WHERE toLower(n.label) STARTS WITH toLower($fragment)
-    AND NOT "Theme" IN labels(n)
-    RETURN n SKIP toInteger($skip) LIMIT toInteger($limit)
+      AND NOT "Theme" IN labels(n)
+      AND NOT n.label =~ 'Q[0-9]+'  
+    RETURN n
+    SKIP toInteger($skip) LIMIT toInteger($limit)
   `;
 
   const containsQuery = `
     MATCH (n)
     WHERE toLower(n.label) CONTAINS toLower($fragment)
-    AND NOT toLower(n.label) STARTS WITH toLower($fragment)
-    AND NOT "Theme" IN labels(n)
-    RETURN n SKIP toInteger($skip) LIMIT toInteger($limit)
+      AND NOT toLower(n.label) STARTS WITH toLower($fragment)
+      AND NOT "Theme" IN labels(n)
+      AND NOT n.label =~ 'Q[0-9]+'  
+    RETURN n 
+    SKIP toInteger($skip) LIMIT toInteger($limit)
   `;
 
   const relatedPlacesQuery = `
     MATCH (place:Place)-[:HAS_THEME]->(theme:Theme)
     WHERE toLower(theme.label) CONTAINS toLower($fragment)
-    RETURN place SKIP toInteger($skip) LIMIT toInteger($limit)
+      AND NOT place.label =~ 'Q[0-9]+'  
+    RETURN place
+    SKIP toInteger($skip) LIMIT toInteger($limit)
   `;
 
   const startsResult = await session.run(startsQuery, { fragment, skip, limit });
@@ -71,6 +78,7 @@ export async function getNodesByNameFragmentWithoutLabel(
 
   return [...startsRecords, ...relatedPlacesRecords, ...containsRecords];
 }
+
 
 
 
