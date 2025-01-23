@@ -564,3 +564,22 @@ p {
   color: red;
   margin-bottom: 10px;
 }
+
+.stats-section {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats-section p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}

@@ -36,53 +36,38 @@ function Metrics() {
     const [error, setError] = useState("");
   
     const aggregateData = (data, interval) => {
-        if (interval === "none") return data;
-      
-        const intervalMs = {
-          "10s": 10 * 1000,
-          "1m": 60 * 1000,
-          "5m": 5 * 60 * 1000,
-        }[interval];
-      
-        const aggregated = [];
-        let bucket = [];
-        let bucketStartTime = new Date(data[0].timestamp).getTime();
-      
-        data.forEach((point) => {
-          const pointTime = new Date(point.timestamp).getTime();
-          if (pointTime - bucketStartTime <= intervalMs) {
-            bucket.push(point);
-          } else {
-            // Aggregate responseTime as average and numItems as average
-            const avgResponseTime =
-              bucket.reduce((sum, p) => sum + p.responseTime, 0) / bucket.length;
-            const avgNumItems =
-              bucket.reduce((sum, p) => sum + p.numItems, 0) / bucket.length;
-            aggregated.push({
-              timestamp: new Date(bucketStartTime).toISOString(),
-              responseTime: avgResponseTime,
-              numItems: avgNumItems,
-            });
-            bucket = [point];
-            bucketStartTime = pointTime;
-          }
-        });
-      
-        // Add the last bucket
-        if (bucket.length > 0) {
+      if (interval === "none") return data;
+  
+      const intervalMs = {
+        "10s": 10 * 1000,
+        "1m": 60 * 1000,
+        "5m": 5 * 60 * 1000,
+      }[interval];
+  
+      const aggregated = [];
+      let bucket = [];
+      let bucketStartTime = new Date(data[0].timestamp).getTime();
+  
+      data.forEach((point) => {
+        const pointTime = new Date(point.timestamp).getTime();
+        if (pointTime - bucketStartTime <= intervalMs) {
+          bucket.push(point);
+        } else {
           const avgResponseTime =
             bucket.reduce((sum, p) => sum + p.responseTime, 0) / bucket.length;
-          const avgNumItems =
-            bucket.reduce((sum, p) => sum + p.numItems, 0) / bucket.length;
+          const totalItems = bucket.reduce((sum, p) => sum + p.numItems, 0);
           aggregated.push({
             timestamp: new Date(bucketStartTime).toISOString(),
             responseTime: avgResponseTime,
-            numItems: avgNumItems,
+            numItems: totalItems,
           });
+          bucket = [point];
+          bucketStartTime = pointTime;
         }
-      
-        return aggregated;
-      };      
+      });
+  
+      return aggregated;
+    };
   
     const paginateData = (data, page, itemsPerPage) => {
       const startIndex = (page - 1) * itemsPerPage;
@@ -90,7 +75,45 @@ function Metrics() {
       return data.slice(startIndex, endIndex);
     };
   
-    const totalPages = Math.ceil(metrics.length / itemsPerPage); // Calculate total pages
+    const formatTimestamp = (timestamp) => {
+        const date = new Date(timestamp);
+        return date.toLocaleString("fr-FR", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+      };
+      
+      const formatResponseTime = (value) => {
+        return new Intl.NumberFormat("fr-FR", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(value);
+      };
+      
+      const calculateStatistics = (data) => {
+        if (data.length === 0) return { max: 0, min: 0, avg: 0 };
+      
+        const max = Math.max(...data.map((metric) => metric.responseTime));
+        const min = Math.min(...data.map((metric) => metric.responseTime));
+        const avg =
+          data.reduce((sum, metric) => sum + metric.responseTime, 0) / data.length;
+      
+        return { max, min, avg };
+      };
+  
+    const currentPageData = paginateData(
+      aggregateData(metrics, aggregation),
+      page,
+      itemsPerPage
+    );
+  
+    const stats = calculateStatistics(currentPageData);
+  
+    const totalPages = Math.ceil(metrics.length / itemsPerPage);
   
     useEffect(() => {
         const fetchFilteredMetrics = async () => {
@@ -107,12 +130,11 @@ function Metrics() {
             setError("Failed to fetch metrics");
           }
         };
-
       fetchFilteredMetrics();
     }, [startDate, endDate]);
   
     const chartData = {
-      labels: paginateData(aggregateData(metrics, aggregation), page, itemsPerPage).map((metric, index, arr) => {
+      labels: currentPageData.map((metric, index, arr) => {
         const timestamp = new Date(metric.timestamp);
         const date = timestamp.toISOString().split("T")[0];
         const time = timestamp.toTimeString().split(" ")[0].slice(0, 5); // HH:mm
@@ -126,17 +148,13 @@ function Metrics() {
       datasets: [
         {
           label: "Response Time (ms)",
-          data: paginateData(aggregateData(metrics, aggregation), page, itemsPerPage).map(
-            (metric) => metric.responseTime
-          ),
+          data: currentPageData.map((metric) => metric.responseTime),
           borderColor: "rgba(75,192,192,1)",
           fill: false,
         },
         {
           label: "Items Returned",
-          data: paginateData(aggregateData(metrics, aggregation), page, itemsPerPage).map(
-            (metric) => metric.numItems
-          ),
+          data: currentPageData.map((metric) => metric.numItems),
           borderColor: "rgba(255,99,132,1)",
           fill: false,
         },
@@ -144,59 +162,57 @@ function Metrics() {
     };
   
     const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            title: { display: true, text: "Time" },
-            ticks: {
-              callback: function (value, index, ticks) {
-                return this.getLabelForValue(value).replace("\n", " ");
-              },
-              font: {
-                size: 10,
-              },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          title: { display: true, text: "Time" },
+          ticks: {
+            callback: function (value, index, ticks) {
+              return this.getLabelForValue(value).replace("\n", " ");
             },
-          },
-          y: {
-            title: { display: true, text: "Value" },
+            font: {
+              size: 10,
+            },
           },
         },
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: function (tooltipItem) {
-                // Format response time in French style
-                const value = tooltipItem.raw; // Get the raw value of the datapoint
-                const formattedValue = new Intl.NumberFormat("fr-FR", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }).format(value);
-      
-                // Add units and label
-                if (tooltipItem.dataset.label === "Response Time (ms)") {
-                  return `Response Time: ${formattedValue} ms`;
-                } else if (tooltipItem.dataset.label === "Items Returned") {
-                  return `Items Returned: ${value}`;
-                }
-                return value;
-              },
+        y: {
+          title: { display: true, text: "Value" },
+        },
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (tooltipItem) {
+              const value = tooltipItem.raw;
+              const formattedValue = new Intl.NumberFormat("fr-FR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }).format(value);
+  
+              if (tooltipItem.dataset.label === "Response Time (ms)") {
+                return `Response Time: ${formattedValue} ms`;
+              } else if (tooltipItem.dataset.label === "Items Returned") {
+                return `Items Returned: ${value}`;
+              }
+              return value;
             },
+          },
+        },
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: "x",
           },
           zoom: {
-            pan: {
+            wheel: {
               enabled: true,
-              mode: "x",
             },
-            zoom: {
-              wheel: {
-                enabled: true,
-              },
-              mode: "x",
-            },
+            mode: "x",
           },
         },
-      };         
+      },
+    };
   
     return (
       <div className="metrics-page">
@@ -267,9 +283,26 @@ function Metrics() {
         <div className="chart-container">
           <Line data={chartData} options={chartOptions} />
         </div>
-      </div>
+  
+        {/* Statistics Section */}
+        <div className="stats-section">
+        <p>
+            Between <b>{formatTimestamp(currentPageData[0]?.timestamp || "N/A")}</b> and{" "}
+            <b>{formatTimestamp(currentPageData[currentPageData.length - 1]?.timestamp || "N/A")}</b>:
+        </p>
+        <p>
+            <b>Max Response Time:</b> {formatResponseTime(stats.max)} ms
+        </p>
+        <p>
+            <b>Min Response Time:</b> {formatResponseTime(stats.min)} ms
+        </p>
+        <p>
+            <b>Average Response Time:</b> {formatResponseTime(stats.avg)} ms
+        </p>
+        </div>
+    </div>
     );
-  }
+  }  
   
   export default Metrics;
   
