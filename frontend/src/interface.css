@@ -279,7 +279,7 @@ p {
 }
 
 .clear-button {
-  background: transparent;
+  background: blue;
   border: none;
   cursor: pointer;
   font-size: 1.2em;
@@ -582,4 +582,45 @@ p {
   margin: 5px 0;
   font-size: 14px;
   color: #333;
+}
+/* bouton voir plus */
+.load-more {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index  : 1000
+}
+
+.load-more:hover {
+  background-color: #0056b3;
+}
+/* fin du nouton voir plus  */
+/* image de la suggestion */
+.img-suggestion {
+  height : 300px  ; 
+  width : 300px ; 
+}
+
+
+.star-icon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+  color: gold;
+  transition: transform 0.2s ease;
+  margin-left: -15px !important; 
+}
+
+.star-icon.filled {
+  color: orange;
+}
+
+.star-icon:hover {
+  transform: scale(1.2);
 }

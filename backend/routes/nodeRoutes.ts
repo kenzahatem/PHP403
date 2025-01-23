@@ -52,14 +52,33 @@ router.get(
   }),
 );
 
-router.get(
-  "/nodes/search/:query",
-  createSingleParamGetRouteHandler({
-    paramName: "query",
-    fetchFn: fetchNodesByNameFragmentWithoutLabel,
-    notFoundLabel: "nodes",
-  }),
-);
+router.get("/nodes/search/by-name", async (ctx) => {
+  const query = ctx.request.url.searchParams.get("query");
+  let skip = parseInt(ctx.request.url.searchParams.get('skip') || "0", 10);
+  let limit = parseInt(ctx.request.url.searchParams.get('limit') || "20", 10);
+
+
+  if (!query) {
+    ctx.response.status = 400;
+    ctx.response.body = { error: "Missing 'query' parameter" };
+    return;
+  }
+
+  try {
+    const results = await fetchNodesByNameFragmentWithoutLabel(query, limit, skip);
+    if (!results || results.length === 0) {
+      ctx.response.status = 404;
+      ctx.response.body = { message: `No nodes found for query "${query}"` };
+    } else {
+      ctx.response.body = results;
+    }
+  } catch (error) {
+    console.error(error);
+    ctx.response.status = 500;
+    ctx.response.body = { error: "Internal Server Error" };
+  }
+});
+
 
 
 router.get(

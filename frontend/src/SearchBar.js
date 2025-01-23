@@ -5,11 +5,60 @@ import './interface.css';
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [canSeeMore, setcanSeeMore] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [breadcrumb, setBreadcrumb] = useState([]);
     const [popupContent, setPopupContent] = useState(null);
     const searchContainerRef = useRef(null);
+    const [favorites, setFavorites] = useState([]);
+
+    // gestion des favoris (ajout ,suppression, renvoie)
+    const addToFavorites = (item) => {
+        setFavorites((prevFavorites) => {
+            if (!prevFavorites.some(fav => fav.label === item.label)) { 
+                console.log(item.label ,"Ajouté au favoris ! ")
+                return [...prevFavorites, item];
+            }
+            return prevFavorites; 
+        });
+    };
+    const removeFromFavorites = (item) => {
+        setFavorites((prevFavorites) => {
+            console.log(item.label ,"Supprimé au favoris ! ")
+            return prevFavorites.filter(fav => fav.label !== item.label);
+        });
+    };
+    const ListAllFavouriteItems= () => {
+        // console.log(favorites) ; 
+        setSuggestions(favorites) ;
+        // console.log(suggestions) ;  
+        setSearchQuery('favorites') ; 
+    }
+    // fin de la gestion des favoris
+
+    //pagination 
+    const [page, setPage] = useState(0); 
+    const [hasMore, setHasMore] = useState(true); 
+    const limit = 20; 
+    //fin pagination 
+
+    //fonction pour ajouter les résultats suivants 
+    const loadMoreResults = async () => {
+        if (!searchQuery.trim()) return; 
+    
+        const nextPage = page + 1;
+        const newResults = await fetchNodesByNameFragmentWithoutLabel(searchQuery, nextPage * limit, limit);
+    
+        if (newResults.length > 0) {
+            setSuggestions((prev) => [...prev, ...newResults]);
+            setPage(nextPage);
+            setHasMore(newResults.length === limit); 
+        } else {
+            setHasMore(false);
+        }
+    };
+    //fin de la fonction 
 
     const handleFocus = () => {
         setIsExpanded(true);
@@ -19,20 +68,25 @@ function SearchBar({ onSearchFocus }) {
     const handleInputChange = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
-
+    
         if (query.trim() !== "") {
-            const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(query);
-            console.log(filteredNodes) ; 
+            setPage(0); 
+            setSuggestions([]); 
+            const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(query, 0, limit);
+            setHasMore(filteredNodes.length === limit); 
             setSuggestions(filteredNodes.length > 0 ? filteredNodes : [{ label: 'Aucun résultat trouvé', IsLeaf: false }]);
         } else {
-            setSuggestions([]);
+            setSuggestions([]); 
+            setHasMore(false); 
         }
     };
+    
 
     const clearSearch = () => {
         setSearchQuery('');
         setSuggestions([]);
         setBreadcrumb([]);
+        setcanSeeMore(true) ; 
     };
 
     const handleClickOutside = useCallback((event) => {
@@ -62,6 +116,8 @@ function SearchBar({ onSearchFocus }) {
     const closePopup = () => setPopupContent(null);
 
     const handleSuggestionClick = async (suggestion) => {
+        // setSearchQuery('');
+        setcanSeeMore(false) ; 
         console.log('Suggestion clicked:', suggestion);
     
         try {
@@ -71,7 +127,7 @@ function SearchBar({ onSearchFocus }) {
             if (nextLevelSuggestions.length > 0) {
                 // Continuer la navigation
                 setSuggestions(nextLevelSuggestions);
-                setBreadcrumb([...breadcrumb, suggestion.Name]);
+                setBreadcrumb([...breadcrumb, suggestion.label]);
             } else {
                 // Pas de résultats associés, afficher la popup
                 console.log('Dernier résultat atteint. Affichage de la popup.');
@@ -106,6 +162,7 @@ function SearchBar({ onSearchFocus }) {
     return (
         <div ref={searchContainerRef} className={`search-container ${isExpanded ? 'expanded' : ''}`}>
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
+            <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
                 <input
                     type="text"
                     placeholder="Tapez des mots-clés comme 'plage', 'montagne', 'aventure'"
@@ -114,6 +171,7 @@ function SearchBar({ onSearchFocus }) {
                     onFocus={handleFocus}
                     aria-label="Barre de recherche"
                 />
+
                 <button className="clear-button" onClick={clearSearch}>
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
@@ -129,17 +187,43 @@ function SearchBar({ onSearchFocus }) {
                 </div>
             )}
 
-            {isExpanded && (
+            {isExpanded && searchQuery && suggestions.length > 0 && (
                 <div className="photo-container">
-                    {suggestions.map((suggestion, index) => (
-                        <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
-                            <div className="icon-content">
-                                <p>{suggestion.label}</p>
+                    {suggestions.map((suggestion, index) => {
+                        const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+                        return (
+                            <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
+                                <div className="icon-content">
+                                    {/* <img src={suggestion.image} class="img-suggestion"></img> */}
+                                    <p>{suggestion.label}</p>
+                                    <span
+                                        className={`star-icon ${isFavorite ? 'filled' : ''}`}
+                                        onClick={(e) => {
+                                            // console.log("clické") ; 
+                                            e.stopPropagation();
+                                            // console.log(isFavorite) ; 
+                                            if (isFavorite) {
+                                                removeFromFavorites(suggestion);
+                                            } else {
+                                                // console.log("fonctionne") ; 
+                                                addToFavorites(suggestion);
+                                            }
+                                        }}
+                                    >
+                                        {isFavorite ? '⭐' : '☆'}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
+                    {searchQuery && suggestions.length >= 60 && canSeeMore && (
+                        <button onClick={loadMoreResults} className="load-more">
+                            Voir plus
+                        </button>
+                    )}
                 </div>
             )}
+
 
             {popupContent && (
                 <div className="popup-overlay" onClick={closePopup}>

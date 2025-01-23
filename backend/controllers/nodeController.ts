@@ -21,9 +21,10 @@ export const fetchNodeById = async (id: string) => {
 };
 
 export const fetchNodesByNameFragmentWithoutLabel = async (
-  fragment: string,
+  fragment: string, limit: number , skip : number
 ) => {
-  return await runWithSession(getNodesByNameFragmentWithoutLabel, fragment);
+  console.log("Appel à fetchNodesByNameFragmentWithoutLabel avec:", fragment, limit, skip);
+  return await runWithSession(getNodesByNameFragmentWithoutLabel, fragment, limit, skip);
 };
 
 

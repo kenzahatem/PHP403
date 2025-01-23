@@ -33,39 +33,45 @@ export async function deleteRelationshipById(ID: string, session: Session) {
 
 export async function getNodesByNameFragmentWithoutLabel(
   fragment: string,
-  session: Session,
+  limit: number,
+  skip: number ,
+  session: Session
 ) {
+  limit = Math.floor(limit);  
+  skip = Math.floor(skip);
   const startsQuery = `
     MATCH (n)
     WHERE toLower(n.label) STARTS WITH toLower($fragment)
-    AND NOT "Theme" IN labels(n)  
-    RETURN n
+    AND NOT "Theme" IN labels(n)
+    RETURN n SKIP toInteger($skip) LIMIT toInteger($limit)
   `;
 
   const containsQuery = `
     MATCH (n)
     WHERE toLower(n.label) CONTAINS toLower($fragment)
     AND NOT toLower(n.label) STARTS WITH toLower($fragment)
-    AND NOT "Theme" IN labels(n)  
-    RETURN n
+    AND NOT "Theme" IN labels(n)
+    RETURN n SKIP toInteger($skip) LIMIT toInteger($limit)
   `;
+
   const relatedPlacesQuery = `
-  MATCH (place:Place)-[:HAS_THEME]->(theme:Theme)
-  WHERE toLower(theme.label) CONTAINS toLower($fragment)
-  RETURN place
-`;
+    MATCH (place:Place)-[:HAS_THEME]->(theme:Theme)
+    WHERE toLower(theme.label) CONTAINS toLower($fragment)
+    RETURN place SKIP toInteger($skip) LIMIT toInteger($limit)
+  `;
 
-const startsResult = await session.run(startsQuery, { fragment });
-const startsRecords = startsResult.records.map((record) => record.get("n").properties);
+  const startsResult = await session.run(startsQuery, { fragment, skip, limit });
+  const startsRecords = startsResult.records.map((record) => record.get("n").properties);
 
-const containsResult = await session.run(containsQuery, { fragment });
-const containsRecords = containsResult.records.map((record) => record.get("n").properties);
+  const containsResult = await session.run(containsQuery, { fragment, skip, limit });
+  const containsRecords = containsResult.records.map((record) => record.get("n").properties);
 
-const relatedPlacesResult = await session.run(relatedPlacesQuery, { fragment });
-const relatedPlacesRecords = relatedPlacesResult.records.map((record) => record.get("place").properties);
+  const relatedPlacesResult = await session.run(relatedPlacesQuery, { fragment, skip, limit });
+  const relatedPlacesRecords = relatedPlacesResult.records.map((record) => record.get("place").properties);
 
-return [...startsRecords, ...relatedPlacesRecords, ...containsRecords];
+  return [...startsRecords, ...relatedPlacesRecords, ...containsRecords];
 }
+
 
 
 export async function getPlacesByThemeNameFragment(
@@ -127,7 +133,7 @@ export async function getPlacesByThemeNameFragment(
     const query =`
       MATCH (startNode {id: $id})-[]->(relatedNode)
       WHERE NOT "Theme" IN labels(relatedNode) 
-      RETURN relatedNode
+      RETURN relatedNode LIMIT 100 ; 
       ` ; 
     const result = await session.run(query, {id}) ; 
     return result.records.map((record) => record.get("relatedNode").properties);
