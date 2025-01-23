@@ -13,6 +13,34 @@ function SearchBar({ onSearchFocus }) {
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
 
+
+    //optimiser le chargement des images 
+    const optimizeImageUrl = (url) => {
+        if (!url) {
+            // Retourne un placeholder si l'URL est vide
+            return "/placeholder.jpg";
+        }
+    
+        // Si l'URL contient "Special:FilePath", recompose correctement l'URL pour Wikimedia Commons
+        if (url.includes("Special:FilePath")) {
+            const filename = url.split("Special:FilePath/")[1];
+            if (!filename) return "/placeholder.jpg";
+    
+            // Encoder correctement le nom du fichier (remplace espaces et caractères spéciaux)
+            const encodedFilename = encodeURIComponent(filename).replace(/%20/g, "_");
+    
+            // Construire une URL conforme aux standards de Wikimedia Commons
+            const firstChar = encodedFilename[0].toLowerCase();
+            const secondChar = encodedFilename[1] ? encodedFilename[1].toLowerCase() : "0";
+            return `https://upload.wikimedia.org/wikipedia/commons/${firstChar}/${secondChar}/${encodedFilename}`;
+        }
+    
+        // Retourne l'URL inchangée si elle ne contient pas "Special:FilePath"
+        return url;
+    };
+    
+    //fin de loptimosation 
+    
     // gestion des favoris (ajout ,suppression, renvoie)
     const addToFavorites = (item) => {
         setFavorites((prevFavorites) => {
@@ -194,7 +222,8 @@ function SearchBar({ onSearchFocus }) {
                         return (
                             <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
                                 <div className="icon-content">
-                                    {/* <img src={suggestion.image} class="img-suggestion"></img> */}
+                                    <img src={ suggestion.flag } class="img-suggestion" loading="lazy"></img>
+                                    {/* https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg */}
                                     <p>{suggestion.label}</p>
                                     <span
                                         className={`star-icon ${isFavorite ? 'filled' : ''}`}
@@ -217,9 +246,11 @@ function SearchBar({ onSearchFocus }) {
                         );
                     })}
                     {searchQuery && suggestions.length >= 60 && canSeeMore && (
+                        <div class="button-container">
                         <button onClick={loadMoreResults} className="load-more">
                             Voir plus
                         </button>
+                        </div>
                     )}
                 </div>
             )}

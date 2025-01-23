@@ -584,22 +584,32 @@ p {
   color: #333;
 }
 /* bouton voir plus */
+/* Conteneur pour centrer le bouton */
+.button-container {
+  display: flex;
+  justify-content: right; /* Centre horizontalement */
+  align-items: center;    /* Centre verticalement */
+  width: 90vw;           /* Optionnel, pour garantir que ça couvre toute la largeur */
+}
+
+/* Style du bouton */
 .load-more {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem; /* Texte plus grand */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  z-index  : 1000
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .load-more:hover {
   background-color: #0056b3;
+  transform: scale(1.1); /* Légère animation d'agrandissement */
 }
+
+
 /* fin du nouton voir plus  */
 /* image de la suggestion */
 .img-suggestion {
