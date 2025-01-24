@@ -13,10 +13,11 @@ import plageImage from './media/imagesThemes/plage.jpg';
 import montagneImage from './media/imagesThemes/montagne.jpg';
 import desertImage from './media/imagesThemes/desert.jpg';
 import neigeImage from './media/imagesThemes/neige.jpg';
+import villeImage from './iconesAffichage/ville.avif' ; 
+import placeImage from './iconesAffichage/place.jpg' ; 
+import continentImage from './iconesAffichage/continent.jpg' ; 
 import noPhoto from './iconesAffichage/no-photo.jpg' ;
-import useDebounce from './hooks/useDebounce'; 
-
-
+import noResult from './media/aucun-resultat.png' ; 
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -28,6 +29,20 @@ function SearchBar({ onSearchFocus }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
+    const [destinations, setDetinations] = useState([]) ; 
+    const [preloadedImages, setPreloadedImages] = useState({}); 
+
+    // Fonction pour précharger les images
+    const preloadImages = (imageUrls) => {
+        const images = {};
+        imageUrls.forEach((url) => {
+            const img = new Image();
+            img.src = url; // Déclenche le téléchargement de l'image
+            images[url] = img; // Stocke l'objet image
+        });
+        setPreloadedImages(images); // Met à jour l'état
+    };
+
 
     const handleAllPossibleThemes = async () => {
         const themes = await fetchprincipleThemesApi();
@@ -95,19 +110,6 @@ function SearchBar({ onSearchFocus }) {
         setSearchQuery('favorites');
     }
 
-
-    // Fonction pour précharger les images
-    const preloadImages = (imageUrls) => {
-        console.log("début du chargement des images") ; 
-        imageUrls.forEach((url) => {
-            const img = new Image();
-
-            img.src = url;
-            console.log("image1 stocké") ; 
-        });
-    };
-    
-
     // Pagination
     const [page, setPage] = useState(0);
     // eslint-disable-next-line
@@ -119,8 +121,6 @@ function SearchBar({ onSearchFocus }) {
 
         const nextPage = page + 1;
         const newResults = await fetchNodesByNameFragmentWithoutLabel(searchQuery, nextPage * limit, limit);
-        const imageUrls = newResults.map((result) => result.image).filter(Boolean);
-        preloadImages(imageUrls);
 
         if (newResults.length > 0) {
             setSuggestions((prev) => [...prev, ...newResults]);
@@ -135,28 +135,22 @@ function SearchBar({ onSearchFocus }) {
         setIsExpanded(true);
         if (onSearchFocus) onSearchFocus();
     };
-    const debouncedQuery = useDebounce(searchQuery, 80 ); 
-    const handleInputChange = (e) => {
-        setSearchQuery(e.target.value); // Met à jour la requête de recherche
+
+    const handleInputChange = async (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        if (query.trim() !== "") {
+            setPage(0);
+            setSuggestions([]);
+            const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(query, 0, limit);
+            setHasMore(filteredNodes.length === limit);
+            setSuggestions(filteredNodes.length > 0 ? filteredNodes : [{ label: 'Aucun résultat trouvé', IsLeaf: false }]);
+        } else {
+            setSuggestions([]);
+            setHasMore(false);
+        }
     };
-
-    useEffect(() => {
-        const fetchResults = async () => {
-            if (debouncedQuery.trim() !== "") {
-                setSuggestions([]);
-                const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(debouncedQuery, 0, limit);
-                // const imageUrls = filteredNodes.map((result) => result.image).filter(Boolean);
-                // preloadImages(imageUrls);
-                setHasMore(filteredNodes.length === limit);
-                setSuggestions(filteredNodes.length > 0 ? filteredNodes : [{ label: 'Aucun résultat trouvé', IsLeaf: false }]);
-            } else {
-                setSuggestions([]);
-                setHasMore(false);
-            }
-        };
-
-        fetchResults();
-    }, [debouncedQuery]);
 
     const clearSearch = () => {
         setSearchQuery('');
@@ -226,13 +220,9 @@ function SearchBar({ onSearchFocus }) {
             }
 
             if (nextLevelSuggestions.length > 0) {
-                //préchargemnt des images 
-                const imageUrls = nextLevelSuggestions.map((result) => result.image).filter(Boolean);
-                preloadImages(imageUrls);
                 // Si des suggestions sont trouvées, mettre à jour l'état
                 setSuggestions(nextLevelSuggestions);
                 setBreadcrumb((prev) => [...prev, suggestion.label]);
-
             } else {
                 // Si aucune suggestion n'est trouvée, ouvrir une popup
                 console.log('Dernier résultat atteint. Affichage de la popup.');
@@ -266,7 +256,7 @@ function SearchBar({ onSearchFocus }) {
     }
 
     return (
-        <div ref={searchContainerRef}>
+        <div ref={searchContainerRef} className={`search-container ${isExpanded ? 'expanded' : ''}`}>
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
                 <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
                 <input
@@ -275,7 +265,7 @@ function SearchBar({ onSearchFocus }) {
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
-                    // onClick={handleAllPossibleThemes}
+                    onClick={handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
 
@@ -283,65 +273,133 @@ function SearchBar({ onSearchFocus }) {
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
             </div>
-            <div className={`results-container ${isExpanded ? 'expanded' : ''}`}>
-                
-                <div>
-                    <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
-                </div>
-                {breadcrumb.length > 0 && (
-                    <div className="breadcrumb">
-                        {breadcrumb.map((level, index) => (
-                            <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
-                                {level} {index < breadcrumb.length - 1 && '>'}
-                            </span>
-                        ))}
-                    </div>
-                )}
-                {isExpanded && (
-                    <div className="photo-container">
-                        {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
-                            <div className="no-result">
-                                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
-                            </div>
-                        ) : (
-                            suggestions.map((suggestion) => {
-                                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
-                                return (
-                                    <Suggestion
-                                        key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
-                                        suggestion={suggestion}
-                                        handleSuggestionClick={handleSuggestionClick}
-                                        isFavorite={isFavorite}
-                                        addToFavorites={addToFavorites}
-                                        removeFromFavorites={removeFromFavorites}
-                                    />
-                                );
-                            })
-                        )}
-                        {searchQuery && suggestions.length >= 60 && canSeeMore && (
-                            <div className="button-container">
-                                <button onClick={loadMoreResults} className="load-more">
-                                    Voir plus
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                )}
-
-                {isPopupOpen && popupContent && (
-                    <PopupPortal onClose={closePopup}>
-                        <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
-                        <h2>{popupContent.name}</h2>
-                        <p>{capitalizeFirstLetter(popupContent.description)}</p>
-                        <button className="popup-close" onClick={closePopup}>
-                            Fermer
-                        </button>
-                    </PopupPortal>
-                )}
+            <div>
+                <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
             </div>
+            {breadcrumb.length > 0 && (
+                <div className="breadcrumb">
+                    {breadcrumb.map((level, index) => (
+                        <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
+                            {level} {index < breadcrumb.length - 1 && '>'}
+                        </span>
+                    ))}
+                </div>
+            )}
+            {isExpanded && (
+                <div className="photo-container">
+                    {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
+                        <div className="no-result">
+                            <img src={noResult} alt="Aucun résultat" className="no-result-icon" />
+                        </div>
+                    ) : (
+                        suggestions.map((suggestion) => {
+                            const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+                            return (
+                                <Suggestion
+                                    key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
+                                    suggestion={suggestion}
+                                    handleSuggestionClick={handleSuggestionClick}
+                                    isFavorite={isFavorite}
+                                    addToFavorites={addToFavorites}
+                                    removeFromFavorites={removeFromFavorites}
+                                />
+                            );
+                        })
+                    )}
+                    {searchQuery && suggestions.length >= 60 && canSeeMore && (
+                        <div className="button-container">
+                            <button onClick={loadMoreResults} className="load-more">
+                                Voir plus
+                            </button>
+                        </div>
+                    )}
+                </div>
+            )}
+                        {isExpanded && (
+    <div className="photo-container">
+        {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
+            <div className="no-result">
+                <img src={noResult} alt="Aucun résultat" className="no-result-icon" />
+            </div>
+        ) : (
+            suggestions.map((suggestion, index) => {
+                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+
+                return (
+                    <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
+                        <div className="icon-content">
+                        {suggestion.flag ? (
+                                <img
+                                    src={suggestion.flag}
+                                    alt={suggestion.label}
+                                    className="img-suggestion"
+                                    loading="lazy"
+                                />
+                            ) : suggestion.country && suggestion.city ? (
+                                <img
+                                    src={placeImage} // Image par défaut pour country + city
+                                    alt={suggestion.label}
+                                    className="img-suggestion"
+                                    loading="lazy"
+                                />
+                            ) : suggestion.country ? (
+                                <img
+                                    src={villeImage} // Image par défaut pour country uniquement
+                                    alt={suggestion.label}
+                                    className="img-suggestion"
+                                    loading="lazy"
+                                />
+                            ) : (
+                                <img
+                                    src={continentImage} // Image par défaut si aucun champ n'est présent
+                                    alt={suggestion.label}
+                                    className="img-suggestion"
+                                    loading="lazy"
+                                />
+                            )}
+                            
+                            {/* Afficher le label de la suggestion */}
+                            <p>{suggestion.label}</p>
+                            <span
+                                className={`star-icon ${isFavorite ? 'filled' : ''}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (isFavorite) {
+                                        removeFromFavorites(suggestion);
+                                    } else {
+                                        addToFavorites(suggestion);
+                                    }
+                                }}
+                            >
+                                {isFavorite ? '⭐' : '☆'}
+                            </span>
+                        </div>
+                    </div>
+                );
+            })
+        )}
+        {searchQuery && suggestions.length >= 60 && canSeeMore && (
+            <div className="button-container">
+                <button onClick={loadMoreResults} className="load-more">
+                    Voir plus
+                </button>
+            </div>
+        )}
+    </div>
+)}
+
+            {isPopupOpen && popupContent && (
+                <PopupPortal onClose={closePopup}>
+                    <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
+                    <h2>{popupContent.name}</h2>
+                    <p>{capitalizeFirstLetter(popupContent.description)}</p>
+                    <button className="popup-close" onClick={closePopup}>
+                        Fermer
+                    </button>
+                </PopupPortal>
+            )}
         </div>
     );
 }
 
 export default SearchBar;
-

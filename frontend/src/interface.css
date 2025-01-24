@@ -288,7 +288,7 @@ p {
   cursor: pointer;
   transform: scale(0.5);
   opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease, transform 0.6s ease, box-shadow 0.3s ease;
+  transition: transform 0.1s ease, opacity 0.1s ease, transform 0.5s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 

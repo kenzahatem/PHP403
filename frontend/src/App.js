@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
-import Suggestions from './Suggestions';
 import Metrics from './Metrics';
 import './interface.css';
 import Logo from './media/Tour Travel Business Logo.svg';
@@ -42,10 +41,6 @@ function App() {
 
     return (
         <div className="app">
-            <Routes>
-                {/* Ajoutez une route pour la page Suggestions */}
-                <Route path="/suggestions" element={<Suggestions />} />
-            </Routes>
 
             {isMetricsPage ? (
                 <Metrics /> // Affiche la vue des métriques
