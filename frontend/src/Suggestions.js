@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import croixIcon from './croix.png';
+import croixIcon from './media/croix.png';
 import {  fetchThemes,fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
 import './interface.css';
 
@@ -204,7 +204,7 @@ function Suggestions({ onSearchFocus }) {
     <div className="photo-container">
         {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
             <div className="no-result">
-                <img src={require('./aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
+                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
             </div>
         ) : (
             suggestions.map((suggestion, index) => {

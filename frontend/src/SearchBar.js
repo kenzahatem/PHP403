@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import croixIcon from './croix.png';
+import croixIcon from './media/croix.png';
 import {  fetchThemes,
     fetchprincipleThemesApi,
     fetchNodesByNameFragmentWithoutLabel,
      fetchNodesWithRelationship,
      fetchPlacesRelatedToThemeApi } from './api/nodeApi.js';
 import './interface.css';
-import plageImage from './imagesThemes/plage.jpg';
-import montagneImage from './imagesThemes/montagne.jpg';
-import desertImage from './imagesThemes/desert.jpg';
-import neigeImage from './imagesThemes/neige.jpg';
+import plageImage from './media/imagesThemes/plage.jpg';
+import montagneImage from './media/imagesThemes/montagne.jpg';
+import desertImage from './media/imagesThemes/desert.jpg';
+import neigeImage from './media/imagesThemes/neige.jpg';
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -258,7 +258,7 @@ function SearchBar({ onSearchFocus }) {
     <div className="photo-container">
         {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
             <div className="no-result">
-                <img src={require('./aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
+                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
             </div>
         ) : (
             suggestions.map((suggestion, index) => {

@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Georgia', serif;
-  background: url('image_acc.jpg') no-repeat center center/cover;
+  background: url('./media/image_acc.jpg') no-repeat center center/cover;
   min-height: 100vh; /* Permet à la page de s'étendre en fonction du contenu */
   display: flex;
   flex-direction: column;

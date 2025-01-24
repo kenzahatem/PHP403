@@ -5,8 +5,8 @@ import SearchBar from './SearchBar';
 import Suggestions from './Suggestions'; // Import de la page Suggestions
 import Metrics from './Metrics'; // Import de la page Metrics
 import './interface.css';
-import Logo from './Tour Travel Business Logo.svg'; // Logo SVG
-import VideoAcc from './video.mp4'; // Vidéo d'accueil
+import Logo from './media/Tour Travel Business Logo.svg'; // Logo SVG
+import VideoAcc from './media/video.mp4'; // Vidéo d'accueil
 
 function App() {
     const [isHomePage, setIsHomePage] = useState(true); // State pour la vue principale
@@ -78,7 +78,7 @@ function App() {
                             onClick={handleBackToHome}
                         >
                             <img
-                                src={require('./acceuil.png')}
+                                src={require('./media/accueil.png')}
                                 alt="Accueil"
                                 className="return-icon"
                             />
