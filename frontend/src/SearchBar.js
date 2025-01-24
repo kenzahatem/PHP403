@@ -237,7 +237,7 @@ function SearchBar({ onSearchFocus }) {
     }
 
     return (
-        <div ref={searchContainerRef} className={`search-container ${isExpanded ? 'expanded' : ''}`}>
+        <div ref={searchContainerRef}>
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
                 <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
                 <input
@@ -254,59 +254,62 @@ function SearchBar({ onSearchFocus }) {
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
             </div>
-            <div>
-                <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
-            </div>
-            {breadcrumb.length > 0 && (
-                <div className="breadcrumb">
-                    {breadcrumb.map((level, index) => (
-                        <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
-                            {level} {index < breadcrumb.length - 1 && '>'}
-                        </span>
-                    ))}
+            <div className={`results-container ${isExpanded ? 'expanded' : ''}`}>
+                
+                <div>
+                    <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
                 </div>
-            )}
-            {isExpanded && (
-                <div className="photo-container">
-                    {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
-                        <div className="no-result">
-                            <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
-                        </div>
-                    ) : (
-                        suggestions.map((suggestion) => {
-                            const isFavorite = favorites.some(fav => fav.label === suggestion.label);
-                            return (
-                                <Suggestion
-                                    key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
-                                    suggestion={suggestion}
-                                    handleSuggestionClick={handleSuggestionClick}
-                                    isFavorite={isFavorite}
-                                    addToFavorites={addToFavorites}
-                                    removeFromFavorites={removeFromFavorites}
-                                />
-                            );
-                        })
-                    )}
-                    {searchQuery && suggestions.length >= 60 && canSeeMore && (
-                        <div className="button-container">
-                            <button onClick={loadMoreResults} className="load-more">
-                                Voir plus
-                            </button>
-                        </div>
-                    )}
-                </div>
-            )}
+                {breadcrumb.length > 0 && (
+                    <div className="breadcrumb">
+                        {breadcrumb.map((level, index) => (
+                            <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
+                                {level} {index < breadcrumb.length - 1 && '>'}
+                            </span>
+                        ))}
+                    </div>
+                )}
+                {isExpanded && (
+                    <div className="photo-container">
+                        {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
+                            <div className="no-result">
+                                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
+                            </div>
+                        ) : (
+                            suggestions.map((suggestion) => {
+                                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+                                return (
+                                    <Suggestion
+                                        key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
+                                        suggestion={suggestion}
+                                        handleSuggestionClick={handleSuggestionClick}
+                                        isFavorite={isFavorite}
+                                        addToFavorites={addToFavorites}
+                                        removeFromFavorites={removeFromFavorites}
+                                    />
+                                );
+                            })
+                        )}
+                        {searchQuery && suggestions.length >= 60 && canSeeMore && (
+                            <div className="button-container">
+                                <button onClick={loadMoreResults} className="load-more">
+                                    Voir plus
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
 
-            {isPopupOpen && popupContent && (
-                <PopupPortal onClose={closePopup}>
-                    <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
-                    <h2>{popupContent.name}</h2>
-                    <p>{capitalizeFirstLetter(popupContent.description)}</p>
-                    <button className="popup-close" onClick={closePopup}>
-                        Fermer
-                    </button>
-                </PopupPortal>
-            )}
+                {isPopupOpen && popupContent && (
+                    <PopupPortal onClose={closePopup}>
+                        <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
+                        <h2>{popupContent.name}</h2>
+                        <p>{capitalizeFirstLetter(popupContent.description)}</p>
+                        <button className="popup-close" onClick={closePopup}>
+                            Fermer
+                        </button>
+                    </PopupPortal>
+                )}
+            </div>
         </div>
     );
 }

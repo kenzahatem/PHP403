@@ -212,18 +212,17 @@ p {
   max-width: 1400px;
   height: 40px;
   border-radius: 50px;
-  position: fixed;
   top: 5px;
   left: 51%;
   transform: translateX(-50%);
   background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid #31271d;
   z-index: 99;
   padding: 19px -13px;
 }
 
-.search-container.expanded {
+.results-container.expanded {
   position: fixed;
   top: 0;
   left: 0;
@@ -271,7 +270,7 @@ p {
   display: none; 
 }
 
-.search-container.expanded .overlay {
+.results-container.expanded .overlay {
   display: block; 
 }
 
@@ -310,7 +309,7 @@ p {
   justify-content: center;
   overflow-wrap: break-word;
   width: 90%;
-  height: 90%;
+  height: 95%;
   font-size: 1em;
   color: #333;
   font-weight: bold;
@@ -691,10 +690,8 @@ p {
   transform: scale(1.1); 
 }
 
-
-
 .img-suggestion {
-  max-width: 80%;
+  max-width: 100%;
   height: auto;
   border-radius: 5px;
   margin-bottom: 10px;

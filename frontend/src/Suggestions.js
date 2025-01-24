@@ -172,7 +172,7 @@ function Suggestions({ onSearchFocus }) {
     };
 
     return (
-        <div ref={searchContainerRef} className={`search-container ${isExpanded ? 'expanded' : ''}`}>
+        <div ref={searchContainerRef} className={`results-container ${isExpanded ? 'expanded' : ''}`}>
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
             <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
                 <input

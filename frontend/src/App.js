@@ -18,7 +18,7 @@ function App() {
 
     const toggleMetricsPage = () => {
         setIsMetricsPage(!isMetricsPage);
-        setIsHomePage(false); // Masquer la page d'accueil lorsqu'on affiche les métriques
+        setIsHomePage(!isHomePage); // Masquer la page d'accueil lorsqu'on affiche les métriques
     };
 
     const handleBackToHome = () => {
@@ -93,6 +93,7 @@ function App() {
             <button
                 className="metrics-button"
                 onClick={toggleMetricsPage}
+                style={{ display: (isHomePage || isMetricsPage) ? 'block' : 'none' }}
             >
                 {isMetricsPage ? "Back to Home" : "Toggle View Metrics"}
             </button>
