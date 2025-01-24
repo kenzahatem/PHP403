@@ -119,8 +119,8 @@ function SearchBar({ onSearchFocus }) {
 
         const nextPage = page + 1;
         const newResults = await fetchNodesByNameFragmentWithoutLabel(searchQuery, nextPage * limit, limit);
-        const imageUrls = newResults.map((result) => result.image).filter(Boolean);
-        preloadImages(imageUrls);
+        // const imageUrls = newResults.map((result) => result.image).filter(Boolean);
+        // preloadImages(imageUrls);
 
         if (newResults.length > 0) {
             setSuggestions((prev) => [...prev, ...newResults]);
@@ -227,8 +227,8 @@ function SearchBar({ onSearchFocus }) {
 
             if (nextLevelSuggestions.length > 0) {
                 //préchargemnt des images 
-                const imageUrls = nextLevelSuggestions.map((result) => result.image).filter(Boolean);
-                preloadImages(imageUrls);
+                // const imageUrls = nextLevelSuggestions.map((result) => result.image).filter(Boolean);
+                // preloadImages(imageUrls);
                 // Si des suggestions sont trouvées, mettre à jour l'état
                 setSuggestions(nextLevelSuggestions);
                 setBreadcrumb((prev) => [...prev, suggestion.label]);
