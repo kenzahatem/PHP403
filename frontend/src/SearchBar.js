@@ -13,6 +13,19 @@ import plageImage from './media/imagesThemes/plage.jpg';
 import montagneImage from './media/imagesThemes/montagne.jpg';
 import desertImage from './media/imagesThemes/desert.jpg';
 import neigeImage from './media/imagesThemes/neige.jpg';
+import TourismeImage from './media/imagesThemes/tourisme.jpg';
+import foretImage from './media/imagesThemes/foret.jpg';
+import lacImage from './media/imagesThemes/lac.jpg';
+import prisonImage from './media/imagesThemes/prison.jpg';
+import horreurImage from './media/imagesThemes/horreur.jpeg';
+import stadeImage from './media/imagesThemes/stade.jpg';
+import tombeImage from './media/imagesThemes/tombe.jpg';
+import villePhantomeImage from './media/imagesThemes/villePhantome.jpg';
+import maisonHisImage from './media/imagesThemes/maisonHis.jpg';
+import grotteImage from './media/imagesThemes/grotte.jpg';
+import museumImage from './media/imagesThemes/musee.jpg';
+import tourImage from './media/imagesThemes/tour.jpg';
+import pontImage from './media/imagesThemes/pont.jpg';
 import noPhoto from './iconesAffichage/no-photo.jpg' ;
 import useDebounce from './hooks/useDebounce'; 
 
@@ -31,6 +44,8 @@ function SearchBar({ onSearchFocus }) {
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
     const [historyStack, setHistoryStack] = useState([]);
+    const [context, setContext] = useState('search'); // 'search' ou 'favorites'
+
 
     const handleAllPossibleThemes = async () => {
         const themes = await fetchprincipleThemesApi();
@@ -66,11 +81,98 @@ function SearchBar({ onSearchFocus }) {
                 description: "Un environnement glacé avec de la neige",
                 flag: neigeImage,
                 type: "Theme",
+            },
+            {
+                id: "1542314",
+                label: "Tourisme",
+                description: "Un environnement glacé avec de la neige",
+                flag: TourismeImage,
+                type: "Theme",
+            },
+            {
+                id: "4421",
+                label: "Forêt",
+                description: "Un environnement glacé avec de la neige",
+                flag: foretImage,
+                type: "Theme",
+            },
+            {
+                id: "40357",
+                label: "Prison",
+                description: "Un lieu d'enfermement souvent associé à des récits sombres",
+                flag: prisonImage,
+                type: "Theme",
+            },
+            {
+                id: "23397",
+                label: "Lac",
+                description: "Une étendue d'eau calme entourée de paysages naturels",
+                flag: lacImage,
+                type: "Theme",
+            },
+            {
+                id: "3947",
+                label: "Maison historique",
+                description: "Un thème qui évoque la peur et le suspense",
+                flag: maisonHisImage,
+                type: "Theme",
+            },
+            {
+                id: "483110",
+                label: "Stade",
+                description: "Un lieu où se déroulent des événements sportifs ou culturels",
+                flag: stadeImage,
+                type: "Theme",
+            },
+            {
+                id: "756102",
+                label: "Open Air : Museum",
+                description: "Un musée en plein air, souvent historique et immersif",
+                flag: museumImage, 
+                type: "Theme",
+            },
+            {
+                id: "74047",
+                label: "Ville fantôme",
+                description: "Une ville abandonnée remplie d'histoire et de mystère",
+                flag: villePhantomeImage, 
+                type: "Theme",
+            },
+            {
+                id: "2232001",
+                label: "Grotte",
+                description: "Un espace souterrain naturel souvent mystérieux",
+                flag: grotteImage, 
+                type: "Theme",
+            },
+            {
+                id: "173387",
+                label: "Tombe",
+                description: "Un lieu historique ou spirituel souvent associé au passé",
+                flag: tombeImage, 
+                type: "Theme",
+            },
+            {
+                id: "12570",
+                label: "Pont suspendu",
+                description: "Une structure impressionnante reliant deux points éloignés",
+                flag: pontImage, 
+                type: "Theme",
+            },
+            {
+                id: "81917",
+                label: "Tour fortifiée",
+                description: "Un bâtiment défensif témoignant d'une architecture historique",
+                flag: tourImage, 
+                type: "Theme",
             }
         ];
+        
+        
 
         setSuggestions(themes);
         setSearchQuery('Nos meilleures destinations !');
+        setContext('suggestions');
     }
 
     // Gestion des favoris
@@ -96,6 +198,7 @@ function SearchBar({ onSearchFocus }) {
     const ListAllFavouriteItems = () => {
         setSuggestions(favorites);
         setSearchQuery('favorites');
+        setContext('favorites');
     }
 
 
@@ -137,6 +240,7 @@ function SearchBar({ onSearchFocus }) {
     const handleFocus = () => {
         setIsExpanded(true);
         if (onSearchFocus) onSearchFocus();
+        setContext('search');
     };
 
     const saveToHistory = () => {
@@ -166,10 +270,12 @@ function SearchBar({ onSearchFocus }) {
 
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value); // Met à jour la requête de recherche
+        setContext('search');
     };
 
     useEffect(() => {
         const fetchResults = async () => {
+            if (context !== 'search') return;
             if (debouncedQuery.trim() !== "") {
                 setSuggestions([]);
                 const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(debouncedQuery, 0, limit);
@@ -184,7 +290,7 @@ function SearchBar({ onSearchFocus }) {
         };
 
         fetchResults();
-    }, [debouncedQuery]);
+    }, [debouncedQuery,context]);
 
     const clearSearch = () => {
         setSearchQuery('');

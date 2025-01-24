@@ -1,9 +1,9 @@
 // Suggestion.js
 import React, { useState, useEffect } from 'react';
 import './interface.css';
-import villeImage from './iconesAffichage/ville.avif' ; 
-import placeImage from './iconesAffichage/place.jpg' ; 
-import continentImage from './iconesAffichage/continent.jpg' ;
+import villeImage from './media/iconesAffichage/ville2.png' ; 
+import placeImage from './media/iconesAffichage/place.png' ; 
+import continentImage from './media/iconesAffichage/continent.jpg' ;
 
 function Suggestion({ suggestion, handleSuggestionClick, isFavorite, addToFavorites, removeFromFavorites }) {
     const [mounted, setMounted] = useState(false);
@@ -42,7 +42,7 @@ function Suggestion({ suggestion, handleSuggestionClick, isFavorite, addToFavori
                                 />
                             ) : (
                                 <img
-                                    src={suggestion.image} // Image par défaut si aucun champ n'est présent
+                                    src={continentImage} // Image par défaut si aucun champ n'est présent
                                     alt={suggestion.label}
                                     className="img-suggestion"
                                     loading="lazy"

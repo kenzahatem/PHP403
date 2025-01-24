@@ -237,7 +237,7 @@ p {
   background-color: #ffffff;
   border: 1px solid #000000;
   color: #080404;
-  border-radius: 10px;
+  border-radius: 23px;
   overflow: hidden;
   cursor: pointer;
   transform: scale(0.5);
@@ -395,6 +395,7 @@ p {
 }
 
 .suggestion-button {
+  display : block ; 
   position: fixed;
   top: 8px;
   left: 90%;
