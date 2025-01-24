@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: 'Georgia', serif;
-  background: url('./media/image_acc.jpg') no-repeat center center/cover;
+  font-family: "Georgia", serif;
+  background: url("./media/image_acc.jpg") no-repeat center center/cover;
   min-height: 100vh; /* Permet à la page de s'étendre en fonction du contenu */
   display: flex;
   flex-direction: column;
@@ -44,8 +44,7 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  top:10px;
-
+  top: 10px;
 }
 .logo-container {
   background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
@@ -68,7 +67,7 @@ h1 {
   font-weight: bold;
   margin-bottom: 20px;
   color: rgb(255, 255, 255);
-  text-shadow: 
+  text-shadow:
     2px 2px 2px rgba(0, 0, 0, 0.3),
     4px 4px 1000px rgba(0, 0, 0, 0.1);
   animation: pop-in 1s ease-in-out;
@@ -114,7 +113,7 @@ p {
   z-index: 10;
   right: -55px;
   top: -282px;
-  left:50px;
+  left: 50px;
 }
 
 .search-box input {
@@ -147,7 +146,7 @@ p {
 }
 
 .search-box button:hover img {
-  filter: brightness(0.90 );
+  filter: brightness(0.90);
 }
 
 .search-box {
@@ -161,7 +160,8 @@ p {
   background: white;
   transition: all 0.5s ease-in-out;
   z-index: 3; /* La barre reste au-dessus des autres éléments */
-  padding: 5px 15px; /* Ajoute un espace intérieur pour une meilleure disposition */
+  padding: 5px
+    15px; /* Ajoute un espace intérieur pour une meilleure disposition */
 }
 
 .search-box input {
@@ -191,7 +191,6 @@ p {
   left: 16px; /* Ajuste la position horizontale (valeurs négatives pour déplacer à gauche, positives pour droite) */
 }
 
-
 .search-box button:hover img {
   filter: brightness(1.8); /* Augmente la luminosité au survol */
 }
@@ -202,7 +201,7 @@ p {
 }
 
 .search-box.expanded {
-  position: fixed; 
+  position: fixed;
   width: 100%;
   max-width: 1400px;
   height: 40px;
@@ -225,20 +224,19 @@ p {
   right: 0;
   bottom: 0;
   background: rgb(72 61 54 / 30%);
-  backdrop-filter: blur(5px); 
-  overflow-y: auto; 
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
   padding: 20px;
 }
 
 .photo-container {
-    margin-top: 80px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    overflow-y: auto;
-    cursor: pointer;
- 
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  cursor: pointer;
 }
 
 .photo {
@@ -248,7 +246,9 @@ p {
   width: auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transition pour les animations */
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out; /* Transition pour les animations */
 }
 
 .photo:hover {
@@ -296,9 +296,10 @@ p {
   color: #080404; /* Texte plus sombre pour un meilleur contraste */
   border-radius: 10px; /* Coins arrondis */
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.1s ease; /* Animation sur le survol */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.1s ease; /* Animation sur le survol */
   animation: pop-in 0.4s ease forwards; /* Applique l'animation */
-
 }
 
 .suggestion-icon:hover {
@@ -322,7 +323,9 @@ p {
   right: 10px; /* Place le bouton à droite */
   top: 50%;
   transform: translateY(-50%);
-  transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out; /* Ajoute une transition */
+  transition:
+    transform 0.1s ease-in-out,
+    opacity 0.2s ease-in-out; /* Ajoute une transition */
 }
 
 .clear-button img {
@@ -356,7 +359,6 @@ p {
   object-fit: cover;
 }
 
-
 .arrow {
   position: fixed;
   top: 10px;
@@ -364,7 +366,7 @@ p {
   font-size: 2rem;
   color: #71945a;
   cursor: pointer;
-  z-index: 1000; 
+  z-index: 1000;
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -383,6 +385,7 @@ p {
 .arrow:hover {
   color: #e07b33;
 }
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -397,7 +400,7 @@ p {
 }
 
 .popup {
-  background: rgb(203 199 199);
+  background: rgb(203, 199, 199);
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
@@ -405,6 +408,7 @@ p {
   text-align: center;
   position: relative;
   display: block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .popup-image {
@@ -413,19 +417,21 @@ p {
   border-radius: 10px;
 }
 
-.close-popup {
-  margin-top: 15px;
+.popup-close {
+  margin-top: 20px;
   padding: 10px 20px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(237 237 237);
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.close-popup:hover {
+.popup-close:hover {
   background-color: #000000;
 }
+
 .return-button {
   position: fixed;
   top: 8px;
@@ -661,8 +667,8 @@ p {
 .button-container {
   display: flex;
   justify-content: center; /* Centre horizontalement */
-  align-items: center;    /* Centre verticalement */
-  width: 90vw;           /* Optionnel, pour garantir que ça couvre toute la largeur */
+  align-items: center; /* Centre verticalement */
+  width: 90vw; /* Optionnel, pour garantir que ça couvre toute la largeur */
 }
 
 /* Style du bouton */
@@ -682,14 +688,12 @@ p {
   transform: scale(1.1); /* Légère animation d'agrandissement */
 }
 
-
 /* fin du nouton voir plus  */
 /* image de la suggestion */
 .img-suggestion {
-  height : 300px  ; 
-  width : 300px ; 
+  height: 300px;
+  width: 300px;
 }
-
 
 .star-icon {
   cursor: pointer;
@@ -697,7 +701,7 @@ p {
   margin-left: 10px;
   color: gold;
   transition: transform 0.2s ease;
-  margin-left: -15px !important; 
+  margin-left: -15px !important;
 }
 
 .star-icon.filled {

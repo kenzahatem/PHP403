@@ -258,7 +258,7 @@ function Suggestions({ onSearchFocus }) {
                         <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
                         <h2>{popupContent.name}</h2>
                         <p>{popupContent.description}</p>
-                        <button className="close-popup" onClick={closePopup}>
+                        <button className="popup-close" onClick={closePopup}>
                             Fermer
                         </button>
                     </div>

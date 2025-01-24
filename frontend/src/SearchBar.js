@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import PopupPortal from './PopupPortal';
 import croixIcon from './media/croix.png';
 import {
     fetchprincipleThemesApi,
@@ -18,6 +19,7 @@ function SearchBar({ onSearchFocus }) {
     const [suggestions, setSuggestions] = useState([]);
     const [breadcrumb, setBreadcrumb] = useState([]);
     const [popupContent, setPopupContent] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
 
@@ -147,13 +149,18 @@ function SearchBar({ onSearchFocus }) {
     };
 
     const handleClickOutside = useCallback((event) => {
+        // Ignorer les clics autres que le clic gauche
+        if (event.button !== 0) return;
+
+        // Si le clic est en dehors du conteneur de recherche et qu'aucune popup n'est ouverte
         if (
             searchContainerRef.current &&
-            !searchContainerRef.current.contains(event.target)
+            !searchContainerRef.current.contains(event.target) &&
+            !isPopupOpen
         ) {
             setIsExpanded(false);
         }
-    }, []);
+    }, [isPopupOpen]);
 
     useEffect(() => {
         if (isExpanded) {
@@ -167,10 +174,26 @@ function SearchBar({ onSearchFocus }) {
     const openPopup = (content) => {
         console.log('Opening popup with content:', content);
         setPopupContent(content);
+        setIsPopupOpen(true);
     };
     
+    const closePopup = () => {
+        setPopupContent(null);
+        setIsPopupOpen(false);
+    };
+    
+    useEffect(() => {
+        if (isPopupOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
 
-    const closePopup = () => setPopupContent(null);
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isPopupOpen]);
+
 
     const handleSuggestionClick = async (suggestion) => {
         console.log('Suggestion clicked:', suggestion);
@@ -305,17 +328,15 @@ function SearchBar({ onSearchFocus }) {
 )}
 
 
-            {popupContent && (
-                <div className="popup-overlay" onClick={closePopup}>
-                    <div className="popup" onClick={(e) => e.stopPropagation()}>
-                        <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
-                        <h2>{popupContent.name}</h2>
-                        <p>{popupContent.description}</p>
-                        <button className="close-popup" onClick={closePopup}>
-                            Fermer
-                        </button>
-                    </div>
-                </div>
+            {isPopupOpen && popupContent && (
+                <PopupPortal onClose={closePopup}>
+                    <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
+                    <h2>{popupContent.name}</h2>
+                    <p>{popupContent.description}</p>
+                    <button className="popup-close" onClick={closePopup}>
+                        Fermer
+                    </button>
+                </PopupPortal>
             )}
         </div>
     );
