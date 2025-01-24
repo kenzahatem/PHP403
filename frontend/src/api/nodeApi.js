@@ -58,6 +58,17 @@ export async function fetchThemes(query){
   return data ; 
 }
 
+export async function fetchPlacesRelatedToThemeApi(query){
+  const response = await fetch(`${BASE_URL}/places-to-theme/${query.id}`) ; 
+  if(!response.ok){
+    console.warn(`Aucun résultat trouvé pour : "${query}"`);
+    return [];
+  }
+  const data = await response.json() ; 
+  return data ; 
+}
+
+
 
 export async function fetchNodesWithRelationship(query) {
   let response;

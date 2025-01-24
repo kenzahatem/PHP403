@@ -432,7 +432,7 @@ p {
   left: 13px;
   background-color: rgb(255, 255, 255);
   color: rgb(255, 255, 255);
-  padding: 10px 3px;
+  padding: 10px 10px;
   border: 1px solid #000;
   border-radius: 100px;
   cursor: pointer;
@@ -451,7 +451,30 @@ p {
 .return-button:hover {
   background-color: rgb(233, 213, 213);
 }
+.suggestion-button {
+  position: fixed;
+  top: 8px;
+  left: 90%;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 10px;
+  border: 1px solid #000;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
+.suggestion-button.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none; /* Empêche les interactions */
+}
+
+.suggestion-button:hover {
+  background-color: rgb(233, 213, 213);
+}
 .return-icon {
   width: 20px;
   height: 16px;

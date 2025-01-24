@@ -11,7 +11,8 @@ import {
   fetchNodesByLabel , 
   fetchNodesRelatedToSpecifiedNode,
   fetchMetricsWithPagination,
-  fetchPrincipleThemes
+  fetchPrincipleThemes , 
+  fetchPlacesRelatedToTheme
 } from "../controllers/nodeController.ts";
 import { createSingleParamGetRouteHandler } from "./routeFactory.ts";
 
@@ -43,6 +44,17 @@ router.get(
     notFoundLabel: "node",
   }),
 );
+
+router.get(
+  "/places-to-theme/:id",
+  createSingleParamGetRouteHandler({
+    paramName: "id",
+    fetchFn: fetchPlacesRelatedToTheme,
+    notFoundLabel: "node",
+  }),
+);
+
+
 
 router.get(
   "/nodes/label/:label",

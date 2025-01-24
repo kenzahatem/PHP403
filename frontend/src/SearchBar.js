@@ -1,7 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import croixIcon from './croix.png';
-import {  fetchThemes,fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
+import {  fetchThemes,
+    fetchprincipleThemesApi,
+    fetchNodesByNameFragmentWithoutLabel,
+     fetchNodesWithRelationship,
+     fetchPlacesRelatedToThemeApi } from './api/nodeApi.js';
 import './interface.css';
+import plageImage from './imagesThemes/plage.jpg';
+import montagneImage from './imagesThemes/montagne.jpg';
+import desertImage from './imagesThemes/desert.jpg';
+import neigeImage from './imagesThemes/neige.jpg';
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -12,6 +20,7 @@ function SearchBar({ onSearchFocus }) {
     const [popupContent, setPopupContent] = useState(null);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
+    const [destinations, setDetinations] = useState([]) ; 
 
 
     const handleAllPossibleThemes = async()=>{
@@ -19,6 +28,44 @@ function SearchBar({ onSearchFocus }) {
         console.log("Les Thèmes sont:" , themes) ; 
     }
 
+    const handleDestination = async()=>{
+        const themes = [
+            {
+                id: "40080",
+                label: "Plage",
+                description: "Un lieu de détente et de baignade en bord de mer",
+                flag: plageImage,
+                type: "Theme" ,
+            },
+            {
+                id: "8502",
+                label: "Montagne",
+                description: "Un environnement naturel avec des sommets élevés",
+                flag: montagneImage,
+                type: "Theme" ,
+            },
+            {
+                id: "8514",
+                label: "Désert",
+                description: "Un vaste espace sec avec des dunes de sable",
+                flag: desertImage,
+                type: "Theme" ,
+            },
+            {
+                id: "130003",
+                label: "Neige",
+                description: "Un environnement glacé avec de la neige",
+                flag: neigeImage,
+                type: "Theme" ,
+            }
+            ];
+          
+        // console.log(favorites) ; 
+        setSuggestions(themes) ;
+        console.log(favorites) ; 
+        // console.log(suggestions) ;  
+        setSearchQuery('Nos meilleures destinations !') ;
+    }
     
     // gestion des favoris (ajout ,suppression, renvoie)
     const addToFavorites = (item) => {
@@ -126,22 +173,28 @@ function SearchBar({ onSearchFocus }) {
     const closePopup = () => setPopupContent(null);
 
     const handleSuggestionClick = async (suggestion) => {
-        // setSearchQuery('');
-        setcanSeeMore(false) ; 
         console.log('Suggestion clicked:', suggestion);
     
+
+    
         try {
-            // Récupérer les résultats associés
-            const nextLevelSuggestions = await fetchNodesWithRelationship(suggestion);
+            let nextLevelSuggestions = [];
+    
+            if (suggestion.type === "Theme") {
+                // Récupérer les places associées au thème
+                nextLevelSuggestions = await fetchPlacesRelatedToThemeApi(suggestion);
+            } else {
+                // Récupérer les relations associées
+                nextLevelSuggestions = await fetchNodesWithRelationship(suggestion);
+            }
     
             if (nextLevelSuggestions.length > 0) {
-                // Continuer la navigation
+                // Si des suggestions sont trouvées, mettre à jour l'état
                 setSuggestions(nextLevelSuggestions);
-                setBreadcrumb([...breadcrumb, suggestion.label]);
+                setBreadcrumb((prev) => [...prev, suggestion.label]);
             } else {
-                // Pas de résultats associés, afficher la popup
+                // Si aucune suggestion n'est trouvée, ouvrir une popup
                 console.log('Dernier résultat atteint. Affichage de la popup.');
-                console.log(suggestion) ; 
                 openPopup({
                     name: suggestion.label,
                     image: suggestion.image || '/placeholder.jpg',
@@ -152,6 +205,7 @@ function SearchBar({ onSearchFocus }) {
             console.error('Erreur lors de la gestion de la suggestion :', error);
         }
     };
+    
     
     
     
@@ -186,16 +240,19 @@ function SearchBar({ onSearchFocus }) {
                 <button className="clear-button" onClick={clearSearch}>
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
+                
             </div>
-
+            <div><button className="suggestion-button" onClick={handleDestination} >Nos meilleurs Destinations  </button></div>
             {breadcrumb.length > 0 && (
                 <div className="breadcrumb">
                     {breadcrumb.map((level, index) => (
                         <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
                             {level} {index < breadcrumb.length - 1 && '>'}
                         </span>
+                        
                     ))}
                 </div>
+                
             )}
                         {isExpanded && (
     <div className="photo-container">

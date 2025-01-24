@@ -1,0 +1,26 @@
+[
+  {
+    "id": "40080",
+    "label": "Plage",
+    "description": "Un lieu de détente et de baignade en bord de mer",
+    "flag": "/src/imagesThemes/plage.jpg"
+  },
+  {
+    "id": "8502",
+    "label": "Montagne",
+    "description": "Un environnement naturel avec des sommets élevés",
+    "flag": "/src/imagesThemes/montagne.jpg"
+  },
+  {
+    "id": "8514",
+    "label": "Désert",
+    "description": "Un vaste espace sec avec des dunes de sable",
+    "flag": "/src/imagesThemes/desert.jpg"
+  },
+  {
+    "id": "130003",
+    "label": "Neige",
+    "description": "Un environnement glacé avec de la neige",
+    "flag": "/src/imagesThemes/neige.jpg"
+  }
+]

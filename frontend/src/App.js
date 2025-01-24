@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Routes, Link } from 'react-router-dom'; // Import de Route et Routes
+
 import SearchBar from './SearchBar';
-import Metrics from './Metrics'; // Import Metrics if needed
+import Suggestions from './Suggestions'; // Import de la page Suggestions
+import Metrics from './Metrics'; // Import de la page Metrics
 import './interface.css';
-import Logo from './Tour Travel Business Logo.svg'; // Import du logo SVG
-import VideoAcc from './video.mp4'; // Import de la vidéo d'accueil
+import Logo from './Tour Travel Business Logo.svg'; // Logo SVG
+import VideoAcc from './video.mp4'; // Vidéo d'accueil
 
 function App() {
-    const [isHomePage, setIsHomePage] = useState(true); // State for main/home view
-    const [isMetricsPage, setIsMetricsPage] = useState(false); // State for metrics view
+    const [isHomePage, setIsHomePage] = useState(true); // State pour la vue principale
+    const [isMetricsPage, setIsMetricsPage] = useState(false); // State pour la vue métriques
 
     const handleSearchFocus = () => {
-        setIsHomePage(false); // Hide home page when search bar is focused
+        setIsHomePage(false); // Masquer la page d'accueil lorsque la barre de recherche est focalisée
     };
 
     const toggleMetricsPage = () => {
         setIsMetricsPage(!isMetricsPage);
-        setIsHomePage(false); // Ensure home page is hidden when viewing metrics
+        setIsHomePage(false); // Masquer la page d'accueil lorsqu'on affiche les métriques
     };
 
     const handleBackToHome = () => {
         setIsHomePage(true);
-        setIsMetricsPage(false); // Reset metrics state
-        window.scrollTo(0, 0); // Scroll back to top of the page
+        setIsMetricsPage(isMetricsPage); // Réinitialiser l'état des métriques
+        window.scrollTo(0, 0); // Revenir en haut de la page
     };
 
     useEffect(() => {
@@ -39,19 +42,24 @@ function App() {
 
     return (
         <div className="app">
+            <Routes>
+                {/* Ajoutez une route pour la page Suggestions */}
+                <Route path="/suggestions" element={<Suggestions />} />
+            </Routes>
+
             {isMetricsPage ? (
-                <Metrics /> // Show Metrics view
+                <Metrics /> // Affiche la vue des métriques
             ) : (
                 <>
-                {/* Vidéo en fond */}
-                {isHomePage && (
-                    <div className="video-background">
-                        <video autoPlay muted loop className="background-video">
-                            <source src={VideoAcc} type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                )}
+                    {/* Vidéo en fond */}
+                    {isHomePage && (
+                        <div className="video-background">
+                            <video autoPlay muted loop className="background-video">
+                                <source src={VideoAcc} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    )}
 
                     <div className="text-container">
                         {/* Affichage du logo */}
@@ -61,6 +69,13 @@ function App() {
 
                     <div className="container">
                         <SearchBar onSearchFocus={handleSearchFocus} />
+                    </div>
+
+                    <div className="navigation-links">
+                        {/* Lien pour aller à la page Suggestions */}
+                        <Link to="/suggestions" className="suggestions-link" onClick={handleSearchFocus}>
+                            Nos Meilleures Suggestions
+                        </Link>
                     </div>
 
                     {!isHomePage && (
@@ -75,6 +90,9 @@ function App() {
                             />
                         </button>
                     )}
+                        {/* {!isHomePage && (
+                        <button className="suggestion-button" onClick={handleSearchFocus}>Nos meilleurs Destinations  </button>
+                    )} */}
                 </>
             )}
 
@@ -87,8 +105,5 @@ function App() {
         </div>
     );
 }
-
-// npm install react-datepicker chart.js chartjs-plugin-zoom react-chartjs-2
-
 
 export default App;

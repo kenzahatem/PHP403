@@ -9,7 +9,8 @@ import {
   getNodeByLabel , 
   getPlacesByCityNameFragment, 
   getNodesRelatedToSpecifiedNode,
-  getPrincipleThemes
+  getPrincipleThemes , 
+  getPlacesRelatedToTheme
 } from "../database/functions/get.ts";
 
 
@@ -19,6 +20,10 @@ export const fetchAllNodes = async () => {
 
 export const fetchNodeById = async (id: string) => {
   return await runWithSession(getNodeById, id);
+};
+
+export const fetchPlacesRelatedToTheme = async (id: string) => {
+  return await runWithSession(getPlacesRelatedToTheme, id);
 };
 
 export const fetchNodesByNameFragmentWithoutLabel = async (

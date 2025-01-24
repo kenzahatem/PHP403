@@ -161,6 +161,19 @@ export async function getPlacesByThemeNameFragment(
     return result.records.map((record) => record.get("theme").properties);
   }
 
+  export async function getPlacesRelatedToTheme(
+    themeId : string,
+    session : Session,
+  ){
+    const query =`
+      MATCH (p:Place)-[:HAS_THEME]->(t:Theme) 
+      WHERE t.id = $themeId 
+      AND NOT p.label =~ 'Q[0-9]+'
+      RETURN p LIMIT 59; 
+      ` ; 
+    const result = await session.run(query, {themeId}) ; 
+    return result.records.map((record) => record.get("p").properties);
+  }
 
   //unused 
   // export async function getNodesByNameFragmentWithLabel(
