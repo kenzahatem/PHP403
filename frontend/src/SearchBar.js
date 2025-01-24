@@ -16,7 +16,9 @@ import neigeImage from './media/imagesThemes/neige.jpg';
 import noPhoto from './iconesAffichage/no-photo.jpg' ;
 import useDebounce from './hooks/useDebounce'; 
 
-
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -28,6 +30,7 @@ function SearchBar({ onSearchFocus }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
+    const [historyStack, setHistoryStack] = useState([]);
 
     const handleAllPossibleThemes = async () => {
         const themes = await fetchprincipleThemesApi();
@@ -135,7 +138,32 @@ function SearchBar({ onSearchFocus }) {
         setIsExpanded(true);
         if (onSearchFocus) onSearchFocus();
     };
+
+    const saveToHistory = () => {
+        setHistoryStack((prevStack) => [
+            ...prevStack,
+            {
+                searchQuery: deepClone(searchQuery),
+                suggestions: deepClone(suggestions),
+                breadcrumb: deepClone(breadcrumb),
+            },
+        ]);
+    };
+
+    const goBack = () => {
+        if (historyStack.length === 0) return; // No history to go back to
+
+        const previousState = historyStack[historyStack.length - 1];
+        setSearchQuery(previousState.searchQuery);
+        setSuggestions(previousState.suggestions);
+        setBreadcrumb(previousState.breadcrumb);
+
+        // Remove the last state from the stack
+        setHistoryStack((prevStack) => prevStack.slice(0, prevStack.length - 1));
+    };
+
     const debouncedQuery = useDebounce(searchQuery, 80 ); 
+
     const handleInputChange = (e) => {
         setSearchQuery(e.target.value); // Met à jour la requête de recherche
     };
@@ -218,28 +246,20 @@ function SearchBar({ onSearchFocus }) {
             let nextLevelSuggestions = [];
 
             if (suggestion.type === "Theme") {
-                // Récupérer les places associées au thème
                 nextLevelSuggestions = await fetchPlacesRelatedToThemeApi(suggestion);
             } else {
-                // Récupérer les relations associées
                 nextLevelSuggestions = await fetchNodesWithRelationship(suggestion);
             }
 
             if (nextLevelSuggestions.length > 0) {
-                //préchargemnt des images 
-                // const imageUrls = nextLevelSuggestions.map((result) => result.image).filter(Boolean);
-                // preloadImages(imageUrls);
-                // Si des suggestions sont trouvées, mettre à jour l'état
+                saveToHistory(); // Save current state before navigating
                 setSuggestions(nextLevelSuggestions);
                 setBreadcrumb((prev) => [...prev, suggestion.label]);
-
             } else {
-                // Si aucune suggestion n'est trouvée, ouvrir une popup
-                console.log('Dernier résultat atteint. Affichage de la popup.');
                 openPopup({
                     name: suggestion.label,
                     image: suggestion.image || noPhoto,
-                    description: suggestion.description || 'Pas de description disponible.'
+                    description: suggestion.description || 'Pas de description disponible.',
                 });
             }
         } catch (error) {
@@ -267,31 +287,41 @@ function SearchBar({ onSearchFocus }) {
 
     return (
         <div ref={searchContainerRef}>
+            {historyStack.length > 0 && (
+                <button className="back-button" onClick={goBack}>
+                    <img src={require('./media/retour.png')} alt="retour" className="back-icon"/>
+                </button>
+            )}
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
-                <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
+                <button className="star-icon" onClick={ListAllFavouriteItems}>
+                    {'⭐'}
+                </button>
                 <input
                     type="text"
                     placeholder="Tapez des mots-clés comme 'plage', 'montagne', 'aventure'"
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
-                    // onClick={handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
-
                 <button className="clear-button" onClick={clearSearch}>
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
             </div>
             <div className={`results-container ${isExpanded ? 'expanded' : ''}`}>
-                
                 <div>
-                    <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
+                    <button className="suggestion-button" onClick={handleDestination}>
+                        Nos meilleurs Destinations
+                    </button>
                 </div>
                 {breadcrumb.length > 0 && (
                     <div className="breadcrumb">
                         {breadcrumb.map((level, index) => (
-                            <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
+                            <span
+                                key={index}
+                                className="breadcrumb-item"
+                                onClick={() => handleBreadcrumbClick(index)}
+                            >
                                 {level} {index < breadcrumb.length - 1 && '>'}
                             </span>
                         ))}
@@ -301,14 +331,18 @@ function SearchBar({ onSearchFocus }) {
                     <div className="photo-container">
                         {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
                             <div className="no-result">
-                                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
+                                <img
+                                    src={require('./media/aucun-resultat.png')}
+                                    alt="Aucun résultat"
+                                    className="no-result-icon"
+                                />
                             </div>
                         ) : (
                             suggestions.map((suggestion) => {
-                                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+                                const isFavorite = favorites.some((fav) => fav.label === suggestion.label);
                                 return (
                                     <Suggestion
-                                        key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
+                                        key={suggestion.id || suggestion.label}
                                         suggestion={suggestion}
                                         handleSuggestionClick={handleSuggestionClick}
                                         isFavorite={isFavorite}
@@ -327,7 +361,6 @@ function SearchBar({ onSearchFocus }) {
                         )}
                     </div>
                 )}
-
                 {isPopupOpen && popupContent && (
                     <PopupPortal onClose={closePopup}>
                         <img src={popupContent.image} alt={popupContent.name} className="popup-image" />

@@ -7,30 +7,30 @@
 body {
   font-family: "Georgia", serif;
   background: url("./media/image_acc.jpg") no-repeat center center/cover;
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #000;
   text-align: center;
-  overflow: auto; 
+  overflow: auto;
 }
 
 @keyframes pop-in {
   0% {
-    transform: scale(0.5); 
-    opacity: 0; 
+    transform: scale(0.5);
+    opacity: 0;
   }
   100% {
-    transform: scale(1); 
-    opacity: 1; 
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 .text-container {
-  margin-bottom: 130px; 
-  margin-top: -200px; 
+  margin-bottom: 130px;
+  margin-top: -200px;
 }
 
 .container {
@@ -41,20 +41,13 @@ body {
 }
 
 .logo {
-  max-width: 660px; 
+  max-width: 660px;
   height: auto;
   margin-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
   top: 10px;
-}
-
-.logo-container {
-  background: rgba(255, 255, 255, 0.8); 
-  padding: 10px;
-  border-radius: 8px; 
-  display: inline-block;
 }
 
 .video-background::after {
@@ -90,19 +83,19 @@ h1 {
 }
 
 .home-description {
-  font-size: 1.5em; 
-  margin: 20px 0; 
-  color: rgb(233, 187, 187); 
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
-  text-align: center; 
-  position: relative; 
-  top: -170px; 
-  left: 20px; 
+  font-size: 1.5em;
+  margin: 20px 0;
+  color: rgb(233, 187, 187);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: relative;
+  top: -170px;
+  left: 20px;
 }
 
 p {
   font-size: 1.5em;
-  margin-bottom: 0; 
+  margin-bottom: 0;
   color: rgb(24 24 24);
   text-shadow: none;
 }
@@ -110,21 +103,25 @@ p {
 .search-box {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #000;
-  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-in-out;
-  z-index: 10;
   right: -55px;
   top: -282px;
   left: 50px;
+  position: relative;
+  width: 400px;
+  justify-content: space-between;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  background: white;
+  transition: all 0.5s ease-in-out;
+  z-index: 3;
+  padding: 5px 15px;
 }
 
 .search-box input {
-  flex: 1;
   padding: 10px 15px;
+  flex: 1;
   border: none;
   outline: none;
   font-size: 1em;
@@ -137,73 +134,32 @@ p {
 }
 
 .search-box button {
+  padding: 0 15px;
   background: transparent;
   border: none;
-  padding: 0 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 100px;
 }
 
 .search-box button img {
   width: 15px;
-  height: 148px;
-}
-
-.search-box button:hover img {
-  filter: brightness(0.90);
-}
-
-.search-box {
-  position: relative;
-  width: 400px; 
-  display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  border: 2px solid #ccc;
-  border-radius: 25px;
-  background: white;
-  transition: all 0.5s ease-in-out;
-  z-index: 3; 
-  padding: 5px
-    15px; 
-}
-
-.search-box input {
-  flex: 1; 
-  border: none;
-  outline: none;
-  font-size: 1em;
-  color: #000;
-}
-
-.search-box button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 100px; 
-}
-
-.search-box button img {
-  width: 15px; 
-  height: 15px; 
+  height: 15px;
   transition: transform 0.2s ease, filter 0.3s ease;
-  position: relative; 
-  top: 0; 
-  left: 16px; 
+  position: relative;
+  top: 0;
+  left: 16px;
 }
 
 .search-box button:hover img {
-  filter: brightness(1.8); 
+  filter: brightness(1.8);
 }
 
 .search-box button:active img {
-  transform: scale(0.9); 
-  filter: brightness(0.8); 
+  transform: scale(0.9);
+  filter: brightness(0.8);
 }
 
 .search-box.expanded {
@@ -244,20 +200,18 @@ p {
 
 .photo {
   max-width: 100%;
-  max-height: 600px; 
+  max-height: 600px;
   height: auto;
   width: auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out; 
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .photo:hover {
-  transform: scale(1.1); 
-  box-shadow: 0 8px 15px rgba(185, 3, 3, 0.2); 
-  cursor: pointer; 
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(185, 3, 3, 0.2);
+  cursor: pointer;
 }
 
 .overlay {
@@ -266,12 +220,12 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; 
-  display: none; 
+  z-index: 1;
+  display: none;
 }
 
 .results-container.expanded .overlay {
-  display: block; 
+  display: block;
 }
 
 .suggestion-wrapper {
@@ -288,7 +242,11 @@ p {
   cursor: pointer;
   transform: scale(0.5);
   opacity: 0;
-  transition: transform 0.1s ease, opacity 0.1s ease, transform 0.5s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.1s ease,
+    opacity 0.1s ease,
+    transform 0.5s ease,
+    box-shadow 0.3s ease;
   text-align: center;
 }
 
@@ -322,12 +280,10 @@ p {
   font-size: 1.2em;
   color: #333;
   position: absolute;
-  right: 10px; 
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  transition:
-    transform 0.1s ease-in-out,
-    opacity 0.2s ease-in-out; 
+  transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .clear-button img {
@@ -337,12 +293,12 @@ p {
 }
 
 .clear-button:active img {
-  transform: scale(0.9); 
-  filter: brightness(0.8); 
+  transform: scale(0.9);
+  filter: brightness(0.8);
 }
 
 .clear-button:hover img {
-  filter: brightness(1.2); 
+  filter: brightness(1.2);
 }
 
 .video-background {
@@ -359,33 +315,6 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.arrow {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  font-size: 2rem;
-  color: #71945a;
-  cursor: pointer;
-  z-index: 1000;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.arrow.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.arrow.hidden {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.arrow:hover {
-  color: #e07b33;
 }
 
 .popup-overlay {
@@ -453,12 +382,18 @@ p {
 .return-button.hidden {
   opacity: 0;
   transform: translateY(-20px);
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .return-button:hover {
   background-color: rgb(233, 213, 213);
 }
+
+.return-icon {
+  width: 20px;
+  height: 16px;
+}
+
 .suggestion-button {
   position: fixed;
   top: 8px;
@@ -477,24 +412,20 @@ p {
 .suggestion-button.hidden {
   opacity: 0;
   transform: translateY(-20px);
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .suggestion-button:hover {
   background-color: rgb(233, 213, 213);
 }
-.return-icon {
-  width: 20px;
-  height: 16px;
-}
 
 .back-button {
   position: fixed;
   top: 8px;
-  left: 48px;
+  left: 56px;
   background-color: rgb(255, 255, 255);
   color: rgb(255, 255, 255);
-  padding: 10px 3px;
+  padding: 10px 10px;
   border: 1px solid #000;
   border-radius: 100px;
   cursor: pointer;
@@ -502,12 +433,6 @@ p {
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.back-button.hidden {
-  opacity: 0;
-  transform: translateY(-20px);
-  pointer-events: none; 
 }
 
 .back-button:hover {
@@ -523,19 +448,19 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px; 
+  height: 400px;
   width: 100%;
 }
 
 .no-result-icon {
-  max-width: 110px; 
+  max-width: 110px;
   max-height: 110px;
   opacity: 0.8;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .no-result-icon:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
   opacity: 1;
 }
 
@@ -570,8 +495,8 @@ p {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: #f9f9f9; 
-  color: #333; 
+  background: #f9f9f9;
+  color: #333;
   height: 100vh;
   width: 120vh;
 }
@@ -582,10 +507,10 @@ p {
 
 .controls {
   display: flex;
-  gap: 20px; 
+  gap: 20px;
   align-items: center;
   margin-bottom: 20px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .controls label {
@@ -665,18 +590,16 @@ p {
   color: #333;
 }
 
-
 .button-container {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  width: 90vw; 
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
 }
-
 
 .load-more {
   padding: 1rem 2rem;
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   background-color: #007bff;
   color: white;
   border: none;
@@ -687,7 +610,7 @@ p {
 
 .load-more:hover {
   background-color: #0056b3;
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .img-suggestion {
