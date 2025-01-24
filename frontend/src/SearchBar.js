@@ -13,6 +13,10 @@ import plageImage from './media/imagesThemes/plage.jpg';
 import montagneImage from './media/imagesThemes/montagne.jpg';
 import desertImage from './media/imagesThemes/desert.jpg';
 import neigeImage from './media/imagesThemes/neige.jpg';
+import villeImage from './iconesAffichage/ville.avif' ; 
+import placeImage from './iconesAffichage/place.jpg' ; 
+import continentImage from './iconesAffichage/continent.jpg' ; 
+import noPhoto from './iconesAffichage/no-photo.jpg' ;
 
 function SearchBar({ onSearchFocus }) {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -24,6 +28,20 @@ function SearchBar({ onSearchFocus }) {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
+    const [destinations, setDetinations] = useState([]) ; 
+    const [preloadedImages, setPreloadedImages] = useState({}); 
+
+    // Fonction pour précharger les images
+    const preloadImages = (imageUrls) => {
+        const images = {};
+        imageUrls.forEach((url) => {
+            const img = new Image();
+            img.src = url; // Déclenche le téléchargement de l'image
+            images[url] = img; // Stocke l'objet image
+        });
+        setPreloadedImages(images); // Met à jour l'état
+    };
+
 
     const handleAllPossibleThemes = async () => {
         const themes = await fetchprincipleThemesApi();
@@ -209,7 +227,7 @@ function SearchBar({ onSearchFocus }) {
                 console.log('Dernier résultat atteint. Affichage de la popup.');
                 openPopup({
                     name: suggestion.label,
-                    image: suggestion.image || '/placeholder.jpg',
+                    image: suggestion.image || noPhoto,
                     description: suggestion.description || 'Pas de description disponible.'
                 });
             }
