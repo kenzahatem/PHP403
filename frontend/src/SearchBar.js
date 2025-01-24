@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PopupPortal from './PopupPortal';
 import croixIcon from './media/croix.png';
+import Suggestion from './Suggestion';
 import {
     fetchprincipleThemesApi,
     fetchNodesByNameFragmentWithoutLabel,
     fetchNodesWithRelationship,
-    fetchPlacesRelatedToThemeApi } from './api/nodeApi.js';
+    fetchPlacesRelatedToThemeApi
+} from './api/nodeApi.js';
 import './interface.css';
 import plageImage from './media/imagesThemes/plage.jpg';
 import montagneImage from './media/imagesThemes/montagne.jpg';
@@ -23,101 +25,92 @@ function SearchBar({ onSearchFocus }) {
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
 
-
-    const handleAllPossibleThemes = async()=>{
-        const themes  = await fetchprincipleThemesApi() ; 
-        console.log("Les Thèmes sont:" , themes) ; 
+    const handleAllPossibleThemes = async () => {
+        const themes = await fetchprincipleThemesApi();
+        console.log("Les Thèmes sont:", themes);
     }
 
-    const handleDestination = async()=>{
+    const handleDestination = async () => {
         const themes = [
             {
                 id: "40080",
                 label: "Plage",
                 description: "Un lieu de détente et de baignade en bord de mer",
                 flag: plageImage,
-                type: "Theme" ,
+                type: "Theme",
             },
             {
                 id: "8502",
                 label: "Montagne",
                 description: "Un environnement naturel avec des sommets élevés",
                 flag: montagneImage,
-                type: "Theme" ,
+                type: "Theme",
             },
             {
                 id: "8514",
                 label: "Désert",
                 description: "Un vaste espace sec avec des dunes de sable",
                 flag: desertImage,
-                type: "Theme" ,
+                type: "Theme",
             },
             {
                 id: "130003",
                 label: "Neige",
                 description: "Un environnement glacé avec de la neige",
                 flag: neigeImage,
-                type: "Theme" ,
+                type: "Theme",
             }
-            ];
-          
-        // console.log(favorites) ; 
-        setSuggestions(themes) ;
-        console.log(favorites) ; 
-        // console.log(suggestions) ;  
-        setSearchQuery('Nos meilleures destinations !') ;
+        ];
+
+        setSuggestions(themes);
+        setSearchQuery('Nos meilleures destinations !');
     }
-    
-    // gestion des favoris (ajout ,suppression, renvoie)
+
+    // Gestion des favoris
     const addToFavorites = (item) => {
         setFavorites((prevFavorites) => {
-            if (!prevFavorites.some(fav => fav.label === item.label)) { 
-                console.log(item.label ,"Ajouté au favoris ! ")
+            if (!prevFavorites.some(fav => fav.label === item.label)) {
+                console.log(item.label, "Ajouté au favoris !");
                 return [...prevFavorites, item];
             }
-            return prevFavorites; 
+            return prevFavorites;
         });
     };
+
     const removeFromFavorites = (item) => {
         setFavorites((prevFavorites) => {
-            console.log(item.label ,"Supprimé au favoris ! ")
-            setSuggestions(prevFavorites.filter(fav => fav.label !== item.label)) ;
-            setSearchQuery('favorites') ;
+            console.log(item.label, "Supprimé des favoris !");
+            setSuggestions(prevFavorites.filter(fav => fav.label !== item.label));
+            setSearchQuery('favorites');
             return prevFavorites.filter(fav => fav.label !== item.label);
         });
-        
     };
-    const ListAllFavouriteItems= () => {
-        // console.log(favorites) ; 
-        setSuggestions(favorites) ;
-        // console.log(suggestions) ;  
-        setSearchQuery('favorites') ; 
-    }
-    // fin de la gestion des favoris
 
-    //pagination 
-    const [page, setPage] = useState(0); 
+    const ListAllFavouriteItems = () => {
+        setSuggestions(favorites);
+        setSearchQuery('favorites');
+    }
+
+    // Pagination
+    const [page, setPage] = useState(0);
     // eslint-disable-next-line
     const [hasMore, setHasMore] = useState(true);
-    const limit = 20; 
-    //fin pagination 
+    const limit = 20;
 
-    //fonction pour ajouter les résultats suivants 
     const loadMoreResults = async () => {
-        if (!searchQuery.trim()) return; 
-    
+        if (!searchQuery.trim()) return;
+
         const nextPage = page + 1;
         const newResults = await fetchNodesByNameFragmentWithoutLabel(searchQuery, nextPage * limit, limit);
-    
+
         if (newResults.length > 0) {
             setSuggestions((prev) => [...prev, ...newResults]);
             setPage(nextPage);
-            setHasMore(newResults.length === limit); 
+            setHasMore(newResults.length === limit);
         } else {
             setHasMore(false);
         }
     };
-    //fin de la fonction 
 
     const handleFocus = () => {
         setIsExpanded(true);
@@ -127,25 +120,24 @@ function SearchBar({ onSearchFocus }) {
     const handleInputChange = async (e) => {
         const query = e.target.value;
         setSearchQuery(query);
-    
+
         if (query.trim() !== "") {
-            setPage(0); 
-            setSuggestions([]); 
+            setPage(0);
+            setSuggestions([]);
             const filteredNodes = await fetchNodesByNameFragmentWithoutLabel(query, 0, limit);
-            setHasMore(filteredNodes.length === limit); 
+            setHasMore(filteredNodes.length === limit);
             setSuggestions(filteredNodes.length > 0 ? filteredNodes : [{ label: 'Aucun résultat trouvé', IsLeaf: false }]);
         } else {
-            setSuggestions([]); 
-            setHasMore(false); 
+            setSuggestions([]);
+            setHasMore(false);
         }
     };
-    
 
     const clearSearch = () => {
         setSearchQuery('');
         setSuggestions([]);
         setBreadcrumb([]);
-        setcanSeeMore(true) ; 
+        setcanSeeMore(true);
     };
 
     const handleClickOutside = useCallback((event) => {
@@ -176,12 +168,12 @@ function SearchBar({ onSearchFocus }) {
         setPopupContent(content);
         setIsPopupOpen(true);
     };
-    
+
     const closePopup = () => {
         setPopupContent(null);
         setIsPopupOpen(false);
     };
-    
+
     useEffect(() => {
         if (isPopupOpen) {
             document.body.style.overflow = 'hidden';
@@ -194,15 +186,12 @@ function SearchBar({ onSearchFocus }) {
         };
     }, [isPopupOpen]);
 
-
     const handleSuggestionClick = async (suggestion) => {
         console.log('Suggestion clicked:', suggestion);
-    
 
-    
         try {
             let nextLevelSuggestions = [];
-    
+
             if (suggestion.type === "Theme") {
                 // Récupérer les places associées au thème
                 nextLevelSuggestions = await fetchPlacesRelatedToThemeApi(suggestion);
@@ -210,7 +199,7 @@ function SearchBar({ onSearchFocus }) {
                 // Récupérer les relations associées
                 nextLevelSuggestions = await fetchNodesWithRelationship(suggestion);
             }
-    
+
             if (nextLevelSuggestions.length > 0) {
                 // Si des suggestions sont trouvées, mettre à jour l'état
                 setSuggestions(nextLevelSuggestions);
@@ -228,10 +217,6 @@ function SearchBar({ onSearchFocus }) {
             console.error('Erreur lors de la gestion de la suggestion :', error);
         }
     };
-    
-    
-    
-    
 
     const handleBreadcrumbClick = async (index) => {
         const newBreadcrumb = breadcrumb.slice(0, index + 1);
@@ -246,93 +231,77 @@ function SearchBar({ onSearchFocus }) {
         }
     };
 
+    function capitalizeFirstLetter(string) {
+        if (!string) return '';
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <div ref={searchContainerRef} className={`search-container ${isExpanded ? 'expanded' : ''}`}>
             <div className={`search-box ${isExpanded ? 'expanded' : ''}`}>
-            <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
+                <button className="star-icon" onClick={ListAllFavouriteItems}> {'⭐'}</button>
                 <input
                     type="text"
                     placeholder="Tapez des mots-clés comme 'plage', 'montagne', 'aventure'"
                     value={searchQuery}
                     onChange={handleInputChange}
                     onFocus={handleFocus}
-                    onClick = {handleAllPossibleThemes}
+                    onClick={handleAllPossibleThemes}
                     aria-label="Barre de recherche"
                 />
 
                 <button className="clear-button" onClick={clearSearch}>
                     <img src={croixIcon} alt="Réinitialiser la recherche" />
                 </button>
-                
             </div>
-            <div><button className="suggestion-button" onClick={handleDestination} >Nos meilleurs Destinations  </button></div>
+            <div>
+                <button className="suggestion-button" onClick={handleDestination}>Nos meilleurs Destinations</button>
+            </div>
             {breadcrumb.length > 0 && (
                 <div className="breadcrumb">
                     {breadcrumb.map((level, index) => (
                         <span key={index} className="breadcrumb-item" onClick={() => handleBreadcrumbClick(index)}>
                             {level} {index < breadcrumb.length - 1 && '>'}
                         </span>
-                        
                     ))}
                 </div>
-                
             )}
-                        {isExpanded && (
-    <div className="photo-container">
-        {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
-            <div className="no-result">
-                <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
-            </div>
-        ) : (
-            suggestions.map((suggestion, index) => {
-                const isFavorite = favorites.some(fav => fav.label === suggestion.label);
-
-                return (
-                    <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
-                        <div className="icon-content">
-                            {suggestion.flag && (
-                                <img
-                                    src={suggestion.flag}
-                                    alt={suggestion.label}
-                                    className="img-suggestion"
-                                    loading="lazy"
-                                />
-                            )}
-                            <p>{suggestion.label}</p>
-                            <span
-                                className={`star-icon ${isFavorite ? 'filled' : ''}`}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    if (isFavorite) {
-                                        removeFromFavorites(suggestion);
-                                    } else {
-                                        addToFavorites(suggestion);
-                                    }
-                                }}
-                            >
-                                {isFavorite ? '⭐' : '☆'}
-                            </span>
+            {isExpanded && (
+                <div className="photo-container">
+                    {suggestions.length === 1 && suggestions[0].label === 'Aucun résultat trouvé' ? (
+                        <div className="no-result">
+                            <img src={require('./media/aucun-resultat.png')} alt="Aucun résultat" className="no-result-icon" />
                         </div>
-                    </div>
-                );
-            })
-        )}
-        {searchQuery && suggestions.length >= 60 && canSeeMore && (
-            <div className="button-container">
-                <button onClick={loadMoreResults} className="load-more">
-                    Voir plus
-                </button>
-            </div>
-        )}
-    </div>
-)}
-
+                    ) : (
+                        suggestions.map((suggestion) => {
+                            const isFavorite = favorites.some(fav => fav.label === suggestion.label);
+                            return (
+                                <Suggestion
+                                    key={suggestion.id || suggestion.label} // Utilisez un identifiant unique
+                                    suggestion={suggestion}
+                                    handleSuggestionClick={handleSuggestionClick}
+                                    isFavorite={isFavorite}
+                                    addToFavorites={addToFavorites}
+                                    removeFromFavorites={removeFromFavorites}
+                                />
+                            );
+                        })
+                    )}
+                    {searchQuery && suggestions.length >= 60 && canSeeMore && (
+                        <div className="button-container">
+                            <button onClick={loadMoreResults} className="load-more">
+                                Voir plus
+                            </button>
+                        </div>
+                    )}
+                </div>
+            )}
 
             {isPopupOpen && popupContent && (
                 <PopupPortal onClose={closePopup}>
                     <img src={popupContent.image} alt={popupContent.name} className="popup-image" />
                     <h2>{popupContent.name}</h2>
-                    <p>{popupContent.description}</p>
+                    <p>{capitalizeFirstLetter(popupContent.description)}</p>
                     <button className="popup-close" onClick={closePopup}>
                         Fermer
                     </button>

@@ -7,28 +7,30 @@
 body {
   font-family: "Georgia", serif;
   background: url("./media/image_acc.jpg") no-repeat center center/cover;
-  min-height: 100vh; /* Permet à la page de s'étendre en fonction du contenu */
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #000;
   text-align: center;
-  overflow: auto; /* Ajout pour permettre le défilement global */
+  overflow: auto; 
 }
+
 @keyframes pop-in {
   0% {
-    transform: scale(0.5); /* Les éléments commencent plus petits */
-    opacity: 0; /* Ils sont transparents */
+    transform: scale(0.5); 
+    opacity: 0; 
   }
   100% {
-    transform: scale(1); /* Taille normale */
-    opacity: 1; /* Ils deviennent visibles */
+    transform: scale(1); 
+    opacity: 1; 
   }
 }
+
 .text-container {
-  margin-bottom: 130px; /* Spacing between text and search bar */
-  margin-top: -200px; /* Moves the text container even higher */
+  margin-bottom: 130px; 
+  margin-top: -200px; 
 }
 
 .container {
@@ -37,8 +39,9 @@ body {
   width: 90%;
   max-width: 700px;
 }
+
 .logo {
-  max-width: 660px; /* Ajustez la taille selon vos besoins */
+  max-width: 660px; 
   height: auto;
   margin-bottom: 20px;
   display: block;
@@ -46,12 +49,14 @@ body {
   margin-right: auto;
   top: 10px;
 }
+
 .logo-container {
-  background: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+  background: rgba(255, 255, 255, 0.8); 
   padding: 10px;
-  border-radius: 8px; /* Coins arrondis */
+  border-radius: 8px; 
   display: inline-block;
 }
+
 .video-background::after {
   content: "";
   position: absolute;
@@ -85,18 +90,19 @@ h1 {
 }
 
 .home-description {
-  font-size: 1.5em; /* Taille de police */
-  margin: 20px 0; /* Espacement au-dessus et en-dessous */
-  color: rgb(233, 187, 187); /* Couleur */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre */
-  text-align: center; /* Centre horizontalement */
-  position: relative; /* Nécessaire pour utiliser top/left */
-  top: -170px; /* Décalage vers le haut */
-  left: 20px; /* Décalage vers la droite */
+  font-size: 1.5em; 
+  margin: 20px 0; 
+  color: rgb(233, 187, 187); 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+  text-align: center; 
+  position: relative; 
+  top: -170px; 
+  left: 20px; 
 }
+
 p {
   font-size: 1.5em;
-  margin-bottom: 0; /* Reduces gap between title and subtitle */
+  margin-bottom: 0; 
   color: rgb(24 24 24);
   text-shadow: none;
 }
@@ -151,21 +157,21 @@ p {
 
 .search-box {
   position: relative;
-  width: 400px; /* Largeur de la barre de recherche */
+  width: 400px; 
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Aligne les éléments à gauche et à droite */
+  justify-content: space-between; 
   border: 2px solid #ccc;
   border-radius: 25px;
   background: white;
   transition: all 0.5s ease-in-out;
-  z-index: 3; /* La barre reste au-dessus des autres éléments */
+  z-index: 3; 
   padding: 5px
-    15px; /* Ajoute un espace intérieur pour une meilleure disposition */
+    15px; 
 }
 
 .search-box input {
-  flex: 1; /* L'input prend tout l'espace disponible */
+  flex: 1; 
   border: none;
   outline: none;
   font-size: 1em;
@@ -179,25 +185,25 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 100px; /* Ajoute un espacement entre l'input et le bouton */
+  margin-left: 100px; 
 }
 
 .search-box button img {
-  width: 15px; /* Contrôle la largeur de l'image */
-  height: 15px; /* Contrôle la hauteur de l'image */
+  width: 15px; 
+  height: 15px; 
   transition: transform 0.2s ease, filter 0.3s ease;
-  position: relative; /* Permet un positionnement personnalisé */
-  top: 0; /* Ajuste la position verticale (valeurs négatives pour remonter, positives pour descendre) */
-  left: 16px; /* Ajuste la position horizontale (valeurs négatives pour déplacer à gauche, positives pour droite) */
+  position: relative; 
+  top: 0; 
+  left: 16px; 
 }
 
 .search-box button:hover img {
-  filter: brightness(1.8); /* Augmente la luminosité au survol */
+  filter: brightness(1.8); 
 }
 
 .search-box button:active img {
-  transform: scale(0.9); /* Réduit légèrement l'image au clic */
-  filter: brightness(0.8); /* Réduit la luminosité */
+  transform: scale(0.9); 
+  filter: brightness(0.8); 
 }
 
 .search-box.expanded {
@@ -235,40 +241,24 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 20px;
   padding: 20px;
-  overflow-y: auto;
-  cursor: pointer;
 }
 
 .photo {
   max-width: 100%;
-  max-height: 600px; /* Augmente la taille maximum */
+  max-height: 600px; 
   height: auto;
   width: auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out; /* Transition pour les animations */
+    box-shadow 0.3s ease-in-out; 
 }
 
 .photo:hover {
-  transform: scale(1.1); /* Agrandit légèrement l'image */
-  box-shadow: 0 8px 15px rgba(185, 3, 3, 0.2); /* Augmente l'ombre */
-  cursor: pointer; /* Change le curseur pour indiquer une interaction */
-}
-
-.suggestions-container {
-  position: absolute;
-  top: calc(12% + -42px); /* Ajuste légèrement l'espace sous la barre */
-  left: 187px;
-  width: 80%;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  max-height: 339px; /* Pour limiter la hauteur totale */
-  overflow-y: auto; /* Active la barre de défilement si nécessaire */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  margin-top: 60px;
+  transform: scale(1.1); 
+  box-shadow: 0 8px 15px rgba(185, 3, 3, 0.2); 
+  cursor: pointer; 
 }
 
 .overlay {
@@ -277,37 +267,50 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Place sous la barre de recherche */
-  display: none; /* Par défaut, l'overlay est masqué */
+  z-index: 1; 
+  display: none; 
 }
 
 .search-container.expanded .overlay {
-  display: block; /* L'overlay s'affiche uniquement lorsque la barre est étendue */
+  display: block; 
 }
 
-.suggestion-icon {
+.suggestion-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px; /* Taille augmentée pour occuper 4 cases */
-  height: 400px; /* Taille augmentée pour occuper 4 cases */
-  background-color: #ffffff; /* Fond blanc pour les icônes */
+  width: 400px;
+  height: 400px;
+  background-color: #ffffff;
   border: 1px solid #000000;
-  color: #080404; /* Texte plus sombre pour un meilleur contraste */
-  border-radius: 10px; /* Coins arrondis */
+  color: #080404;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease, transform 0.6s ease, box-shadow 0.3s ease;
   text-align: center;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.1s ease; /* Animation sur le survol */
-  animation: pop-in 0.4s ease forwards; /* Applique l'animation */
 }
 
-.suggestion-icon:hover {
-  transform: scale(1.1); /* Agrandissement au survol */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+.suggestion-wrapper.mounted {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.suggestion-wrapper:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .icon-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: break-word;
+  width: 90%;
+  height: 90%;
   font-size: 1em;
   color: #333;
   font-weight: bold;
@@ -320,12 +323,12 @@ p {
   font-size: 1.2em;
   color: #333;
   position: absolute;
-  right: 10px; /* Place le bouton à droite */
+  right: 10px; 
   top: 50%;
   transform: translateY(-50%);
   transition:
     transform 0.1s ease-in-out,
-    opacity 0.2s ease-in-out; /* Ajoute une transition */
+    opacity 0.2s ease-in-out; 
 }
 
 .clear-button img {
@@ -335,12 +338,12 @@ p {
 }
 
 .clear-button:active img {
-  transform: scale(0.9); /* Réduit légèrement l'image pour l'effet de clic */
-  filter: brightness(0.8); /* Réduit la luminosité au clic */
+  transform: scale(0.9); 
+  filter: brightness(0.8); 
 }
 
 .clear-button:hover img {
-  filter: brightness(1.2); /* Augmente la luminosité au survol */
+  filter: brightness(1.2); 
 }
 
 .video-background {
@@ -451,7 +454,7 @@ p {
 .return-button.hidden {
   opacity: 0;
   transform: translateY(-20px);
-  pointer-events: none; /* Empêche les interactions */
+  pointer-events: none; 
 }
 
 .return-button:hover {
@@ -475,7 +478,7 @@ p {
 .suggestion-button.hidden {
   opacity: 0;
   transform: translateY(-20px);
-  pointer-events: none; /* Empêche les interactions */
+  pointer-events: none; 
 }
 
 .suggestion-button:hover {
@@ -505,7 +508,7 @@ p {
 .back-button.hidden {
   opacity: 0;
   transform: translateY(-20px);
-  pointer-events: none; /* Empêche les interactions */
+  pointer-events: none; 
 }
 
 .back-button:hover {
@@ -521,19 +524,19 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px; /* Ajustez selon vos besoins */
+  height: 400px; 
   width: 100%;
 }
 
 .no-result-icon {
-  max-width: 110px; /* Ajustez la taille de l'image */
+  max-width: 110px; 
   max-height: 110px;
   opacity: 0.8;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .no-result-icon:hover {
-  transform: scale(1.1); /* Zoom sur l'icône au survol */
+  transform: scale(1.1); 
   opacity: 1;
 }
 
@@ -568,8 +571,8 @@ p {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: #f9f9f9; /* Light background */
-  color: #333; /* Dark text */
+  background: #f9f9f9; 
+  color: #333; 
   height: 100vh;
   width: 120vh;
 }
@@ -580,10 +583,10 @@ p {
 
 .controls {
   display: flex;
-  gap: 20px; /* Space between controls */
+  gap: 20px; 
   align-items: center;
   margin-bottom: 20px;
-  flex-wrap: wrap; /* Ensure it wraps on smaller screens */
+  flex-wrap: wrap; 
 }
 
 .controls label {
@@ -662,19 +665,19 @@ p {
   font-size: 14px;
   color: #333;
 }
-/* bouton voir plus */
-/* Conteneur pour centrer le bouton */
+
+
 .button-container {
   display: flex;
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  width: 90vw; /* Optionnel, pour garantir que ça couvre toute la largeur */
+  justify-content: center; 
+  align-items: center; 
+  width: 90vw; 
 }
 
-/* Style du bouton */
+
 .load-more {
   padding: 1rem 2rem;
-  font-size: 1.5rem; /* Texte plus grand */
+  font-size: 1.5rem; 
   background-color: #007bff;
   color: white;
   border: none;
@@ -685,14 +688,16 @@ p {
 
 .load-more:hover {
   background-color: #0056b3;
-  transform: scale(1.1); /* Légère animation d'agrandissement */
+  transform: scale(1.1); 
 }
 
-/* fin du nouton voir plus  */
-/* image de la suggestion */
+
+
 .img-suggestion {
-  height: 300px;
-  width: 300px;
+  max-width: 80%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .star-icon {

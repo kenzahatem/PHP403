@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import croixIcon from './media/croix.png';
+import Suggestion from './Suggestion';
 import {  fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
 import './interface.css';
 
@@ -212,32 +213,14 @@ function Suggestions({ onSearchFocus }) {
                 const isFavorite = favorites.some(fav => fav.label === suggestion.label);
 
                 return (
-                    <div key={index} className="suggestion-icon" onClick={() => handleSuggestionClick(suggestion)}>
-                        <div className="icon-content">
-                            {suggestion.flag && (
-                                <img
-                                    src={suggestion.flag}
-                                    alt={suggestion.label}
-                                    className="img-suggestion"
-                                    loading="lazy"
-                                />
-                            )}
-                            <p>{suggestion.label}</p>
-                            <span
-                                className={`star-icon ${isFavorite ? 'filled' : ''}`}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    if (isFavorite) {
-                                        removeFromFavorites(suggestion);
-                                    } else {
-                                        addToFavorites(suggestion);
-                                    }
-                                }}
-                            >
-                                {isFavorite ? '⭐' : '☆'}
-                            </span>
-                        </div>
-                    </div>
+                    <Suggestion
+                        key={index}
+                        suggestion={suggestion}
+                        isFavorite={isFavorite}
+                        addToFavorites={addToFavorites}
+                        removeFromFavorites={removeFromFavorites}
+                        handleSuggestionClick={handleSuggestionClick}
+                    />
                 );
             })
         )}
