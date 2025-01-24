@@ -71,12 +71,6 @@ function App() {
                         <SearchBar onSearchFocus={handleSearchFocus} />
                     </div>
 
-                    <div className="navigation-links">
-                        {/* Lien pour aller à la page Suggestions */}
-                        <Link to="/suggestions" className="suggestions-link" onClick={handleSearchFocus}>
-                            Nos Meilleures Suggestions
-                        </Link>
-                    </div>
 
                     {!isHomePage && (
                         <button
