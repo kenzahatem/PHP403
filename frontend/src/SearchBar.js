@@ -26,7 +26,7 @@ import grotteImage from './media/imagesThemes/grotte.jpg';
 import museumImage from './media/imagesThemes/musee.jpg';
 import tourImage from './media/imagesThemes/tour.jpg';
 import pontImage from './media/imagesThemes/pont.jpg';
-import noPhoto from './iconesAffichage/no-photo.jpg' ;
+import noPhoto from './media/iconesAffichage/no-photo.jpg' ;
 import useDebounce from './hooks/useDebounce'; 
 
 function deepClone(obj) {
@@ -45,14 +45,19 @@ function SearchBar({ onSearchFocus }) {
     const [favorites, setFavorites] = useState([]);
     const [historyStack, setHistoryStack] = useState([]);
     const [context, setContext] = useState('search'); // 'search' ou 'favorites'
+    const [placeholderText, setPlaceholderText] = useState(
+        "Tapez des mots-clés comme 'plage', 'montagne', 'aventure'"
+      );
 
-
+     // Optionnel : Si tu veux conserver la notion "home" tu peux,
+     // sinon supprime isHomePage
+    const [isHomePage, setIsHomePage] = useState(true); 
     const handleAllPossibleThemes = async () => {
         const themes = await fetchprincipleThemesApi();
         console.log("Les Thèmes sont:", themes);
     }
 
-    const handleDestination = async () => {
+    
         const themes = [
             {
                 id: "40080",
@@ -83,7 +88,7 @@ function SearchBar({ onSearchFocus }) {
                 type: "Theme",
             },
             {
-                id: "1542314",
+                id: "12292478",
                 label: "Tourisme",
                 description: "Un environnement glacé avec de la neige",
                 flag: TourismeImage,
@@ -168,12 +173,6 @@ function SearchBar({ onSearchFocus }) {
             }
         ];
         
-        
-
-        setSuggestions(themes);
-        setSearchQuery('Nos meilleures destinations !');
-        setContext('suggestions');
-    }
 
     // Gestion des favoris
     const addToFavorites = (item) => {
@@ -237,11 +236,22 @@ function SearchBar({ onSearchFocus }) {
         }
     };
 
+
     const handleFocus = () => {
         setIsExpanded(true);
         if (onSearchFocus) onSearchFocus();
         setContext('search');
-    };
+        setPlaceholderText("Nos meilleures destinations...");
+        setSuggestions(themes);
+    
+        // Si tu veux quitter la "Home"
+        if (isHomePage) setIsHomePage(false);
+      };
+
+      const handleBlur = () => {
+        // On remet le placeholder initial
+        setPlaceholderText("Tapez des mots-clés comme 'plage', 'montagne', 'aventure'");
+      };
 
     const saveToHistory = () => {
         setHistoryStack((prevStack) => [
@@ -284,7 +294,7 @@ function SearchBar({ onSearchFocus }) {
                 setHasMore(filteredNodes.length === limit);
                 setSuggestions(filteredNodes.length > 0 ? filteredNodes : [{ label: 'Aucun résultat trouvé', IsLeaf: false }]);
             } else {
-                setSuggestions([]);
+                setSuggestions(themes);
                 setHasMore(false);
             }
         };
@@ -415,11 +425,7 @@ function SearchBar({ onSearchFocus }) {
                 </button>
             </div>
             <div className={`results-container ${isExpanded ? 'expanded' : ''}`}>
-                <div>
-                    <button className="suggestion-button" onClick={handleDestination}>
-                        Nos meilleurs Destinations
-                    </button>
-                </div>
+
                 {breadcrumb.length > 0 && (
                     <div className="breadcrumb">
                         {breadcrumb.map((level, index) => (

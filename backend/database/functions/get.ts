@@ -142,7 +142,7 @@ export async function getPlacesByThemeNameFragment(
       MATCH (startNode {id: $id})-[]->(relatedNode)
       WHERE NOT "Theme" IN labels(relatedNode) 
       AND NOT relatedNode.label =~ 'Q[0-9]+' 
-      RETURN relatedNode LIMIT 100 ; 
+      RETURN relatedNode LIMIT 59 ; 
       ` ; 
     const result = await session.run(query, {id}) ; 
     return result.records.map((record) => record.get("relatedNode").properties);

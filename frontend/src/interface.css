@@ -245,7 +245,7 @@ p {
   transition:
     transform 0.1s ease,
     opacity 0.1s ease,
-    transform 0.5s ease,
+    transform 0.3s ease,
     box-shadow 0.3s ease;
   text-align: center;
 }
@@ -387,15 +387,15 @@ p {
 
 .return-button:hover {
   background-color: rgb(233, 213, 213);
+  transform: scale(1.1);
 }
 
 .return-icon {
-  width: 20px;
-  height: 16px;
+  width: 30px;
+  height: 20px;
 }
 
 .suggestion-button {
-  display : block ; 
   position: fixed;
   top: 8px;
   left: 90%;
@@ -427,6 +427,7 @@ p {
   background-color: rgb(255, 255, 255);
   color: rgb(255, 255, 255);
   padding: 10px 10px;
+  margin : 0px 0px 0px 20px ; 
   border: 1px solid #000;
   border-radius: 100px;
   cursor: pointer;
@@ -438,11 +439,12 @@ p {
 
 .back-button:hover {
   background-color: rgb(233, 213, 213);
+  transform: scale(1.1);
 }
 
 .back-icon {
-  width: 21px;
-  height: 15px;
+  width: 30px;
+  height: 20px;
 }
 
 .no-result {

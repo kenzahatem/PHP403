@@ -1,7 +1,7 @@
 // Suggestion.js
 import React, { useState, useEffect } from 'react';
 import './interface.css';
-import villeImage from './media/iconesAffichage/ville2.png' ; 
+import villeImage from './media/iconesAffichage/ville.png' ; 
 import placeImage from './media/iconesAffichage/place.png' ; 
 import continentImage from './media/iconesAffichage/continent.jpg' ;
 
