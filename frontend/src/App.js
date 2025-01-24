@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, Link } from 'react-router-dom'; // Import de Route et Routes
+import { Route, Routes } from 'react-router-dom';
 
 import SearchBar from './SearchBar';
-import Suggestions from './Suggestions'; // Import de la page Suggestions
-import Metrics from './Metrics'; // Import de la page Metrics
+import Suggestions from './Suggestions';
+import Metrics from './Metrics';
 import './interface.css';
-import Logo from './media/Tour Travel Business Logo.svg'; // Logo SVG
-import VideoAcc from './media/video.mp4'; // Vidéo d'accueil
+import Logo from './media/Tour Travel Business Logo.svg';
+import VideoAcc from './media/video.mp4';
 
 function App() {
-    const [isHomePage, setIsHomePage] = useState(true); // State pour la vue principale
-    const [isMetricsPage, setIsMetricsPage] = useState(false); // State pour la vue métriques
+    const [isHomePage, setIsHomePage] = useState(true);
+    const [isMetricsPage, setIsMetricsPage] = useState(false);
 
     const handleSearchFocus = () => {
         setIsHomePage(false); // Masquer la page d'accueil lorsque la barre de recherche est focalisée
@@ -24,7 +24,7 @@ function App() {
     const handleBackToHome = () => {
         setIsHomePage(true);
         setIsMetricsPage(isMetricsPage); // Réinitialiser l'état des métriques
-        window.scrollTo(0, 0); // Revenir en haut de la page
+        window.scrollTo(0, 0);
     };
 
     useEffect(() => {

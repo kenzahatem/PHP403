@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import croixIcon from './media/croix.png';
-import {  fetchThemes,
+import {
     fetchprincipleThemesApi,
     fetchNodesByNameFragmentWithoutLabel,
-     fetchNodesWithRelationship,
-     fetchPlacesRelatedToThemeApi } from './api/nodeApi.js';
+    fetchNodesWithRelationship,
+    fetchPlacesRelatedToThemeApi } from './api/nodeApi.js';
 import './interface.css';
 import plageImage from './media/imagesThemes/plage.jpg';
 import montagneImage from './media/imagesThemes/montagne.jpg';
@@ -20,7 +20,6 @@ function SearchBar({ onSearchFocus }) {
     const [popupContent, setPopupContent] = useState(null);
     const searchContainerRef = useRef(null);
     const [favorites, setFavorites] = useState([]);
-    const [destinations, setDetinations] = useState([]) ; 
 
 
     const handleAllPossibleThemes = async()=>{
@@ -96,7 +95,8 @@ function SearchBar({ onSearchFocus }) {
 
     //pagination 
     const [page, setPage] = useState(0); 
-    const [hasMore, setHasMore] = useState(true); 
+    // eslint-disable-next-line
+    const [hasMore, setHasMore] = useState(true);
     const limit = 20; 
     //fin pagination 
 

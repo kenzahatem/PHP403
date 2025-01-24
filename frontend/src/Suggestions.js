@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import croixIcon from './media/croix.png';
-import {  fetchThemes,fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
+import {  fetchprincipleThemesApi,fetchNodesByNameFragmentWithoutLabel, fetchNodesWithRelationship } from './api/nodeApi.js';
 import './interface.css';
 
 function Suggestions({ onSearchFocus }) {
@@ -49,6 +49,7 @@ function Suggestions({ onSearchFocus }) {
 
     //pagination 
     const [page, setPage] = useState(0); 
+    // eslint-disable-next-line
     const [hasMore, setHasMore] = useState(true); 
     const limit = 20; 
     //fin pagination 
