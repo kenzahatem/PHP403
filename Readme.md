@@ -5,7 +5,7 @@ Destina
 
 ## Utilisation
 Aller sur l'application web et taper des mots ou débuts de mots. Des destinations seront proposées.
-## Illustration : 
+## Démonstration vidéo : 
 [![Présentation de l'application](https://img.youtube.com/vi/wXQ-w2H56xo/0.jpg)](https://www.youtube.com/watch?v=wXQ-w2H56xo)
 
 ## Installation/configuration de l'environnement
